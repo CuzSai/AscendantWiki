@@ -2,8 +2,18 @@
 let selectedWeaponDamage = 0;
 
 // Function to select a weapon and set its base damage
-function selectWeapon(weaponName, baseDamage) {
+function selectWeapon(button, weaponName, baseDamage) {
+  // Remove the "selected" class from all weapon buttons
+  const weaponButtons = document.querySelectorAll('.weapon-button');
+  weaponButtons.forEach(btn => btn.classList.remove('selected'));
+
+  // Add the "selected" class to the clicked button
+  button.classList.add('selected');
+
+  // Set the base damage of the selected weapon
   selectedWeaponDamage = baseDamage;
+  
+  // Calculate damage with the new weapon selected
   calculateDamage();
 }
 

@@ -1,22 +1,60 @@
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #2d2d3f;
+  color: #d1d1e9;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar h2 {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: #50fa7b;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+  color: #8be9fd;
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.2s ease;
+}
+
+.sidebar ul li a:hover {
+  color: #ff79c6;
+}
+
 /* General Page Styling */
 body {
   font-family: Arial, sans-serif;
   background-color: #1e1e2f;
   color: #d1d1e9;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   margin: 0;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  padding: 0;
 }
 
+/* Adjust the main calculator container to make space for the sidebar */
 .calculator {
+  margin-left: 220px; /* Space for sidebar */
   background-color: #282a36;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  width: 80%;
+  width: 70%;
   max-width: 1000px;
   text-align: center;
 }
@@ -43,7 +81,7 @@ h2 {
 
 /* Weapon Section Styling */
 .weapon-section {
-  margin-bottom: 50px; /* Extra space below weapon selection */
+  margin-bottom: 50px;
 }
 
 /* Weapon Buttons */
@@ -75,7 +113,7 @@ h2 {
 
 .weapon-button.selected {
   box-shadow: 0 0 15px #8be9fd;
-  background-color: #50587a; /* Darker on selection */
+  background-color: #50587a;
   transform: scale(1.05);
 }
 
@@ -84,51 +122,32 @@ h2 {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Sidebar Styling */
-.sidebar {
-  position: fixed;
-  right: -250px; /* Position it fully off-screen when closed */
-  top: 0;
-  width: 250px;
-  height: 100vh;
+/* Attachment Category Styling */
+.attachment-category {
+  background-color: #3a3f5a;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.attachment-category:hover {
+  transform: translateY(-3px);
+}
+
+.attachment-select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #44475a;
   background-color: #44475a;
   color: #f8f8f2;
-  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  transition: right 0.3s ease; /* Smooth slide-in animation */
-  overflow-y: auto; /* Enable scrolling if content overflows */
-  z-index: 1000; /* Ensure it’s above other content */
-}
-
-.sidebar.open {
-  right: 0; /* Fully slide in the sidebar */
-}
-
-.toggle-button {
-  position: absolute;
-  left: -50px;
-  top: 20px;
-  width: 50px;
-  height: 50px;
-  background-color: #8be9fd;
-  color: #282a36;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
+  font-size: 1.05em;
   font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s;
 }
 
-.toggle-button:hover {
-  transform: scale(1.1);
-}
-
-/* Sidebar Content Styling */
-.sidebar-content {
-  margin-top: 60px;
-}
-
+/* Progress Bar Styling */
 .stat {
   margin-top: 20px;
   text-align: left;
@@ -142,14 +161,14 @@ h2 {
 }
 
 progress {
-  width: 100%;
+  width: 80%;
   height: 25px;
   appearance: none;
   -webkit-appearance: none;
 }
 
 progress::-webkit-progress-bar {
-  background-color: #282a36;
+  background-color: #44475a;
   border-radius: 5px;
 }
 

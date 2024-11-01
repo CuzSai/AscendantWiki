@@ -2,7 +2,6 @@
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
 
-// Function to select a weapon and set its base stats
 function selectWeapon(button, weaponName, baseDamage, reloadSpeed) {
   // Remove the "selected" class from all weapon buttons
   const weaponButtons = document.querySelectorAll('.weapon-button');
@@ -18,7 +17,6 @@ function selectWeapon(button, weaponName, baseDamage, reloadSpeed) {
   calculateStats();
 }
 
-// Function to calculate and display the final damage and reload speed
 function calculateStats() {
   if (selectedWeaponDamage === 0) {
     document.getElementById('damageValue').textContent = "Please select a weapon";
@@ -42,6 +40,11 @@ function calculateStats() {
 
   document.getElementById('reloadProgress').value = finalReloadSpeed;
   document.getElementById('reloadValue').textContent = `${finalReloadSpeed.toFixed(2)}s`;
+}
+
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('open');
 }
 
 // Attach event listeners to recalculate stats when any attachment is changed

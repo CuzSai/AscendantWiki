@@ -15,18 +15,19 @@ function selectWeapon(button, weaponName, baseDamage, reloadSpeed) {
   selectedWeaponDamage = baseDamage;
   selectedWeaponReload = reloadSpeed;
 
-  // Calculate and display stats immediately
   calculateStats();
 }
 
 // Function to calculate and display the final damage and reload speed
 function calculateStats() {
+  // Check if a weapon is selected
   if (selectedWeaponDamage === 0) {
     document.getElementById('damageValue').textContent = "Please select a weapon";
+    document.getElementById('reloadValue').textContent = "";
     return;
   }
 
-  // Get multipliers from each attachment
+  // Retrieve multipliers from each attachment category
   const opticsMultiplier = parseFloat(document.getElementById('optics').value);
   const barrelMultiplier = parseFloat(document.getElementById('barrel').value);
   const gripMultiplier = parseFloat(document.getElementById('grip').value);
@@ -36,12 +37,12 @@ function calculateStats() {
 
   // Calculate combined multiplier
   const combinedMultiplier = opticsMultiplier * barrelMultiplier * gripMultiplier * magazineMultiplier * muzzleMultiplier * laserMultiplier;
-  
-  // Calculate final damage and reload speed
+
+  // Calculate final stats
   const finalDamage = selectedWeaponDamage * combinedMultiplier;
   const finalReloadSpeed = selectedWeaponReload * (1 / combinedMultiplier);
 
-  // Update progress bars and values
+  // Update progress bars and display values
   document.getElementById('damageProgress').value = finalDamage;
   document.getElementById('damageValue').textContent = finalDamage.toFixed(2);
 

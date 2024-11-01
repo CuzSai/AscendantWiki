@@ -10,40 +10,60 @@ body {
   margin: 0;
 }
 
-/* Calculator Container */
 .calculator {
   background-color: #282a36;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  max-width: 400px;
-  width: 100%;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  width: 350px;
   text-align: center;
 }
 
-/* Headings */
-h2 {
+h1 {
   color: #8be9fd;
-}
-h3 {
-  color: #ff79c6;
+  font-size: 1.8em;
+  margin-bottom: 20px;
 }
 
-/* Form Elements */
-select, input {
-  margin-top: 10px;
-  padding: 8px;
-  width: 100%;
-  border-radius: 4px;
-  border: 1px solid #444;
-  background-color: #44475a;
-  color: #d1d1e9;
+.section {
+  margin-bottom: 25px;
+}
+
+h2 {
+  color: #50fa7b;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #44475a;
+  padding-bottom: 5px;
+  text-align: left;
 }
 
 label {
-  margin-top: 15px;
   display: block;
-  text-align: left;
+  margin: 10px 0 5px;
   color: #bd93f9;
+  text-align: left;
 }
 
+select, .large-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #44475a;
+  background-color: #44475a;
+  color: #f8f8f2;
+  font-size: 1em;
+}
+
+/* Larger select box for weapon selection */
+.large-select {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.result h3 {
+  color: #ff79c6;
+  font-size: 1.3em;
+  margin-top: 15px;
+}

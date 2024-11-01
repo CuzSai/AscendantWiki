@@ -11,65 +11,76 @@
     <h1>Weapon Damage Calculator</h1>
     
     <!-- Weapon Selection Section -->
-<!-- Attachment Selection Section -->
-<div class="section attachment-section">
-  <h2>Select Attachments</h2>
+    <div class="section weapon-section">
+      <h2>Select Your Weapon</h2>
+      <div class="weapon-buttons">
+        <button class="weapon-button" onclick="selectWeapon('assault_rifle', 35)" style="background-image: url('assault_rifle.jpg');">Assault Rifle<br>(Base Damage: 35)</button>
+        <button class="weapon-button" onclick="selectWeapon('sniper_rifle', 80)" style="background-image: url('sniper_rifle.jpg');">Sniper Rifle<br>(Base Damage: 80)</button>
+        <button class="weapon-button" onclick="selectWeapon('shotgun', 70)" style="background-image: url('shotgun.jpg');">Shotgun<br>(Base Damage: 70)</button>
+        <button class="weapon-button" onclick="selectWeapon('submachine_gun', 25)" style="background-image: url('smg.jpg');">SMG<br>(Base Damage: 25)</button>
+        <button class="weapon-button" onclick="selectWeapon('pistol', 20)" style="background-image: url('pistol.jpg');">Pistol<br>(Base Damage: 20)</button>
+        <button class="weapon-button" onclick="selectWeapon('light_machine_gun', 45)" style="background-image: url('lmg.jpg');">LMG<br>(Base Damage: 45)</button>
+      </div>
+    </div>
 
-  <div class="attachment-category">
-    <label for="optics">Optic:</label>
-    <select id="optics" class="attachment-select">
-      <option value="none" data-multiplier="1.0">None (No change)</option>
-      <option value="scope" data-multiplier="1.2">Scope (+20% damage)</option>
-      <option value="red_dot" data-multiplier="1.1">Red Dot (+10% damage)</option>
-    </select>
-  </div>
+    <!-- Attachment Selection Section -->
+    <div class="section attachment-section">
+      <h2>Select Attachments</h2>
 
-  <div class="attachment-category">
-    <label for="barrel">Barrel:</label>
-    <select id="barrel" class="attachment-select">
-      <option value="none" data-multiplier="1.0">None (No change)</option>
-      <option value="heavy_barrel" data-multiplier="1.3">Heavy Barrel (+30% damage)</option>
-      <option value="short_barrel" data-multiplier="1.05">Short Barrel (+5% damage)</option>
-    </select>
-  </div>
+      <div class="attachment-category">
+        <label for="optics">Optic:</label>
+        <select id="optics" class="attachment-select">
+          <option value="none" data-multiplier="1.0">None (No change)</option>
+          <option value="scope" data-multiplier="1.2">Scope (+20% damage)</option>
+          <option value="red_dot" data-multiplier="1.1">Red Dot (+10% damage)</option>
+        </select>
+      </div>
 
-  <div class="attachment-category">
-    <label for="grip">Grip:</label>
-    <select id="grip" class="attachment-select">
-      <option value="none" data-multiplier="1.0">None (No change)</option>
-      <option value="angled_grip" data-multiplier="1.15">Angled Grip (+15% damage)</option>
-      <option value="vertical_grip" data-multiplier="1.1">Vertical Grip (+10% damage)</option>
-    </select>
-  </div>
+      <div class="attachment-category">
+        <label for="barrel">Barrel:</label>
+        <select id="barrel" class="attachment-select">
+          <option value="none" data-multiplier="1.0">None (No change)</option>
+          <option value="heavy_barrel" data-multiplier="1.3">Heavy Barrel (+30% damage)</option>
+          <option value="short_barrel" data-multiplier="1.05">Short Barrel (+5% damage)</option>
+        </select>
+      </div>
 
-  <div class="attachment-category">
-    <label for="magazine">Magazine:</label>
-    <select id="magazine" class="attachment-select">
-      <option value="none" data-multiplier="1.0">None (No change)</option>
-      <option value="extended_mag" data-multiplier="1.1">Extended Mag (+10% damage)</option>
-      <option value="quick_reload_mag" data-multiplier="1.05">Quick Reload Mag (+5% damage)</option>
-    </select>
-  </div>
+      <div class="attachment-category">
+        <label for="grip">Grip:</label>
+        <select id="grip" class="attachment-select">
+          <option value="none" data-multiplier="1.0">None (No change)</option>
+          <option value="angled_grip" data-multiplier="1.15">Angled Grip (+15% damage)</option>
+          <option value="vertical_grip" data-multiplier="1.1">Vertical Grip (+10% damage)</option>
+        </select>
+      </div>
 
-  <div class="attachment-category">
-    <label for="muzzle">Muzzle:</label>
-    <select id="muzzle" class="attachment-select">
-      <option value="none" data-multiplier="1.0">None (No change)</option>
-      <option value="silencer" data-multiplier="0.9">Silencer (-10% damage)</option>
-      <option value="flash_hider" data-multiplier="1.05">Flash Hider (+5% damage)</option>
-    </select>
-  </div>
+      <div class="attachment-category">
+        <label for="magazine">Magazine:</label>
+        <select id="magazine" class="attachment-select">
+          <option value="none" data-multiplier="1.0">None (No change)</option>
+          <option value="extended_mag" data-multiplier="1.1">Extended Mag (+10% damage)</option>
+          <option value="quick_reload_mag" data-multiplier="1.05">Quick Reload Mag (+5% damage)</option>
+        </select>
+      </div>
 
-  <div class="attachment-category">
-    <label for="laser">Laser:</label>
-    <select id="laser" class="attachment-select">
-      <option value="none" data-multiplier="1.0">None (No change)</option>
-      <option value="laser_sight" data-multiplier="1.1">Laser Sight (+10% damage)</option>
-      <option value="green_laser" data-multiplier="1.05">Green Laser (+5% damage)</option>
-    </select>
-  </div>
-</div>
+      <div class="attachment-category">
+        <label for="muzzle">Muzzle:</label>
+        <select id="muzzle" class="attachment-select">
+          <option value="none" data-multiplier="1.0">None (No change)</option>
+          <option value="silencer" data-multiplier="0.9">Silencer (-10% damage)</option>
+          <option value="flash_hider" data-multiplier="1.05">Flash Hider (+5% damage)</option>
+        </select>
+      </div>
 
+      <div class="attachment-category">
+        <label for="laser">Laser:</label>
+        <select id="laser" class="attachment-select">
+          <option value="none" data-multiplier="1.0">None (No change)</option>
+          <option value="laser_sight" data-multiplier="1.1">Laser Sight (+10% damage)</option>
+          <option value="green_laser" data-multiplier="1.05">Green Laser (+5% damage)</option>
+        </select>
+      </div>
+    </div>
 
     <!-- Display Result -->
     <div class="result">

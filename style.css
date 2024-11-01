@@ -18,18 +18,19 @@ body {
   width: 80%;
   max-width: 1000px;
   text-align: center;
+  padding-bottom: 40px; /* Added more padding to the bottom */
 }
 
 h1 {
   color: #8be9fd;
   font-size: 1.8em;
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* Increased margin below the main title */
 }
 
 h2 {
   color: #50fa7b;
   font-size: 1.3em;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 /* Weapon Buttons */
@@ -44,7 +45,7 @@ h2 {
   height: 140px;
   background-size: cover;
   background-position: center;
-  background-color: #3a3f5a; /* Darker background */
+  background-color: #3a3f5a;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -61,12 +62,12 @@ h2 {
 
 .weapon-button.selected {
   box-shadow: 0 0 15px #8be9fd;
-  background-color: #50587a; /* Darker on selection */
+  background-color: #50587a;
   transform: scale(1.05);
 }
 
 .weapon-button:hover {
-  transform: scale(1.05); /* Scale slightly on hover */
+  transform: scale(1.05);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -110,7 +111,7 @@ h2 {
 
 progress {
   width: 80%;
-  height: 25px; /* Larger height for better visibility */
+  height: 25px;
   appearance: none;
   -webkit-appearance: none;
 }

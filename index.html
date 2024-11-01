@@ -7,23 +7,28 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Sidebar Section -->
-  <div class="sidebar">
-    <h2>Weapon Stats</h2>
-    <ul>
-      <li><a href="#weapons">Weapons</a></li>
-      <li><a href="#attachments">Attachments</a></li>
-      <li><a href="#calculated-stats">Calculated Stats</a></li>
-    </ul>
+
+  <!-- Fixed Results Bar -->
+  <div class="results-bar">
+    <div class="result">
+      <h3>Damage:</h3>
+      <progress id="damageProgress" max="100" value="0"></progress>
+      <span id="damageValue">0</span>
+    </div>
+    <div class="result">
+      <h3>Reload Speed:</h3>
+      <progress id="reloadProgress" max="5" value="0"></progress>
+      <span id="reloadValue">0.0s</span>
+    </div>
   </div>
 
-  <!-- Main Content Section -->
+  <!-- Main Calculator Content -->
   <div class="calculator">
     <h1>Weapon Damage Calculator</h1>
     <hr class="section-divider">
 
     <!-- Weapon Selection Section -->
-    <div id="weapons" class="section weapon-section">
+    <div class="section weapon-section">
       <h2>Choose Your Weapon</h2>
       <div class="weapon-buttons">
         <button class="weapon-button" onclick="selectWeapon(this, 'assault_rifle', 35, 2.5)" style="background-image: url('assault_rifle.jpg');">Assault Rifle</button>
@@ -36,7 +41,7 @@
     </div>
 
     <!-- Attachment Selection Section -->
-    <div id="attachments" class="section attachment-section">
+    <div class="section attachment-section">
       <h2>Select Attachments</h2>
 
       <div class="attachment-category">
@@ -91,21 +96,6 @@
           <option value="1.1">Laser Sight (+10% damage)</option>
           <option value="1.05">Green Laser (+5% damage)</option>
         </select>
-      </div>
-    </div>
-
-    <!-- Display Result -->
-    <div id="calculated-stats" class="result">
-      <h3>Calculated Stats:</h3>
-      <div class="stat">
-        <label>Damage:</label>
-        <progress id="damageProgress" max="100" value="0"></progress>
-        <span id="damageValue">0</span>
-      </div>
-      <div class="stat">
-        <label>Reload Speed:</label>
-        <progress id="reloadProgress" max="5" value="0"></progress>
-        <span id="reloadValue">0.0s</span>
       </div>
     </div>
   </div>

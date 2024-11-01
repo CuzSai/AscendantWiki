@@ -11,20 +11,28 @@
     <h2>Weapon Damage Calculator</h2>
 
     <!-- Weapon Selection -->
-    <label for="weapon">Choose a weapon:</label>
-    <select id="weapon">
-      <option value="rifle" data-damage="30">Rifle (Base Damage: 30)</option>
-      <option value="pistol" data-damage="15">Pistol (Base Damage: 15)</option>
-      <option value="shotgun" data-damage="50">Shotgun (Base Damage: 50)</option>
-    </select>
+<label for="attachment1">Choose first attachment:</label>
+<select id="attachment1">
+  <option value="none" data-multiplier="1.0">None (No damage change)</option>
+  <option value="scope" data-multiplier="1.2">Scope (+20% damage)</option>
+  <option value="silencer" data-multiplier="0.9">Silencer (-10% damage)</option>
+  <option value="extended_mag" data-multiplier="1.0">Extended Mag (No damage change)</option>
+  <option value="laser_sight" data-multiplier="1.1">Laser Sight (+10% damage)</option>
+  <option value="heavy_barrel" data-multiplier="1.3">Heavy Barrel (+30% damage)</option>
+  <option value="grip" data-multiplier="1.05">Grip (+5% damage)</option>
+</select>
 
-    <!-- Attachment Selection -->
-    <label for="attachment">Choose an attachment:</label>
-    <select id="attachment">
-      <option value="scope" data-multiplier="1.2">Scope (+20% damage)</option>
-      <option value="silencer" data-multiplier="0.9">Silencer (-10% damage)</option>
-      <option value="extended_mag" data-multiplier="1.0">Extended Mag (No damage change)</option>
-    </select>
+<!-- Second Attachment Selection -->
+<label for="attachment2">Choose second attachment:</label>
+<select id="attachment2">
+  <option value="none" data-multiplier="1.0">None (No damage change)</option>
+  <option value="scope" data-multiplier="1.2">Scope (+20% damage)</option>
+  <option value="silencer" data-multiplier="0.9">Silencer (-10% damage)</option>
+  <option value="extended_mag" data-multiplier="1.0">Extended Mag (No damage change)</option>
+  <option value="laser_sight" data-multiplier="1.1">Laser Sight (+10% damage)</option>
+  <option value="heavy_barrel" data-multiplier="1.3">Heavy Barrel (+30% damage)</option>
+  <option value="grip" data-multiplier="1.05">Grip (+5% damage)</option>
+</select>
 
     <!-- Result Display -->
     <h3>Calculated Damage: <span id="damageOutput">0</span></h3>

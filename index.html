@@ -10,7 +10,19 @@
   <div class="calculator">
     <h2>Weapon Damage Calculator</h2>
 
-    <!-- Weapon Selection -->
+<h2>Weapon Damage Calculator</h2>
+
+<!-- Weapon Selection -->
+<label for="weapon">Choose a weapon:</label>
+<select id="weapon">
+  <option value="assault_rifle" data-damage="35">Assault Rifle (Base Damage: 35)</option>
+  <option value="sniper_rifle" data-damage="80">Sniper Rifle (Base Damage: 80)</option>
+  <option value="shotgun" data-damage="70">Shotgun (Base Damage: 70)</option>
+  <option value="submachine_gun" data-damage="25">Submachine Gun (Base Damage: 25)</option>
+  <option value="pistol" data-damage="20">Pistol (Base Damage: 20)</option>
+  <option value="light_machine_gun" data-damage="45">Light Machine Gun (Base Damage: 45)</option>
+</select>
+
 <!-- Optics Category -->
 <label for="optics">Choose an Optic:</label>
 <select id="optics">
@@ -59,9 +71,9 @@
   <option value="green_laser" data-multiplier="1.05">Green Laser (+5% damage)</option>
 </select>
 
+<!-- Display Result -->
+<h3>Calculated Damage: <span id="damageOutput">0</span></h3>
 
-    <!-- Result Display -->
-    <h3>Calculated Damage: <span id="damageOutput">0</span></h3>
   </div>
 
   <script src="script.js"></script>

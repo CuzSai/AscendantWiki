@@ -7,12 +7,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Sidebar Section -->
+  <div class="sidebar">
+    <h2>Weapon Stats</h2>
+    <ul>
+      <li><a href="#weapons">Weapons</a></li>
+      <li><a href="#attachments">Attachments</a></li>
+      <li><a href="#calculated-stats">Calculated Stats</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content Section -->
   <div class="calculator">
     <h1>Weapon Damage Calculator</h1>
-    <hr class="section-divider"> <!-- Horizontal bar below the main title -->
+    <hr class="section-divider">
 
     <!-- Weapon Selection Section -->
-    <div class="section weapon-section">
+    <div id="weapons" class="section weapon-section">
       <h2>Choose Your Weapon</h2>
       <div class="weapon-buttons">
         <button class="weapon-button" onclick="selectWeapon(this, 'assault_rifle', 35, 2.5)" style="background-image: url('assault_rifle.jpg');">Assault Rifle</button>
@@ -25,7 +36,7 @@
     </div>
 
     <!-- Attachment Selection Section -->
-    <div class="section attachment-section">
+    <div id="attachments" class="section attachment-section">
       <h2>Select Attachments</h2>
 
       <div class="attachment-category">
@@ -82,13 +93,10 @@
         </select>
       </div>
     </div>
-  </div>
 
-  <!-- Expandable Sidebar for Calculated Stats -->
-  <div id="sidebar" class="sidebar">
-    <button id="toggleSidebar" class="toggle-button" onclick="toggleSidebar()">Stats</button>
-    <div class="sidebar-content">
-      <h3>Calculated Stats</h3>
+    <!-- Display Result -->
+    <div id="calculated-stats" class="result">
+      <h3>Calculated Stats:</h3>
       <div class="stat">
         <label>Damage:</label>
         <progress id="damageProgress" max="100" value="0"></progress>

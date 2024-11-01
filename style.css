@@ -15,8 +15,8 @@ body {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  width: 80%;
-  max-width: 1000px;
+  width: 100%; /* Expand to full width */
+  max-width: none; /* Remove max width restriction */
   text-align: center;
 }
 

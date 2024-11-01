@@ -8,20 +8,18 @@
 </head>
 <body>
 
-  <!-- Collapsible Sidebar for Results -->
-  <div class="sidebar" id="sidebar">
-    <button class="toggle-button" onclick="toggleSidebar()">&#10095;</button>
-    <div class="results-container">
-      <div class="result">
-        <h3>Damage:</h3>
-        <progress id="damageProgress" max="100" value="0"></progress>
-        <span id="damageValue">0</span>
-      </div>
-      <div class="result">
-        <h3>Reload Speed:</h3>
-        <progress id="reloadProgress" max="5" value="0"></progress>
-        <span id="reloadValue">0.0s</span>
-      </div>
+  <!-- Sidebar for Calculated Stats -->
+  <div class="stats-sidebar">
+    <h2>Calculated Stats</h2>
+    <div class="result">
+      <h3>Damage:</h3>
+      <progress id="damageProgress" max="100" value="0"></progress>
+      <span id="damageValue">0</span>
+    </div>
+    <div class="result">
+      <h3>Reload Speed:</h3>
+      <progress id="reloadProgress" max="5" value="0"></progress>
+      <span id="reloadValue">0.0s</span>
     </div>
   </div>
 

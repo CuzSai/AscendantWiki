@@ -118,6 +118,7 @@ h2 {
   margin-bottom: 10px;
 }
 
+/* Weapon Buttons */
 .weapon-buttons {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -125,4 +126,55 @@ h2 {
   margin: 20px 0;
 }
 
-/* Other styling remains unchanged... */
+.weapon-button {
+  height: 60px;
+  background-color: #3a3f5a;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.weapon-button.selected {
+  box-shadow: 0 0 15px #8be9fd;
+  background-color: #50587a;
+  transform: scale(1.05);
+}
+
+.weapon-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Attachment Category Styling */
+.attachment-category {
+  background-color: #3a3f5a;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.attachment-category:hover {
+  transform: translateY(-3px);
+}
+
+.attachment-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #44475a;
+  background-color: #44475a;
+  color: #f8f8f2;
+  font-size: 1em;
+  font-weight: bold;
+}

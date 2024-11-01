@@ -60,13 +60,13 @@ h2 {
 }
 
 .weapon-button.selected {
-  box-shadow: 0 0 10px #8be9fd;
-  background-color: #50587a; /* Slightly darker on select */
+  box-shadow: 0 0 15px #8be9fd;
+  background-color: #50587a; /* Darker on selection */
   transform: scale(1.05);
 }
 
 .weapon-button:hover {
-  transform: translateY(-5px);
+  transform: scale(1.05); /* Scale slightly on hover */
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -109,8 +109,8 @@ h2 {
 }
 
 progress {
-  width: 70%;
-  height: 20px;
+  width: 80%;
+  height: 25px; /* Larger height for better visibility */
   appearance: none;
   -webkit-appearance: none;
 }

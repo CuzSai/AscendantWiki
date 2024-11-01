@@ -16,7 +16,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   width: 80%;
-  max-width: 900px;
+  max-width: 1000px;
   text-align: center;
 }
 
@@ -26,21 +26,22 @@ h1 {
   margin-bottom: 20px;
 }
 
-.section {
-  margin-bottom: 25px;
+h2 {
+  color: #50fa7b;
+  font-size: 1.3em;
+  margin-bottom: 10px;
 }
 
 /* Weapon Buttons */
 .weapon-buttons {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  justify-content: space-between;
+  margin: 20px 0;
 }
 
 .weapon-button {
-  width: 30%;
-  height: 120px;
+  height: 140px;
   background-size: cover;
   background-position: center;
   border: none;

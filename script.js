@@ -1,8 +1,19 @@
-function calculateDamage() {
-  const weaponSelect = document.getElementById('weapon');
+// This variable stores the base damage of the selected weapon
+let selectedWeaponDamage = 0;
 
-  // Get the weapon's base damage
-  const weaponDamage = parseFloat(weaponSelect.options[weaponSelect.selectedIndex].dataset.damage);
+// Function to select a weapon and set its base damage
+function selectWeapon(weaponName, baseDamage) {
+  selectedWeaponDamage = baseDamage;
+  calculateDamage();
+}
+
+// Function to calculate the final damage based on selected weapon and attachments
+function calculateDamage() {
+  // Ensure a weapon is selected before calculating
+  if (selectedWeaponDamage === 0) {
+    document.getElementById('damageOutput').textContent = "Please select a weapon";
+    return;
+  }
 
   // Get the multipliers from each attachment category
   const opticsMultiplier = parseFloat(document.getElementById('optics').options[document.getElementById('optics').selectedIndex].dataset.multiplier);
@@ -16,18 +27,14 @@ function calculateDamage() {
   const combinedMultiplier = opticsMultiplier * barrelMultiplier * gripMultiplier * magazineMultiplier * muzzleMultiplier * laserMultiplier;
 
   // Calculate the final damage
-  const finalDamage = weaponDamage * combinedMultiplier;
+  const finalDamage = selectedWeaponDamage * combinedMultiplier;
   document.getElementById('damageOutput').textContent = finalDamage.toFixed(2);
 }
 
-// Add event listeners to recalculate damage when any selection changes
-document.getElementById('weapon').addEventListener('change', calculateDamage);
+// Add event listeners for each attachment dropdown to recalculate damage when changed
 document.getElementById('optics').addEventListener('change', calculateDamage);
 document.getElementById('barrel').addEventListener('change', calculateDamage);
 document.getElementById('grip').addEventListener('change', calculateDamage);
 document.getElementById('magazine').addEventListener('change', calculateDamage);
 document.getElementById('muzzle').addEventListener('change', calculateDamage);
 document.getElementById('laser').addEventListener('change', calculateDamage);
-
-// Initial calculation on page load
-calculateDamage();

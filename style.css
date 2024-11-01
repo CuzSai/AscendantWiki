@@ -15,7 +15,7 @@ body {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  width: 400px;
+  width: 450px;
   text-align: center;
 }
 
@@ -29,35 +29,39 @@ h1 {
   margin-bottom: 25px;
 }
 
-.weapon-section h2, .attachment-section h2 {
-  color: #50fa7b;
-  font-size: 1.3em;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #44475a;
-  padding-bottom: 5px;
-  text-align: left;
+/* Weapon Buttons */
+.weapon-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
 }
 
-label {
-  display: block;
-  margin: 10px 0 5px;
-  color: #bd93f9;
-  text-align: left;
-}
-
-.large-select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 5px;
-  border: 1px solid #44475a;
-  background-color: #44475a;
-  color: #f8f8f2;
-  font-size: 1.1em;
+.weapon-button {
+  width: 45%;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1em;
   font-weight: bold;
-  margin-top: 10px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Attachment Category Card Styling */
+.weapon-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Attachment Category Styling */
 .attachment-category {
   background-color: #3a3f5a;
   padding: 15px;

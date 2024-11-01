@@ -82,10 +82,13 @@
         </select>
       </div>
     </div>
+  </div>
 
-    <!-- Display Result -->
-    <div class="result">
-      <h3>Calculated Stats:</h3>
+  <!-- Expandable Sidebar for Calculated Stats -->
+  <div id="sidebar" class="sidebar">
+    <button id="toggleSidebar" class="toggle-button" onclick="toggleSidebar()">Stats</button>
+    <div class="sidebar-content">
+      <h3>Calculated Stats</h3>
       <div class="stat">
         <label>Damage:</label>
         <progress id="damageProgress" max="100" value="0"></progress>

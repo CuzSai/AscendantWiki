@@ -14,19 +14,19 @@
     <div class="section weapon-section">
       <h2>Choose Your Weapon</h2>
       <div class="weapon-buttons">
-        <button class="weapon-button" onclick="selectWeapon(this, 'assault_rifle', 35)" style="background-image: url('assault_rifle.jpg');">Assault Rifle<br>(Base Damage: 35)</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'sniper_rifle', 80)" style="background-image: url('sniper_rifle.jpg');">Sniper Rifle<br>(Base Damage: 80)</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'shotgun', 70)" style="background-image: url('shotgun.jpg');">Shotgun<br>(Base Damage: 70)</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'submachine_gun', 25)" style="background-image: url('smg.jpg');">SMG<br>(Base Damage: 25)</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'pistol', 20)" style="background-image: url('pistol.jpg');">Pistol<br>(Base Damage: 20)</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'light_machine_gun', 45)" style="background-image: url('lmg.jpg');">LMG<br>(Base Damage: 45)</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'assault_rifle', 35, 2.5)" style="background-image: url('assault_rifle.jpg');">Assault Rifle<br>(Base Damage: 35, Reload Speed: 2.5s)</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'sniper_rifle', 80, 4.0)" style="background-image: url('sniper_rifle.jpg');">Sniper Rifle<br>(Base Damage: 80, Reload Speed: 4.0s)</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'shotgun', 70, 3.5)" style="background-image: url('shotgun.jpg');">Shotgun<br>(Base Damage: 70, Reload Speed: 3.5s)</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'submachine_gun', 25, 1.8)" style="background-image: url('smg.jpg');">SMG<br>(Base Damage: 25, Reload Speed: 1.8s)</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'pistol', 20, 1.5)" style="background-image: url('pistol.jpg');">Pistol<br>(Base Damage: 20, Reload Speed: 1.5s)</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'light_machine_gun', 45, 3.2)" style="background-image: url('lmg.jpg');">LMG<br>(Base Damage: 45, Reload Speed: 3.2s)</button>
       </div>
     </div>
 
     <!-- Attachment Selection Section -->
     <div class="section attachment-section">
       <h2>Select Attachments</h2>
-
+      <!-- Attachment categories remain the same -->
       <div class="attachment-category">
         <label for="optics">Optic:</label>
         <select id="optics" class="attachment-select">
@@ -35,6 +35,7 @@
           <option value="red_dot" data-multiplier="1.1">Red Dot (+10% damage)</option>
         </select>
       </div>
+      <!-- Repeat for other attachment categories as before -->
 
       <div class="attachment-category">
         <label for="barrel">Barrel:</label>
@@ -84,7 +85,17 @@
 
     <!-- Display Result -->
     <div class="result">
-      <h3>Calculated Damage: <span id="damageOutput">0</span></h3>
+      <h3>Calculated Stats:</h3>
+      <div class="stat">
+        <label>Damage:</label>
+        <progress id="damageProgress" max="100" value="0"></progress>
+        <span id="damageValue">0</span>
+      </div>
+      <div class="stat">
+        <label>Reload Speed:</label>
+        <progress id="reloadProgress" max="5" value="0"></progress>
+        <span id="reloadValue">0.0s</span>
+      </div>
     </div>
   </div>
 

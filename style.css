@@ -6,7 +6,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
 }
 
@@ -15,7 +15,8 @@ body {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  width: 450px;
+  width: 80%;
+  max-width: 900px;
   text-align: center;
 }
 
@@ -33,19 +34,19 @@ h1 {
 .weapon-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
+  gap: 20px;
+  justify-content: space-between;
 }
 
 .weapon-button {
-  width: 45%;
-  height: 100px;
+  width: 30%;
+  height: 120px;
   background-size: cover;
   background-position: center;
   border: none;
   border-radius: 8px;
   color: #fff;
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: bold;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
   cursor: pointer;
@@ -56,6 +57,11 @@ h1 {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
+.weapon-button.selected {
+  box-shadow: 0 0 10px #8be9fd;
+  transform: scale(1.05);
+}
+
 .weapon-button:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
@@ -64,8 +70,8 @@ h1 {
 /* Attachment Category Styling */
 .attachment-category {
   background-color: #3a3f5a;
-  padding: 15px;
-  margin-top: 15px;
+  padding: 20px;
+  margin-top: 20px;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;

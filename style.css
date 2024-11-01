@@ -8,6 +8,7 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .calculator {
@@ -34,81 +35,49 @@ h1 {
   margin: 15px 0;
 }
 
-h2 {
-  color: #50fa7b;
-  font-size: 1.3em;
-  margin-bottom: 10px;
-}
-
-/* Weapon Section Styling */
-.weapon-section {
-  margin-bottom: 50px; /* Extra space below weapon selection */
-}
-
-/* Weapon Buttons */
-.weapon-buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin: 20px 0;
-}
-
-.weapon-button {
-  height: 140px;
-  background-size: cover;
-  background-position: center;
-  background-color: #3a3f5a;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 1.1em;
-  font-weight: bold;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
-  cursor: pointer;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-}
-
-.weapon-button.selected {
-  box-shadow: 0 0 15px #8be9fd;
-  background-color: #50587a;
-  transform: scale(1.05);
-}
-
-.weapon-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Attachment Category Styling */
-.attachment-category {
-  background-color: #3a3f5a;
-  padding: 20px;
-  margin-top: 20px;
-  border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.attachment-category:hover {
-  transform: translateY(-3px);
-}
-
-.attachment-select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 5px;
-  border: 1px solid #44475a;
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  right: -250px;
+  top: 0;
+  width: 250px;
+  height: 100vh;
   background-color: #44475a;
   color: #f8f8f2;
-  font-size: 1.05em;
-  font-weight: bold;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  transition: right 0.3s;
 }
 
-/* Progress Bar Styling */
+.sidebar.open {
+  right: 0;
+}
+
+.toggle-button {
+  position: absolute;
+  left: -50px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #8be9fd;
+  color: #282a36;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+}
+
+.toggle-button:hover {
+  transform: scale(1.1);
+}
+
+/* Sidebar Content Styling */
+.sidebar-content {
+  margin-top: 60px;
+}
+
 .stat {
   margin-top: 20px;
   text-align: left;
@@ -122,14 +91,14 @@ h2 {
 }
 
 progress {
-  width: 80%;
+  width: 100%;
   height: 25px;
   appearance: none;
   -webkit-appearance: none;
 }
 
 progress::-webkit-progress-bar {
-  background-color: #44475a;
+  background-color: #282a36;
   border-radius: 5px;
 }
 

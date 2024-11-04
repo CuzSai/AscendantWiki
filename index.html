@@ -42,24 +42,24 @@
 
     <!-- Attachment Selection Section -->
     <div class="section attachment-section">
-      <h2>Select Attachments</h2>
+      <h2>Hover to Select Attachments</h2>
       <div class="attachment-grid">
-        <div class="attachment-icon" data-tooltip="Scope (+20% damage)" onclick="selectAttachment('Optic', 1.2)">
+        <div class="attachment-icon" data-tooltip="Scope (+20% damage)" onmouseover="previewAttachment('Optic', 1.2)" onmouseout="resetAttachment()">
           <img src="scope_icon.png" alt="Optic">
         </div>
-        <div class="attachment-icon" data-tooltip="Heavy Barrel (+30% damage)" onclick="selectAttachment('Barrel', 1.3)">
+        <div class="attachment-icon" data-tooltip="Heavy Barrel (+30% damage)" onmouseover="previewAttachment('Barrel', 1.3)" onmouseout="resetAttachment()">
           <img src="barrel_icon.png" alt="Barrel">
         </div>
-        <div class="attachment-icon" data-tooltip="Angled Grip (+15% damage)" onclick="selectAttachment('Grip', 1.15)">
+        <div class="attachment-icon" data-tooltip="Angled Grip (+15% damage)" onmouseover="previewAttachment('Grip', 1.15)" onmouseout="resetAttachment()">
           <img src="grip_icon.png" alt="Grip">
         </div>
-        <div class="attachment-icon" data-tooltip="Extended Mag (+10% damage)" onclick="selectAttachment('Magazine', 1.1)">
+        <div class="attachment-icon" data-tooltip="Extended Mag (+10% damage)" onmouseover="previewAttachment('Magazine', 1.1)" onmouseout="resetAttachment()">
           <img src="magazine_icon.png" alt="Magazine">
         </div>
-        <div class="attachment-icon" data-tooltip="Silencer (-10% damage)" onclick="selectAttachment('Muzzle', 0.9)">
+        <div class="attachment-icon" data-tooltip="Silencer (-10% damage)" onmouseover="previewAttachment('Muzzle', 0.9)" onmouseout="resetAttachment()">
           <img src="muzzle_icon.png" alt="Muzzle">
         </div>
-        <div class="attachment-icon" data-tooltip="Laser Sight (+10% damage)" onclick="selectAttachment('Laser', 1.1)">
+        <div class="attachment-icon" data-tooltip="Laser Sight (+10% damage)" onmouseover="previewAttachment('Laser', 1.1)" onmouseout="resetAttachment()">
           <img src="laser_icon.png" alt="Laser">
         </div>
       </div>

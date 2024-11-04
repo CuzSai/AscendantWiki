@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weapon Damage Calculator</title>
+  <title>Weapon Attachment Selection</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -32,65 +32,35 @@
     <div class="section weapon-section">
       <h2>Choose Your Weapon</h2>
       <div class="weapon-buttons">
-        <button class="weapon-button" onclick="selectWeapon(this, 'battle_rifle', 40, 3.0)" style="background-image: url('battle_rifle.jpg');">Battle Rifle</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'beam_gloves', 25, 2.0)" style="background-image: url('beam_gloves.jpg');">Beam Gloves</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'plasma_rifle', 30, 2.5)" style="background-image: url('plasma_rifle.jpg');">Plasma Rifle</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'shotgun', 70, 3.5)" style="background-image: url('shotgun.jpg');">Shotgun</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'sniper_rifle', 80, 4.0)" style="background-image: url('sniper_rifle.jpg');">Sniper Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'battle_rifle', 40, 3.0)">Battle Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'beam_gloves', 25, 2.0)">Beam Gloves</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'plasma_rifle', 30, 2.5)">Plasma Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'shotgun', 70, 3.5)">Shotgun</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'sniper_rifle', 80, 4.0)">Sniper Rifle</button>
       </div>
     </div>
 
     <!-- Attachment Selection Section -->
     <div class="section attachment-section">
       <h2>Select Attachments</h2>
-      <div class="attachment-cards">
-        <div class="attachment-card">
-          <label for="optics">Optic</label>
-          <select id="optics" class="attachment-select">
-            <option value="1.0">None (No change)</option>
-            <option value="1.2">Scope (+20% damage)</option>
-            <option value="1.1">Red Dot (+10% damage)</option>
-          </select>
+      <div class="attachment-grid">
+        <div class="attachment-icon" data-tooltip="Scope (+20% damage)" onclick="selectAttachment('Optic', 1.2)">
+          <img src="scope_icon.png" alt="Optic">
         </div>
-        <div class="attachment-card">
-          <label for="barrel">Barrel</label>
-          <select id="barrel" class="attachment-select">
-            <option value="1.0">None (No change)</option>
-            <option value="1.3">Heavy Barrel (+30% damage)</option>
-            <option value="1.05">Short Barrel (+5% damage)</option>
-          </select>
+        <div class="attachment-icon" data-tooltip="Heavy Barrel (+30% damage)" onclick="selectAttachment('Barrel', 1.3)">
+          <img src="barrel_icon.png" alt="Barrel">
         </div>
-        <div class="attachment-card">
-          <label for="grip">Grip</label>
-          <select id="grip" class="attachment-select">
-            <option value="1.0">None (No change)</option>
-            <option value="1.15">Angled Grip (+15% damage)</option>
-            <option value="1.1">Vertical Grip (+10% damage)</option>
-          </select>
+        <div class="attachment-icon" data-tooltip="Angled Grip (+15% damage)" onclick="selectAttachment('Grip', 1.15)">
+          <img src="grip_icon.png" alt="Grip">
         </div>
-        <div class="attachment-card">
-          <label for="magazine">Magazine</label>
-          <select id="magazine" class="attachment-select">
-            <option value="1.0">None (No change)</option>
-            <option value="1.1">Extended Mag (+10% damage)</option>
-            <option value="1.05">Quick Reload Mag (+5% damage)</option>
-          </select>
+        <div class="attachment-icon" data-tooltip="Extended Mag (+10% damage)" onclick="selectAttachment('Magazine', 1.1)">
+          <img src="magazine_icon.png" alt="Magazine">
         </div>
-        <div class="attachment-card">
-          <label for="muzzle">Muzzle</label>
-          <select id="muzzle" class="attachment-select">
-            <option value="1.0">None (No change)</option>
-            <option value="0.9">Silencer (-10% damage)</option>
-            <option value="1.05">Flash Hider (+5% damage)</option>
-          </select>
+        <div class="attachment-icon" data-tooltip="Silencer (-10% damage)" onclick="selectAttachment('Muzzle', 0.9)">
+          <img src="muzzle_icon.png" alt="Muzzle">
         </div>
-        <div class="attachment-card">
-          <label for="laser">Laser</label>
-          <select id="laser" class="attachment-select">
-            <option value="1.0">None (No change)</option>
-            <option value="1.1">Laser Sight (+10% damage)</option>
-            <option value="1.05">Green Laser (+5% damage)</option>
-          </select>
+        <div class="attachment-icon" data-tooltip="Laser Sight (+10% damage)" onclick="selectAttachment('Laser', 1.1)">
+          <img src="laser_icon.png" alt="Laser">
         </div>
       </div>
     </div>

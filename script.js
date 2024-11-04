@@ -22,9 +22,11 @@ function selectWeapon(button, weaponName, baseDamage, reloadSpeed) {
 function calculateStats() {
   if (selectedWeaponDamage === 0) {
     document.getElementById('damageValue').textContent = "Please select a weapon";
+    document.getElementById('reloadValue').textContent = "";
     return;
   }
 
+  // Retrieve multipliers from each attachment category
   const opticsMultiplier = parseFloat(document.getElementById('optics').value);
   const barrelMultiplier = parseFloat(document.getElementById('barrel').value);
   const gripMultiplier = parseFloat(document.getElementById('grip').value);
@@ -32,16 +34,30 @@ function calculateStats() {
   const muzzleMultiplier = parseFloat(document.getElementById('muzzle').value);
   const laserMultiplier = parseFloat(document.getElementById('laser').value);
 
+  // Calculate combined multiplier
   const combinedMultiplier = opticsMultiplier * barrelMultiplier * gripMultiplier * magazineMultiplier * muzzleMultiplier * laserMultiplier;
-  
+
+  // Calculate final stats
   const finalDamage = selectedWeaponDamage * combinedMultiplier;
   const finalReloadSpeed = selectedWeaponReload * (1 / combinedMultiplier);
 
+  // Update progress bars and display values
   document.getElementById('damageProgress').value = finalDamage;
   document.getElementById('damageValue').textContent = finalDamage.toFixed(2);
 
   document.getElementById('reloadProgress').value = finalReloadSpeed;
   document.getElementById('reloadValue').textContent = `${finalReloadSpeed.toFixed(2)}s`;
+
+  // Trigger fade-in animation on stat update
+  triggerAnimation(document.getElementById('damageValue'));
+  triggerAnimation(document.getElementById('reloadValue'));
+}
+
+// Function to re-trigger fade-in animation
+function triggerAnimation(element) {
+  element.classList.remove('fadeIn');
+  void element.offsetWidth; // Trigger a reflow to restart the animation
+  element.classList.add('fadeIn');
 }
 
 // Attach event listeners to recalculate stats when any attachment is changed

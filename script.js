@@ -61,11 +61,3 @@ function calculateStats() {
   document.getElementById('reloadProgress').value = finalReloadSpeed;
   document.getElementById('reloadValue').textContent = `${finalReloadSpeed.toFixed(2)}s`;
 }
-
-function showOptions(category) {
-  category.querySelector('.attachment-buttons').style.display = 'block';
-}
-
-function hideOptions(category) {
-  category.querySelector('.attachment-buttons').style.display = 'none';
-}

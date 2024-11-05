@@ -15,16 +15,28 @@ const attachmentMultipliers = {
 // Function to handle accordion-style opening and closing of attachment categories
 function toggleAccordion(element) {
   const activeCategory = document.querySelector('.attachment-category.active');
-
-  // Close the currently active category first, with a stronger delay
+  
   if (activeCategory && activeCategory !== element.parentNode) {
+    // Smoothly collapse the previously active category
     activeCategory.classList.remove('active');
+    activeCategory.querySelector('.attachment-buttons').style.height = '0';
 
-    setTimeout(() => {
-      element.parentNode.classList.add('active');
-    }, 400); // Longer delay to avoid overlap effect during animation
+    // Use requestAnimationFrame to allow time for collapsing, then expand the new one
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        element.parentNode.classList.add('active');
+        const content = element.parentNode.querySelector('.attachment-buttons');
+        content.style.height = `${content.scrollHeight}px`;
+      });
+    });
   } else {
     element.parentNode.classList.toggle('active');
+    const content = element.parentNode.querySelector('.attachment-buttons');
+    if (element.parentNode.classList.contains('active')) {
+      content.style.height = `${content.scrollHeight}px`;
+    } else {
+      content.style.height = '0';
+    }
   }
 }
 

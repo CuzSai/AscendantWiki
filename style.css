@@ -138,33 +138,33 @@ h2, h3 {
 
 /* Attachment Categories and Accordion */
 .attachment-category {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .attachment-title {
   font-size: 1.2em;
   color: #ffb86c;
   cursor: pointer;
-  padding: 10px;
+  padding: 12px;
   background-color: #2e323e;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
-/* Smooth Accordion Animation */
+/* Accordion Animation */
 .attachment-buttons {
   height: 0;
   overflow: hidden;
   transition: height 0.5s ease, opacity 0.5s ease;
   opacity: 0;
-  padding: 0 10px;
-  background-color: #3a3f5a;
+  background-color: #3a3f5a; /* Unified background color */
   border-radius: 8px;
+  padding: 0 12px;
   margin-top: 5px;
 }
 
 .attachment-category.active .attachment-buttons {
-  height: auto;
   opacity: 1;
+  height: auto;
   padding: 10px;
 }
 

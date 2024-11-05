@@ -113,7 +113,7 @@ h2, h3 {
   height: 60px;
   background-color: #3a3f5a;
   border: none;
-  border-radius: 8px;
+  border-radius: 8px; /* Rounded corners */
   color: #fff;
   font-size: 1.1em;
   font-weight: bold;
@@ -122,24 +122,20 @@ h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, border-radius 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 .weapon-button.selected, .attachment-button.selected {
   box-shadow: 0 0 15px #8be9fd;
   background-color: #50587a;
-  transform: scale(1.05);
-  border-radius: 0; /* Remove rounded corners for selected state */
+  transform: scale(1.05); /* Add slight emphasis to show selection */
+  border-radius: 8px; /* Keep rounded corners for selected state */
 }
 
 .weapon-button:hover, .attachment-button:hover {
-  transform: scale(1.03);
+  transform: scale(1.03); /* Slightly smaller scale on hover to avoid awkward expansion */
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Specific styling for attachment buttons on hover */
-.attachment-button:hover {
-  border-radius: 0; /* Remove rounded corners to make them sharp */
+  border-radius: 8px; /* Maintain rounded corners */
 }
 
 /* Attachment Categories and Accordion */
@@ -179,6 +175,6 @@ h2, h3 {
 
 .attachment-button {
   background-color: #43495a; /* Make buttons a distinct color from the background */
-  border-radius: 8px;
+  border-radius: 8px; /* Keep rounded corners */
   padding: 10px;
 }

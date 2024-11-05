@@ -138,14 +138,14 @@ h2, h3 {
 
 /* Attachment Categories and Accordion */
 .attachment-category {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .attachment-title {
   font-size: 1.2em;
   color: #ffb86c;
   cursor: pointer;
-  padding: 12px;
+  padding: 8px;
   background-color: #2e323e;
   border-radius: 8px;
 }

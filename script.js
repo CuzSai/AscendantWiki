@@ -15,13 +15,16 @@ const attachmentMultipliers = {
 // Function to handle accordion-style opening and closing of attachment categories
 function toggleAccordion(element) {
   const activeCategory = document.querySelector('.attachment-category.active');
-  
-  // Close the currently active category, if any, and open the new one if it's different
+
+  // Close the currently active category, if any, with a slight delay
   if (activeCategory && activeCategory !== element.parentNode) {
     activeCategory.classList.remove('active');
+    setTimeout(() => {
+      element.parentNode.classList.add('active');
+    }, 200); // Delay in milliseconds to allow the collapse animation to finish
+  } else {
+    element.parentNode.classList.toggle('active');
   }
-
-  element.parentNode.classList.toggle('active');
 }
 
 // Function to select or deselect a weapon and set its base stats

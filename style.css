@@ -151,6 +151,12 @@ h2, h3 {
   padding: 10px;
   background-color: #282a36;
   border-radius: 5px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.attachment-category:hover .attachment-title {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Default state for attachment buttons: hidden */
@@ -161,17 +167,16 @@ h2, h3 {
   padding: 0 10px;
   background-color: #3a3f5a;
   border-radius: 8px;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
 }
 
-/* Show attachment buttons on .show class */
-.attachment-category.show .attachment-buttons {
+.attachment-category:hover .attachment-buttons {
   max-height: 200px; /* Adjust for more buttons */
   opacity: 1;
   padding: 10px;
 }
 
-/* Attachment Button Hover Animation */
+/* Slide-in animation for attachment buttons */
 .attachment-button {
   height: 40px;
   background-color: #3a3f5a;
@@ -185,8 +190,15 @@ h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   margin-top: 5px;
+  transform: translateX(-10px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.attachment-category:hover .attachment-button {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .attachment-button.selected {

@@ -156,6 +156,13 @@ h2, h3 {
   color: #ffb86c;
   cursor: pointer;
   padding: 10px;
+
+  /* Centering the text vertically and horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
 }
 
 /* Attachment Buttons Styling */

@@ -2,7 +2,7 @@
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
 let hoverTimer = null; // Timer for hover delay
-const HOVER_DELAY = 300; // Delay time in milliseconds
+const HOVER_DELAY = 100; // Delay time in milliseconds
 
 // Default multipliers for each attachment category
 const attachmentMultipliers = {

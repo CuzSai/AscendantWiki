@@ -150,11 +150,11 @@ h2, h3 {
   border-radius: 8px;
 }
 
-/* Accordion Animation */
+/* Accordion Animation with Fixed Maximum Height */
 .attachment-buttons {
-  height: 0;
-  overflow: hidden;
-  transition: height 0.4s ease, opacity 0.4s ease;
+  max-height: 0;
+  overflow-y: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
   opacity: 0;
   background-color: #3a3f5a; /* Unified background color */
   border-radius: 8px;
@@ -166,10 +166,11 @@ h2, h3 {
 }
 
 .attachment-category.active .attachment-buttons {
+  max-height: 200px; /* Set a reasonable max height to prevent overflow */
+  overflow-y: auto; /* Add scroll if content exceeds max height */
   opacity: 1;
   padding: 10px;
 }
-
 
 /* Animation Keyframes */
 @keyframes fadeIn {

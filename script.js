@@ -40,7 +40,7 @@ function toggleAccordion(element) {
     element.parentNode.classList.add('active');
     content.style.height = `${content.scrollHeight}px`;
     content.addEventListener('transitionend', function handler() {
-      content.style.height = 'auto'; // Reset height to auto after expansion
+      content.style.height = `${content.scrollHeight}px`; // Keep exact height for smoothness
       content.removeEventListener('transitionend', handler);
     });
   }

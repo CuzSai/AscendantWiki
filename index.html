@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weapon Damage Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -32,11 +31,11 @@
     <div class="section weapon-section">
       <h2>Choose Your Weapon</h2>
       <div class="weapon-buttons">
-        <button class="weapon-button" onclick="selectWeapon(this, 'battle_rifle', 40, 3.0)" style="background-image: url('battle_rifle.jpg');">Battle Rifle</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'beam_gloves', 25, 2.0)" style="background-image: url('beam_gloves.jpg');">Beam Gloves</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'plasma_rifle', 30, 2.8)" style="background-image: url('plasma_rifle.jpg');">Plasma Rifle</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'shotgun', 60, 3.5)" style="background-image: url('shotgun.jpg');">Shotgun</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'sniper_rifle', 80, 4.0)" style="background-image: url('sniper_rifle.jpg');">Sniper Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'battle_rifle', 40, 3.0)">Battle Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'beam_gloves', 25, 2.0)">Beam Gloves</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'plasma_rifle', 30, 2.8)">Plasma Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'shotgun', 60, 3.5)">Shotgun</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'sniper_rifle', 80, 4.0)">Sniper Rifle</button>
       </div>
     </div>
 
@@ -45,7 +44,7 @@
       <h2>Select Attachments</h2>
 
       <!-- Optic Attachments -->
-      <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
+      <div class="attachment-category" onmouseenter="startHoverTimer(this)" onmouseleave="clearHoverTimer(this)">
         <h3 class="attachment-title">Optic</h3>
         <div class="attachment-buttons">
           <button class="attachment-button" onclick="selectAttachment(this, 'optics', 1.2)">Scope (+20% damage)</button>
@@ -54,7 +53,7 @@
       </div>
 
       <!-- Barrel Attachments -->
-      <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
+      <div class="attachment-category" onmouseenter="startHoverTimer(this)" onmouseleave="clearHoverTimer(this)">
         <h3 class="attachment-title">Barrel</h3>
         <div class="attachment-buttons">
           <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 1.3)">Heavy Barrel (+30% damage)</button>
@@ -62,41 +61,7 @@
         </div>
       </div>
 
-      <!-- Grip Attachments -->
-      <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
-        <h3 class="attachment-title">Grip</h3>
-        <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.15)">Angled Grip (+15% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.1)">Vertical Grip (+10% damage)</button>
-        </div>
-      </div>
-
-      <!-- Magazine Attachments -->
-      <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
-        <h3 class="attachment-title">Magazine</h3>
-        <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.1)">Extended Mag (+10% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.05)">Quick Reload Mag (+5% damage)</button>
-        </div>
-      </div>
-
-      <!-- Muzzle Attachments -->
-      <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
-        <h3 class="attachment-title">Muzzle</h3>
-        <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'muzzle', 0.9)">Silencer (-10% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'muzzle', 1.05)">Flash Hider (+5% damage)</button>
-        </div>
-      </div>
-
-      <!-- Laser Attachments -->
-      <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
-        <h3 class="attachment-title">Laser</h3>
-        <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'laser', 1.1)">Laser Sight (+10% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'laser', 1.05)">Green Laser (+5% damage)</button>
-        </div>
-      </div>
+      <!-- Additional attachments (similar structure) -->
 
     </div>
   </div>

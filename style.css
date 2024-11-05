@@ -129,17 +129,17 @@ h2, h3 {
   box-shadow: 0 0 15px #8be9fd;
   background-color: #50587a;
   transform: scale(1.05);
+  border-radius: 0; /* Remove rounded corners for selected state */
 }
 
 .weapon-button:hover, .attachment-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Specific styling for attachment buttons on hover */
 .attachment-button:hover {
   border-radius: 0; /* Remove rounded corners to make them sharp */
-  transform: scale(1.03); /* Slightly smaller scale so it doesn't expand as much */
 }
 
 /* Attachment Categories and Accordion */

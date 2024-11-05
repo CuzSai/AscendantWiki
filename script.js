@@ -15,14 +15,38 @@ const attachmentMultipliers = {
 // Function to handle accordion-style opening and closing of attachment categories
 function toggleAccordion(element) {
   const activeCategory = document.querySelector('.attachment-category.active');
-
+  
   // Close the currently active category, if any
   if (activeCategory && activeCategory !== element.parentNode) {
+    const activeContent = activeCategory.querySelector('.attachment-buttons');
+    activeContent.style.height = `${activeContent.scrollHeight}px`; // Set height explicitly to transition
+    requestAnimationFrame(() => {
+      activeContent.style.height = '0';
+    });
     activeCategory.classList.remove('active');
   }
 
   // Toggle the clicked category
-  element.parentNode.classList.toggle('active');
+  const content = element.parentNode.querySelector('.attachment-buttons');
+  if (element.parentNode.classList.contains('active')) {
+    // Collapse if already active
+    content.style.height = `${content.scrollHeight}px`;
+    requestAnimationFrame(() => {
+      content.style.height = '0';
+    });
+    element.parentNode.classList.remove('active');
+  } else {
+    // Expand if inactive
+    element.parentNode.classList.add('active');
+    content.style.height = '0'; // Explicitly set height to zero before expanding
+    requestAnimationFrame(() => {
+      content.style.height = `${content.scrollHeight}px`;
+    });
+    content.addEventListener('transitionend', function handler() {
+      content.style.height = 'auto'; // Remove fixed height to fit content naturally
+      content.removeEventListener('transitionend', handler);
+    });
+  }
 }
 
 // Function to select or deselect a weapon and set its base stats

@@ -92,16 +92,13 @@ h1 {
   margin: 15px 0;
 }
 
-h2, h3 {
+h2 {
   color: #50fa7b;
   font-size: 1.3em;
   margin-bottom: 10px;
 }
 
-.weapon-section {
-  margin-bottom: 50px;
-}
-
+/* Weapon Buttons */
 .weapon-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -109,8 +106,10 @@ h2, h3 {
   margin: 20px 0;
 }
 
-.weapon-button, .attachment-button {
-  height: 60px;
+.weapon-button {
+  height: 140px;
+  background-size: cover;
+  background-position: center;
   background-color: #3a3f5a;
   border: none;
   border-radius: 8px;
@@ -125,24 +124,63 @@ h2, h3 {
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-.weapon-button.selected, .attachment-button.selected {
+.weapon-button.selected {
   box-shadow: 0 0 15px #8be9fd;
   background-color: #50587a;
   transform: scale(1.05);
 }
 
-.weapon-button:hover, .attachment-button:hover {
-  transform: scale(1.05);
+.weapon-button:hover {
+  transform: scale(1.1);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Animation Keyframes */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Attachment Buttons */
+.attachment-category {
+  margin-bottom: 20px;
 }
 
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+.attachment-title {
+  font-size: 1.2em;
+  color: #ffb86c;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.attachment-buttons {
+  display: none;
+  transition: max-height 0.3s ease;
+  overflow: hidden;
+}
+
+.attachment-category:hover .attachment-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.attachment-button {
+  height: 40px;
+  background-color: #3a3f5a;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.attachment-button.selected {
+  box-shadow: 0 0 15px #8be9fd;
+  background-color: #50587a;
+}
+
+.attachment-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }

@@ -122,7 +122,7 @@ h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, border-radius 0.2s;
 }
 
 .weapon-button.selected, .attachment-button.selected {
@@ -134,6 +134,12 @@ h2, h3 {
 .weapon-button:hover, .attachment-button:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific styling for attachment buttons on hover */
+.attachment-button:hover {
+  border-radius: 0; /* Remove rounded corners to make them sharp */
+  transform: scale(1.03); /* Slightly smaller scale so it doesn't expand as much */
 }
 
 /* Attachment Categories and Accordion */

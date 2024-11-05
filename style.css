@@ -109,10 +109,8 @@ h2, h3 {
   margin: 20px 0;
 }
 
-.weapon-button {
-  height: 140px;
-  background-size: cover;
-  background-position: center;
+.weapon-button, .attachment-button {
+  height: 60px;
   background-color: #3a3f5a;
   border: none;
   border-radius: 8px;
@@ -127,18 +125,18 @@ h2, h3 {
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-.weapon-button.selected {
+.weapon-button.selected, .attachment-button.selected {
   box-shadow: 0 0 15px #8be9fd;
   background-color: #50587a;
   transform: scale(1.05);
 }
 
-.weapon-button:hover {
-  transform: scale(1.1);
+.weapon-button:hover, .attachment-button:hover {
+  transform: scale(1.05);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Attachment Categories and Buttons */
+/* Attachment Categories and Accordion */
 .attachment-category {
   margin-bottom: 20px;
 }
@@ -152,7 +150,6 @@ h2, h3 {
   border-radius: 5px;
 }
 
-/* Smooth expand/collapse of attachment options */
 .attachment-buttons {
   max-height: 0;
   overflow: hidden;
@@ -163,37 +160,10 @@ h2, h3 {
   border-radius: 8px;
 }
 
-.attachment-category:hover .attachment-buttons {
-  max-height: 200px; /* Adjust as needed */
+.attachment-category.active .attachment-buttons {
+  max-height: 200px;
   opacity: 1;
-  padding: 10px; /* Padding on expansion for a clean look */
-}
-
-.attachment-button {
-  height: 40px;
-  background-color: #3a3f5a;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 1.1em;
-  font-weight: bold;
-  cursor: pointer;
   padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-  margin-top: 5px;
-}
-
-.attachment-button.selected {
-  box-shadow: 0 0 15px #8be9fd;
-  background-color: #50587a;
-}
-
-.attachment-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Animation Keyframes */

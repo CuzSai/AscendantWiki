@@ -84,3 +84,12 @@ function triggerAnimation(element) {
   void element.offsetWidth; // Trigger reflow to restart the animation
   element.classList.add('fadeIn');
 }
+
+// Functions to control the visibility of attachment options
+function showOptions(category) {
+  category.classList.add('show');
+}
+
+function hideOptions(category) {
+  category.classList.remove('show');
+}

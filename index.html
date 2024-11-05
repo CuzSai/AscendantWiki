@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weapon Damage Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -44,7 +45,7 @@
       <h2>Select Attachments</h2>
 
       <!-- Optic Attachments -->
-      <div class="attachment-category" onmouseenter="startHoverTimer(this)" onmouseleave="clearHoverTimer(this)">
+      <div class="attachment-category">
         <h3 class="attachment-title">Optic</h3>
         <div class="attachment-buttons">
           <button class="attachment-button" onclick="selectAttachment(this, 'optics', 1.2)">Scope (+20% damage)</button>
@@ -53,7 +54,7 @@
       </div>
 
       <!-- Barrel Attachments -->
-      <div class="attachment-category" onmouseenter="startHoverTimer(this)" onmouseleave="clearHoverTimer(this)">
+      <div class="attachment-category">
         <h3 class="attachment-title">Barrel</h3>
         <div class="attachment-buttons">
           <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 1.3)">Heavy Barrel (+30% damage)</button>
@@ -62,7 +63,7 @@
       </div>
 
       <!-- Grip Attachments -->
-      <div class="attachment-category" onmouseenter="startHoverTimer(this)" onmouseleave="clearHoverTimer(this)">
+      <div class="attachment-category">
         <h3 class="attachment-title">Grip</h3>
         <div class="attachment-buttons">
           <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.15)">Angled Grip (+15% damage)</button>
@@ -71,7 +72,7 @@
       </div>
 
       <!-- Magazine Attachments -->
-      <div class="attachment-category" onmouseenter="startHoverTimer(this)" onmouseleave="clearHoverTimer(this)">
+      <div class="attachment-category">
         <h3 class="attachment-title">Magazine</h3>
         <div class="attachment-buttons">
           <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.1)">Extended Mag (+10% damage)</button>
@@ -80,7 +81,7 @@
       </div>
 
       <!-- Muzzle Attachments -->
-      <div class="attachment-category" onmouseenter="startHoverTimer(this)" onmouseleave="clearHoverTimer(this)">
+      <div class="attachment-category">
         <h3 class="attachment-title">Muzzle</h3>
         <div class="attachment-buttons">
           <button class="attachment-button" onclick="selectAttachment(this, 'muzzle', 0.9)">Silencer (-10% damage)</button>
@@ -89,7 +90,7 @@
       </div>
 
       <!-- Laser Attachments -->
-      <div class="attachment-category" onmouseenter="startHoverTimer(this)" onmouseleave="clearHoverTimer(this)">
+      <div class="attachment-category">
         <h3 class="attachment-title">Laser</h3>
         <div class="attachment-buttons">
           <button class="attachment-button" onclick="selectAttachment(this, 'laser', 1.1)">Laser Sight (+10% damage)</button>

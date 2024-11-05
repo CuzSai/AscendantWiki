@@ -138,9 +138,10 @@ h2, h3 {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Attachment Categories and Buttons */
+/* Attachment Category */
 .attachment-category {
   margin-bottom: 20px;
+  position: relative;
 }
 
 .attachment-title {
@@ -152,24 +153,22 @@ h2, h3 {
   border-radius: 5px;
 }
 
-/* Smooth expand/collapse of attachment options */
 .attachment-buttons {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
   opacity: 0;
   padding: 0 10px;
   background-color: #3a3f5a;
   border-radius: 8px;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
 }
 
-.attachment-category:hover .attachment-buttons {
-  max-height: 200px; /* Adjust as needed */
+.attachment-category.show .attachment-buttons {
+  max-height: 200px;
   opacity: 1;
-  padding: 10px; /* Padding on expansion for a clean look */
+  padding: 10px;
 }
 
-/* Attachment Button Hover Animation */
 .attachment-button {
   height: 40px;
   background-color: #3a3f5a;
@@ -183,7 +182,7 @@ h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.2s ease;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   margin-top: 5px;
   will-change: transform, box-shadow;
 }
@@ -196,7 +195,6 @@ h2, h3 {
 .attachment-button:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Animation Keyframes */

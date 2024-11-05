@@ -153,6 +153,7 @@ h2, h3 {
   border-radius: 5px;
 }
 
+/* Default state for attachment buttons: hidden */
 .attachment-buttons {
   max-height: 0;
   overflow: hidden;
@@ -163,12 +164,14 @@ h2, h3 {
   transition: max-height 0.4s ease, opacity 0.4s ease;
 }
 
+/* Show attachment buttons with delay */
 .attachment-category.show .attachment-buttons {
-  max-height: 200px;
+  max-height: 200px; /* Adjust as needed for more buttons */
   opacity: 1;
   padding: 10px;
 }
 
+/* Attachment Button Hover Animation */
 .attachment-button {
   height: 40px;
   background-color: #3a3f5a;

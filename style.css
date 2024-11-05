@@ -154,12 +154,15 @@ h2, h3 {
 .attachment-buttons {
   height: 0;
   overflow: hidden;
-  transition: height 0.5s ease, opacity 0.5s ease;
+  transition: height 0.4s ease, opacity 0.4s ease;
   opacity: 0;
   background-color: #3a3f5a; /* Unified background color */
   border-radius: 8px;
   padding: 0 12px;
   margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between attachment buttons */
 }
 
 .attachment-category.active .attachment-buttons {

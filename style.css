@@ -99,7 +99,7 @@ h2, h3 {
 }
 
 .weapon-section {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .weapon-buttons {
@@ -111,6 +111,7 @@ h2, h3 {
 
 .weapon-button, .attachment-button {
   height: 60px;
+  background-color: #3a3f5a;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -124,18 +125,7 @@ h2, h3 {
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-/* Updated styles for attachment buttons */
-.attachment-button {
-  background-color: #4a4f66; /* Make the attachment buttons distinct */
-}
-
-.attachment-button.selected {
-  box-shadow: 0 0 15px #8be9fd;
-  background-color: #63698c;
-  transform: scale(1.05);
-}
-
-.weapon-button.selected {
+.weapon-button.selected, .attachment-button.selected {
   box-shadow: 0 0 15px #8be9fd;
   background-color: #50587a;
   transform: scale(1.05);
@@ -148,11 +138,16 @@ h2, h3 {
 
 /* Attachment Categories and Accordion */
 .attachment-category {
-  margin-bottom: 0; /* Remove extra margin to make cards closer together */
+  margin-bottom: 5px; /* Reduce margin between categories */
 }
 
 .attachment-title {
-  padding: 8px; /* Reduced from 12px to make titles more compact */
+  font-size: 1.2em;
+  color: #ffb86c;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #2e323e;
+  border-radius: 8px;
 }
 
 /* Clean Accordion Animation */
@@ -164,17 +159,17 @@ h2, h3 {
   overflow: hidden; /* Ensures no scrollbar appears */
   background-color: #3a3f5a;
   border-radius: 8px;
-  padding: 0 12px;
-  margin-top: 5px;
+  padding: 0; /* Remove padding initially */
+  margin-top: 0; /* No margin between collapsed sections */
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Reduced gap between attachment buttons to reduce spacing */
+  gap: 10px; /* Space between attachment buttons */
 }
 
 .attachment-category.active .attachment-buttons {
   transform: scaleY(1); /* Expanded */
   opacity: 1;
-  padding: 10px 12px; /* Padding adjusted here */
+  padding: 10px 0; /* Add padding only when expanded */
 }
 
 /* Animation Keyframes */

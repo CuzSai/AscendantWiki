@@ -154,4 +154,47 @@ h2, h3 {
 }
 
 .selected-attachment {
-  font-size: 0.9
+  font-size: 0.9em;
+  color: #8be9fd;
+  padding: 5px;
+  background-color: #3a3f5a;
+  border-radius: 5px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.attachment-buttons {
+  position: absolute;
+  left: 110%; /* Offset to appear beside the title */
+  top: 0;
+  background-color: #3a3f5a;
+  border-radius: 8px;
+  padding: 10px;
+  display: none; /* Hidden until hovered */
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show pop-out on hover */
+.attachment-category:hover .attachment-buttons {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.attachment-button {
+  display: block;
+  background-color: #3a3f5a;
+  color: #fff;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.attachment-button:hover {
+  background-color: #50587a;
+  transform: scale(1.05);
+}

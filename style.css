@@ -167,7 +167,6 @@ h2, h3 {
 
 .attachment-category.active .attachment-buttons {
   opacity: 1;
-  height: auto;
   padding: 10px;
 }
 

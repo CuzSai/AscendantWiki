@@ -136,21 +136,14 @@ h2, h3 {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Attachment Categories and Accordion */
 .attachment-category {
-  margin-bottom: 5px;
+  margin-bottom: 2px; /* Reduced from 15px to bring categories closer */
 }
 
 .attachment-title {
-  font-size: 1.2em;
-  color: #ffb86c;
-  cursor: pointer;
-  padding: 8px;
-  background-color: #2e323e;
-  border-radius: 8px;
+  padding: 8px; /* Reduced from 12px to make titles more compact */
 }
 
-/* Clean Accordion Animation */
 .attachment-buttons {
   transform-origin: top;
   transform: scaleY(0); /* Collapsed initially */
@@ -163,8 +156,9 @@ h2, h3 {
   margin-top: 5px;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Space between attachment buttons */
+  gap: 5px; /* Reduced gap between attachment buttons to reduce spacing */
 }
+
 
 .attachment-category.active .attachment-buttons {
   transform: scaleY(1); /* Expanded */

@@ -14,44 +14,18 @@ const attachmentMultipliers = {
 
 // Function to handle accordion-style opening and closing of attachment categories
 function toggleAccordion(element) {
-  const activeCategory = document.querySelector('.attachment-category.active');
-
-  // Close the currently active category, if any
-  if (activeCategory && activeCategory !== element.parentNode) {
-    const activeContent = activeCategory.querySelector('.attachment-buttons');
-    activeContent.style.height = `${activeContent.scrollHeight}px`; // Set height explicitly to start the transition
-    requestAnimationFrame(() => {
-      activeContent.style.height = '0';
-    });
-    activeContent.addEventListener('transitionend', function handler() {
-      activeContent.style.height = '0';
-      activeContent.removeEventListener('transitionend', handler);
-    });
-    activeCategory.classList.remove('active');
-  }
-
-  // Toggle the clicked category
-  const content = element.parentNode.querySelector('.attachment-buttons');
-  if (element.parentNode.classList.contains('active')) {
-    // Collapse if already active
-    content.style.height = `${content.scrollHeight}px`;
-    requestAnimationFrame(() => {
-      content.style.height = '0';
-    });
-    element.parentNode.classList.remove('active');
+  const attachmentCategory = element.parentNode;
+  
+  // If this category is already active, collapse it
+  if (attachmentCategory.classList.contains('active')) {
+    attachmentCategory.classList.remove('active');
   } else {
-    // Expand if inactive
-    element.parentNode.classList.add('active');
-    content.style.height = '0'; // Explicitly set height to zero before expanding
-    requestAnimationFrame(() => {
-      content.style.height = `${content.scrollHeight}px`;
-    });
-    content.addEventListener('transitionend', function handler(event) {
-      if (event.propertyName === 'height') {
-        content.style.height = 'auto'; // Allow the content to take its natural height
-        content.removeEventListener('transitionend', handler);
-      }
-    });
+    // Otherwise, collapse any currently open category and open this one
+    const activeCategory = document.querySelector('.attachment-category.active');
+    if (activeCategory && activeCategory !== attachmentCategory) {
+      activeCategory.classList.remove('active');
+    }
+    attachmentCategory.classList.add('active');
   }
 }
 

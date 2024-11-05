@@ -30,16 +30,22 @@ function selectWeapon(button, weaponName, baseDamage, reloadSpeed) {
   calculateStats();
 }
 
-// Function to select or deselect an attachment
+// Function to select an attachment and update display
 function selectAttachment(button, category, multiplier) {
+  const categoryContainer = button.closest('.attachment-category');
+  const selectedDisplay = categoryContainer.querySelector('.selected-attachment');
+
+  // Update selected attachment
   if (button.classList.contains('selected')) {
     button.classList.remove('selected');
     attachmentMultipliers[category] = 1;
+    selectedDisplay.textContent = "None";
   } else {
-    const attachmentButtons = button.parentNode.querySelectorAll('.attachment-button');
-    attachmentButtons.forEach(btn => btn.classList.remove('selected'));
+    // Clear previous selection in the same category
+    categoryContainer.querySelectorAll('.attachment-button').forEach(btn => btn.classList.remove('selected'));
     button.classList.add('selected');
     attachmentMultipliers[category] = multiplier;
+    selectedDisplay.textContent = button.textContent;
   }
 
   calculateStats();
@@ -71,4 +77,13 @@ function triggerAnimation(element) {
   element.classList.remove('fadeIn');
   void element.offsetWidth; // Trigger reflow to restart the animation
   element.classList.add('fadeIn');
+}
+
+// Functions to toggle visibility of options on hover
+function showOptions(category) {
+  category.querySelector('.attachment-buttons').style.display = 'block';
+}
+
+function hideOptions(category) {
+  category.querySelector('.attachment-buttons').style.display = 'none';
 }

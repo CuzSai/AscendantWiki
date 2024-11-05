@@ -18,12 +18,10 @@ function toggleAccordion(element) {
 
   // Close the currently active category, if any
   if (activeCategory && activeCategory !== element.parentNode) {
-    const activeContent = activeCategory.querySelector('.attachment-buttons');
     activeCategory.classList.remove('active');
   }
 
   // Toggle the clicked category
-  const content = element.parentNode.querySelector('.attachment-buttons');
   element.parentNode.classList.toggle('active');
 }
 

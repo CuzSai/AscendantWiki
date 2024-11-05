@@ -169,6 +169,7 @@ h2, h3 {
   padding: 10px; /* Padding on expansion for a clean look */
 }
 
+/* Attachment Button Hover Animation */
 .attachment-button {
   height: 40px;
   background-color: #3a3f5a;
@@ -182,8 +183,9 @@ h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.2s ease;
   margin-top: 5px;
+  will-change: transform, box-shadow;
 }
 
 .attachment-button.selected {
@@ -194,6 +196,7 @@ h2, h3 {
 .attachment-button:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Animation Keyframes */

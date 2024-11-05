@@ -138,7 +138,7 @@ h2, h3 {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Attachment Buttons and Hover Effect */
+/* Attachment Categories and Buttons */
 .attachment-category {
   margin-bottom: 20px;
 }
@@ -152,10 +152,11 @@ h2, h3 {
   border-radius: 5px;
 }
 
+/* Smooth expand/collapse of attachment options */
 .attachment-buttons {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease, opacity 0.5s ease;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
   opacity: 0;
   padding: 0 10px;
   background-color: #3a3f5a;
@@ -163,9 +164,9 @@ h2, h3 {
 }
 
 .attachment-category:hover .attachment-buttons {
-  max-height: 200px; /* Ensure enough space for the content */
+  max-height: 200px; /* Adjust as needed */
   opacity: 1;
-  padding: 10px; /* Add padding for a clean expanded look */
+  padding: 10px; /* Padding on expansion for a clean look */
 }
 
 .attachment-button {

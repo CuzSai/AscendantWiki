@@ -15,13 +15,17 @@ const attachmentMultipliers = {
 // Function to handle accordion-style opening and closing of attachment categories
 function toggleAccordion(element) {
   const activeCategory = document.querySelector('.attachment-category.active');
-  
+
   // Close the currently active category, if any
   if (activeCategory && activeCategory !== element.parentNode) {
     const activeContent = activeCategory.querySelector('.attachment-buttons');
-    activeContent.style.height = `${activeContent.scrollHeight}px`; // Set height explicitly to transition
+    activeContent.style.height = `${activeContent.scrollHeight}px`; // Set height explicitly to start the transition
     requestAnimationFrame(() => {
       activeContent.style.height = '0';
+    });
+    activeContent.addEventListener('transitionend', function handler() {
+      activeContent.style.height = '0';
+      activeContent.removeEventListener('transitionend', handler);
     });
     activeCategory.classList.remove('active');
   }
@@ -42,9 +46,11 @@ function toggleAccordion(element) {
     requestAnimationFrame(() => {
       content.style.height = `${content.scrollHeight}px`;
     });
-    content.addEventListener('transitionend', function handler() {
-      content.style.height = 'auto'; // Remove fixed height to fit content naturally
-      content.removeEventListener('transitionend', handler);
+    content.addEventListener('transitionend', function handler(event) {
+      if (event.propertyName === 'height') {
+        content.style.height = 'auto'; // Allow the content to take its natural height
+        content.removeEventListener('transitionend', handler);
+      }
     });
   }
 }

@@ -44,7 +44,7 @@
     <div class="section attachment-section">
       <h2>Select Attachments</h2>
 
-      <!-- Simplified Attachment Categories for testing -->
+      <!-- Optic Attachments -->
       <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
         <h3 class="attachment-title">Optic</h3>
         <div class="attachment-buttons">
@@ -54,6 +54,7 @@
         <div class="selected-attachment">None</div>
       </div>
 
+      <!-- Barrel Attachments -->
       <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
         <h3 class="attachment-title">Barrel</h3>
         <div class="attachment-buttons">
@@ -63,6 +64,7 @@
         <div class="selected-attachment">None</div>
       </div>
 
+      <!-- Grip Attachments -->
       <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
         <h3 class="attachment-title">Grip</h3>
         <div class="attachment-buttons">
@@ -72,7 +74,35 @@
         <div class="selected-attachment">None</div>
       </div>
 
-      <!-- Add other categories as needed -->
+      <!-- Magazine Attachments -->
+      <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
+        <h3 class="attachment-title">Magazine</h3>
+        <div class="attachment-buttons">
+          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.1)">Extended Mag (+10% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.05)">Quick Reload Mag (+5% damage)</button>
+        </div>
+        <div class="selected-attachment">None</div>
+      </div>
+
+      <!-- Muzzle Attachments -->
+      <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
+        <h3 class="attachment-title">Muzzle</h3>
+        <div class="attachment-buttons">
+          <button class="attachment-button" onclick="selectAttachment(this, 'muzzle', 0.9)">Silencer (-10% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'muzzle', 1.05)">Flash Hider (+5% damage)</button>
+        </div>
+        <div class="selected-attachment">None</div>
+      </div>
+
+      <!-- Laser Attachments -->
+      <div class="attachment-category" onmouseenter="showOptions(this)" onmouseleave="hideOptions(this)">
+        <h3 class="attachment-title">Laser</h3>
+        <div class="attachment-buttons">
+          <button class="attachment-button" onclick="selectAttachment(this, 'laser', 1.1)">Laser Sight (+10% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'laser', 1.05)">Green Laser (+5% damage)</button>
+        </div>
+        <div class="selected-attachment">None</div>
+      </div>
 
     </div>
   </div>

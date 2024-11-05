@@ -155,13 +155,10 @@ h2, h3 {
   font-size: 1.2em;
   color: #ffb86c;
   cursor: pointer;
-  padding: 10px;
 
-  /* Centering the text vertically and horizontally */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  /* Center the text more precisely */
+  line-height: 1.5;
+  padding: 8px 0; /* Adjust the padding to move the text up */
   text-align: center;
 }
 

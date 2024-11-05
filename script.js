@@ -16,12 +16,13 @@ const attachmentMultipliers = {
 function toggleAccordion(element) {
   const activeCategory = document.querySelector('.attachment-category.active');
 
-  // Close the currently active category, if any, with a slight delay
+  // Close the currently active category first, with a stronger delay
   if (activeCategory && activeCategory !== element.parentNode) {
     activeCategory.classList.remove('active');
+
     setTimeout(() => {
       element.parentNode.classList.add('active');
-    }, 200); // Delay in milliseconds to allow the collapse animation to finish
+    }, 400); // Longer delay to avoid overlap effect during animation
   } else {
     element.parentNode.classList.toggle('active');
   }

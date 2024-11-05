@@ -161,12 +161,12 @@ h2, h3 {
   padding: 0 10px;
   background-color: #3a3f5a;
   border-radius: 8px;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
-/* Show attachment buttons with delay */
+/* Show attachment buttons on .show class */
 .attachment-category.show .attachment-buttons {
-  max-height: 200px; /* Adjust as needed for more buttons */
+  max-height: 200px; /* Adjust for more buttons */
   opacity: 1;
   padding: 10px;
 }
@@ -185,9 +185,8 @@ h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   margin-top: 5px;
-  will-change: transform, box-shadow;
 }
 
 .attachment-button.selected {

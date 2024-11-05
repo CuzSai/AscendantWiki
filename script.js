@@ -1,8 +1,6 @@
 // Variables to store selected weapon stats
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
-let hoverTimer = null; // Timer for hover delay
-const HOVER_DELAY = 100; // Delay time in milliseconds
 
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
@@ -73,16 +71,4 @@ function triggerAnimation(element) {
   element.classList.remove('fadeIn');
   void element.offsetWidth; // Trigger reflow to restart the animation
   element.classList.add('fadeIn');
-}
-
-// Functions to control the visibility of attachment options with delay
-function startHoverTimer(category) {
-  hoverTimer = setTimeout(() => {
-    category.classList.add('show');
-  }, HOVER_DELAY);
-}
-
-function clearHoverTimer(category) {
-  clearTimeout(hoverTimer);
-  category.classList.remove('show');
 }

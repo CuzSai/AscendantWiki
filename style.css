@@ -1,4 +1,4 @@
-/* CSS Reset for Consistency */
+/* CSS Reset */
 * {
   margin: 0;
   padding: 0;
@@ -125,18 +125,15 @@ h2, h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 .weapon-button.selected {
   box-shadow: 0 0 15px #8be9fd;
   background-color: #50587a;
-  transform: scale(1.05);
 }
 
 .weapon-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  background-color: #50587a;
 }
 
 /* Attachment Category */
@@ -166,35 +163,27 @@ h2, h3 {
 
 .attachment-buttons {
   position: absolute;
-  left: 110%; /* Offset to appear beside the title */
+  left: 120%; /* Positioned beside the title */
   top: 0;
   background-color: #3a3f5a;
   border-radius: 8px;
   padding: 10px;
-  display: none; /* Hidden until hovered */
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: none;
 }
 
 .attachment-category:hover .attachment-buttons {
   display: block;
-  opacity: 1;
-  transform: translateX(0);
 }
 
 .attachment-button {
-  display: block;
   background-color: #3a3f5a;
   color: #fff;
   padding: 10px;
   margin-top: 5px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .attachment-button:hover {
   background-color: #50587a;
-  transform: scale(1.05);
 }

@@ -147,7 +147,7 @@ h2, h3 {
 }
 
 .attachment-category.active {
-  max-height: 200px; /* Height when expanded */
+  max-height: 220px; /* Height when expanded */
   padding: 12px;
 }
 
@@ -158,11 +158,17 @@ h2, h3 {
   padding: 10px;
 }
 
-/* Smooth Accordion Animation */
+/* Attachment Buttons Styling */
 .attachment-buttons {
   overflow: hidden;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px; /* Space between attachment buttons */
+}
+
+.attachment-button {
+  background-color: #43495a; /* Make buttons a distinct color from the background */
+  border-radius: 8px;
+  padding: 10px;
 }

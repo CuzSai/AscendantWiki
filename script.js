@@ -12,35 +12,43 @@ const attachmentMultipliers = {
   laser: 1,
 };
 
-// Function to select a weapon and set its base stats
+// Function to select or deselect a weapon and set its base stats
 function selectWeapon(button, weaponName, baseDamage, reloadSpeed) {
   // Remove the "selected" class from all weapon buttons
   const weaponButtons = document.querySelectorAll('.weapon-button');
   weaponButtons.forEach(btn => btn.classList.remove('selected'));
 
-  // Add the "selected" class to the clicked button
-  button.classList.add('selected');
+  // Toggle selection of the clicked button
+  if (button.classList.contains('selected')) {
+    button.classList.remove('selected');
+    selectedWeaponDamage = 0;
+    selectedWeaponReload = 0;
+  } else {
+    button.classList.add('selected');
+    selectedWeaponDamage = baseDamage;
+    selectedWeaponReload = reloadSpeed;
+  }
 
-  // Set the base damage and reload speed of the selected weapon
-  selectedWeaponDamage = baseDamage;
-  selectedWeaponReload = reloadSpeed;
-
-  calculateStats(); // Update stats immediately after selecting a weapon
+  calculateStats(); // Update stats immediately after selecting or deselecting a weapon
 }
 
-// Function to select an attachment and set its multiplier
+// Function to select or deselect an attachment
 function selectAttachment(button, category, multiplier) {
-  // Remove the "selected" class from all buttons in the same category
-  const attachmentButtons = button.parentNode.querySelectorAll('.attachment-button');
-  attachmentButtons.forEach(btn => btn.classList.remove('selected'));
+  // Toggle selection of the clicked button
+  if (button.classList.contains('selected')) {
+    button.classList.remove('selected');
+    attachmentMultipliers[category] = 1; // Reset multiplier if deselected
+  } else {
+    // Remove "selected" from all buttons in the same category
+    const attachmentButtons = button.parentNode.querySelectorAll('.attachment-button');
+    attachmentButtons.forEach(btn => btn.classList.remove('selected'));
 
-  // Add the "selected" class to the clicked button
-  button.classList.add('selected');
+    // Apply "selected" to clicked button
+    button.classList.add('selected');
+    attachmentMultipliers[category] = multiplier;
+  }
 
-  // Update the multiplier for the chosen attachment category
-  attachmentMultipliers[category] = multiplier;
-
-  calculateStats(); // Update stats immediately after selecting an attachment
+  calculateStats(); // Update stats immediately after selecting or deselecting an attachment
 }
 
 // Function to calculate and display the final damage and reload speed

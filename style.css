@@ -113,7 +113,7 @@ h2, h3 {
   height: 60px;
   background-color: #3a3f5a;
   border: none;
-  border-radius: 8px; /* Rounded corners */
+  border-radius: 8px; /* Rounded corners for both weapon and attachment buttons */
   color: #fff;
   font-size: 1.1em;
   font-weight: bold;
@@ -128,14 +128,13 @@ h2, h3 {
 .weapon-button.selected, .attachment-button.selected {
   box-shadow: 0 0 15px #8be9fd;
   background-color: #50587a;
-  transform: scale(1.05); /* Add slight emphasis to show selection */
-  border-radius: 8px; /* Keep rounded corners for selected state */
+  transform: scale(1.05); /* Slightly larger scale to indicate selection */
 }
 
 .weapon-button:hover, .attachment-button:hover {
-  transform: scale(1.03); /* Slightly smaller scale on hover to avoid awkward expansion */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-  border-radius: 8px; /* Maintain rounded corners */
+  transform: scale(1.05); /* Keep the hover effect consistent for both buttons */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Keep shadow effect */
+  background-color: #50587a; /* Change background color slightly on hover */
 }
 
 /* Attachment Categories and Accordion */

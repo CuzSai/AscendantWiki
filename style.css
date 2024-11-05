@@ -138,14 +138,14 @@ h2, h3 {
 
 /* Attachment Categories and Accordion */
 .attachment-category {
-  margin-bottom: 5px; /* Reduce margin between categories */
+  margin-bottom: 15px;
 }
 
 .attachment-title {
   font-size: 1.2em;
   color: #ffb86c;
   cursor: pointer;
-  padding: 10px;
+  padding: 12px;
   background-color: #2e323e;
   border-radius: 8px;
 }
@@ -159,8 +159,8 @@ h2, h3 {
   overflow: hidden; /* Ensures no scrollbar appears */
   background-color: #3a3f5a;
   border-radius: 8px;
-  padding: 0; /* Remove padding initially */
-  margin-top: 0; /* No margin between collapsed sections */
+  padding: 0 12px;
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   gap: 10px; /* Space between attachment buttons */
@@ -169,7 +169,7 @@ h2, h3 {
 .attachment-category.active .attachment-buttons {
   transform: scaleY(1); /* Expanded */
   opacity: 1;
-  padding: 10px 0; /* Add padding only when expanded */
+  padding: 10px 12px;
 }
 
 /* Animation Keyframes */

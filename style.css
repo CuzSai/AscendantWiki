@@ -138,10 +138,7 @@ h2, h3 {
 
 /* Attachment Categories and Accordion */
 .attachment-category {
-  margin-bottom: 20px;
-  border-radius: 8px;
-  background-color: #2a2e3a; /* Distinct background color for each category */
-  padding: 5px;
+  margin-bottom: 10px;
 }
 
 .attachment-title {
@@ -155,9 +152,9 @@ h2, h3 {
 
 /* Smooth Accordion Animation */
 .attachment-buttons {
-  max-height: 0;
+  height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease, opacity 0.5s ease;
+  transition: height 0.5s ease, opacity 0.5s ease;
   opacity: 0;
   padding: 0 10px;
   background-color: #3a3f5a;
@@ -166,7 +163,7 @@ h2, h3 {
 }
 
 .attachment-category.active .attachment-buttons {
-  max-height: 200px;
+  height: auto;
   opacity: 1;
   padding: 10px;
 }

@@ -111,7 +111,6 @@ h2, h3 {
 
 .weapon-button, .attachment-button {
   height: 60px;
-  background-color: #3a3f5a;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -125,7 +124,18 @@ h2, h3 {
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-.weapon-button.selected, .attachment-button.selected {
+/* Updated styles for attachment buttons */
+.attachment-button {
+  background-color: #4a4f66; /* Make the attachment buttons distinct */
+}
+
+.attachment-button.selected {
+  box-shadow: 0 0 15px #8be9fd;
+  background-color: #63698c;
+  transform: scale(1.05);
+}
+
+.weapon-button.selected {
   box-shadow: 0 0 15px #8be9fd;
   background-color: #50587a;
   transform: scale(1.05);
@@ -136,14 +146,16 @@ h2, h3 {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Attachment Categories and Accordion */
 .attachment-category {
-  margin-bottom: 2px; /* Reduced from 15px to bring categories closer */
+  margin-bottom: 0; /* Remove extra margin to make cards closer together */
 }
 
 .attachment-title {
   padding: 8px; /* Reduced from 12px to make titles more compact */
 }
 
+/* Clean Accordion Animation */
 .attachment-buttons {
   transform-origin: top;
   transform: scaleY(0); /* Collapsed initially */
@@ -158,7 +170,6 @@ h2, h3 {
   flex-direction: column;
   gap: 5px; /* Reduced gap between attachment buttons to reduce spacing */
 }
-
 
 .attachment-category.active .attachment-buttons {
   transform: scaleY(1); /* Expanded */

@@ -63,4 +63,16 @@ function calculateStats() {
   document.getElementById('damageProgress').value = finalDamage;
   document.getElementById('damageValue').textContent = finalDamage.toFixed(2);
   document.getElementById('reloadProgress').value = finalReloadSpeed;
-  document.getElementById('reloadValue').text
+  document.getElementById('reloadValue').textContent = `${finalReloadSpeed.toFixed(2)}s`;
+
+  // Trigger fade-in animation on stat update
+  triggerAnimation(document.getElementById('damageValue'));
+  triggerAnimation(document.getElementById('reloadValue'));
+}
+
+// Function to re-trigger fade-in animation on stats update
+function triggerAnimation(element) {
+  element.classList.remove('fadeIn');
+  void element.offsetWidth; // Trigger reflow to restart the animation
+  element.classList.add('fadeIn');
+}

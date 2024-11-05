@@ -99,7 +99,7 @@ h2, h3 {
 }
 
 .weapon-section {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .weapon-buttons {
@@ -150,14 +150,13 @@ h2, h3 {
   border-radius: 8px;
 }
 
-/* Clean Accordion Animation */
+/* Accordion Animation */
 .attachment-buttons {
-  transform-origin: top;
-  transform: scaleY(0); /* Collapsed initially */
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.4s ease, opacity 0.4s ease;
   opacity: 0;
-  overflow: hidden; /* Ensures no scrollbar appears */
-  background-color: #3a3f5a;
+  background-color: #3a3f5a; /* Unified background color */
   border-radius: 8px;
   padding: 0 12px;
   margin-top: 5px;
@@ -167,9 +166,7 @@ h2, h3 {
 }
 
 .attachment-category.active .attachment-buttons {
-  transform: scaleY(1); /* Expanded */
   opacity: 1;
-  padding: 10px 12px;
 }
 
 /* Animation Keyframes */

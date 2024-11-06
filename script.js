@@ -262,3 +262,49 @@ function resetAll() {
   comparisons = [];
   setupToReplace = null;
 }
+// Show the compare selection modal
+function showCompareModal() {
+  const compareModal = document.getElementById('compareModal');
+  compareModal.style.display = 'block';
+}
+
+// Close the compare selection modal
+function closeCompareModal() {
+  const compareModal = document.getElementById('compareModal');
+  compareModal.style.display = 'none';
+}
+
+// Function to compare two different weapon setups (based on user selection)
+function compareStats(setupNumber) {
+  if (selectedWeaponDamage === 0) {
+    alert("Please select a weapon to compare.");
+    return;
+  }
+
+  const currentStats = {
+    ttkHeadshot: document.getElementById('ttkHeadshot').textContent,
+    ttkBodyshot: document.getElementById('ttkBodyshot').textContent,
+    damageHeadshot: document.getElementById('damageHeadshot').textContent,
+    damageBodyshot: document.getElementById('damageBodyshot').textContent,
+    shotsToKill: document.getElementById('shotsToKill').textContent,
+    fireRate: document.getElementById('fireRate').textContent,
+    armor: selectedArmorHp
+  };
+
+  comparisons[setupNumber - 1] = currentStats;
+  updateComparisonTable(setupNumber, currentStats);
+
+  closeCompareModal();
+}
+
+// Function to update comparison table
+function updateComparisonTable(setupNumber, stats) {
+  document.getElementById(`setup${setupNumber}TtkHeadshot`).textContent = stats.ttkHeadshot;
+  document.getElementById(`setup${setupNumber}TtkBodyshot`).textContent = stats.ttkBodyshot;
+  document.getElementById(`setup${setupNumber}DamageHeadshot`).textContent = stats.damageHeadshot;
+  document.getElementById(`setup${setupNumber}DamageBodyshot`).textContent = stats.damageBodyshot;
+  document.getElementById(`setup${setupNumber}ShotsToKill`).textContent = stats.shotsToKill;
+  document.getElementById(`setup${setupNumber}FireRate`).textContent = stats.fireRate;
+  document.getElementById(`setup${setupNumber}Armor`).textContent = `${stats.armor} HP`;
+}
+

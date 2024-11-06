@@ -194,3 +194,4 @@ function renderFalloffChart(baseDamage) {
     }
   });
 }
+

@@ -27,7 +27,19 @@ function toggleAccordion(element) {
     }
     attachmentCategory.classList.add('active');
   }
+
+  // Update the slot title with the selected attachment when closed
+  const categoryTitle = attachmentCategory.querySelector('.attachment-title');
+  const selectedAttachment = attachmentCategory.querySelector('.attachment-button.selected');
+  
+  if (selectedAttachment) {
+    const attachmentName = selectedAttachment.textContent;
+    categoryTitle.innerHTML = `${categoryTitle.dataset.slotName}<br><span class="selected-attachment">${attachmentName}</span>`;
+  } else {
+    categoryTitle.innerHTML = `${categoryTitle.dataset.slotName}<br><span class="selected-attachment">None</span>`;
+  }
 }
+
 
 // Function to select or deselect a weapon and set its base stats
 function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {

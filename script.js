@@ -1,6 +1,7 @@
 // Variables to store selected weapon stats
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
+let selectedWeaponFireRate = 0;
 
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
@@ -16,11 +17,9 @@ const attachmentMultipliers = {
 function toggleAccordion(element) {
   const attachmentCategory = element.parentNode;
   
-  // If this category is already active, collapse it
   if (attachmentCategory.classList.contains('active')) {
     attachmentCategory.classList.remove('active');
   } else {
-    // Otherwise, collapse any currently open category and open this one
     const activeCategory = document.querySelector('.attachment-category.active');
     if (activeCategory && activeCategory !== attachmentCategory) {
       activeCategory.classList.remove('active');
@@ -30,7 +29,7 @@ function toggleAccordion(element) {
 }
 
 // Function to select or deselect a weapon and set its base stats
-function selectWeapon(button, weaponName, baseDamage, reloadSpeed) {
+function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {
   const weaponButtons = document.querySelectorAll('.weapon-button');
   weaponButtons.forEach(btn => btn.classList.remove('selected'));
 
@@ -38,10 +37,12 @@ function selectWeapon(button, weaponName, baseDamage, reloadSpeed) {
     button.classList.remove('selected');
     selectedWeaponDamage = 0;
     selectedWeaponReload = 0;
+    selectedWeaponFireRate = 0;
   } else {
     button.classList.add('selected');
     selectedWeaponDamage = baseDamage;
     selectedWeaponReload = reloadSpeed;
+    selectedWeaponFireRate = fireRate;
   }
 
   calculateStats();
@@ -62,31 +63,53 @@ function selectAttachment(button, category, multiplier) {
   calculateStats();
 }
 
-// Function to calculate and display the final damage and reload speed
+// Function to calculate and display the final stats
 function calculateStats() {
   if (selectedWeaponDamage === 0) {
-    document.getElementById('damageValue').textContent = "Please select a weapon";
-    document.getElementById('reloadValue').textContent = "";
+    resetStats();
     return;
   }
 
   const combinedMultiplier = Object.values(attachmentMultipliers).reduce((a, b) => a * b, 1);
+  const finalDamageHeadshot = selectedWeaponDamage * combinedMultiplier * 1.5; // 1.5x multiplier for headshots
+  const finalDamageBodyshot = selectedWeaponDamage * combinedMultiplier;
 
-  const finalDamage = selectedWeaponDamage * combinedMultiplier;
-  const finalReloadSpeed = selectedWeaponReload * (1 / combinedMultiplier);
+  const shotsToKill = Math.ceil(100 / finalDamageBodyshot); // Assuming 100 HP enemy
+  const ttkHeadshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
+  const ttkBodyshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
 
-  document.getElementById('damageProgress').value = finalDamage;
-  document.getElementById('damageValue').textContent = finalDamage.toFixed(2);
-  document.getElementById('reloadProgress').value = finalReloadSpeed;
-  document.getElementById('reloadValue').textContent = `${finalReloadSpeed.toFixed(2)}s`;
+  // Update the stats in the sidebar
+  document.getElementById('ttkHeadshot').textContent = `${ttkHeadshot}s`;
+  document.getElementById('ttkBodyshot').textContent = `${ttkBodyshot}s`;
+  document.getElementById('damageHeadshot').textContent = finalDamageHeadshot.toFixed(2);
+  document.getElementById('damageBodyshot').textContent = finalDamageBodyshot.toFixed(2);
+  document.getElementById('shotsToKill').textContent = shotsToKill;
+  document.getElementById('fireRate').textContent = `${selectedWeaponFireRate} RPM`;
 
-  triggerAnimation(document.getElementById('damageValue'));
-  triggerAnimation(document.getElementById('reloadValue'));
+  // Render falloff chart (for simplicity, static for now)
+  renderFalloffChart(finalDamageBodyshot);
 }
 
-// Function to re-trigger fade-in animation on stats update
-function triggerAnimation(element) {
-  element.classList.remove('fadeIn');
-  void element.offsetWidth;
-  element.classList.add('fadeIn');
+// Function to reset stats
+function resetStats() {
+  document.getElementById('ttkHeadshot').textContent = `0.0s`;
+  document.getElementById('ttkBodyshot').textContent = `0.0s`;
+  document.getElementById('damageHeadshot').textContent = `0`;
+  document.getElementById('damageBodyshot').textContent = `0`;
+  document.getElementById('shotsToKill').textContent = `0`;
+  document.getElementById('fireRate').textContent = `0 RPM`;
+}
+
+// Function to render a damage falloff chart
+function renderFalloffChart(baseDamage) {
+  const ctx = document.getElementById('falloffChart').getContext('2d');
+  ctx.clearRect(0, 0, 200, 150); // Clear previous chart
+
+  // Draw simple line representing damage falloff
+  ctx.beginPath();
+  ctx.moveTo(0, baseDamage);
+  ctx.lineTo(200, baseDamage * 0.5); // Assuming 50% falloff at max distance
+  ctx.strokeStyle = '#aad1e6';
+  ctx.lineWidth = 2;
+  ctx.stroke();
 }

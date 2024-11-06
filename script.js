@@ -170,7 +170,7 @@ function renderFalloffChart(baseDamage) {
     },
     series: [{
       name: 'Weapon Damage',
-      data: [1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5].map(v => v * baseDamage / 40), // Adjusted for visuals
+      data: [1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5].map(v => v * baseDamage / 40),
       color: '#aad1e6',
     }],
     legend: {

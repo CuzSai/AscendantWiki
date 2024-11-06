@@ -108,7 +108,7 @@ h2 {
 
 .shield-button {
   height: 60px;
-  background-color: #3a3a3a; /* Uniform background color for all buttons */
+  background-color: #3a3a3a;
   font-size: 1em;
   font-weight: 500;
   cursor: pointer;

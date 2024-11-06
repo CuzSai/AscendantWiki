@@ -62,15 +62,15 @@ h2 {
 
 .weapon-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+  gap: 20px; /* Space between cards */
   margin: 20px 0;
 }
 
 .weapon-button {
-  height: 100px;
-  background-color: #3a3a3a;
-  border: 1px solid #484848;
+  height: 100px; /* Make the cards larger */
+  background-color: #3a3a3a; /* Dark card background */
+  border: 1px solid #484848; /* Subtle border */
   border-radius: 8px;
   color: #fff;
   font-size: 1.2em;
@@ -80,37 +80,34 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  background-size: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Card shadow effect */
+  background-size: cover; /* Ensure images fit */
   background-position: center;
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 .weapon-button.selected {
-  box-shadow: 0 0 15px #aad1e6;
+  box-shadow: 0 0 15px #aad1e6; /* Highlight selected card */
   background-color: #50587a;
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slight scale */
 }
 
 .weapon-button:hover {
-  transform: scale(1.03);
+  transform: scale(1.03); /* Hover effect */
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
   background-color: #4e4e4e;
 }
 
 /* Shield Buttons */
-.shield-section {
-  margin-top: 30px;
-}
-
 .shield-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* Two shields per row */
   gap: 15px;
 }
 
 .shield-button {
   height: 60px;
+  color: #fff;
   font-size: 1em;
   font-weight: 500;
   cursor: pointer;
@@ -118,27 +115,11 @@ h2 {
   padding: 10px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s;
-}
-
-.shield-button.common {
-  background-color: #5a5a5a; /* Muted Grey */
-}
-
-.shield-button.rare {
-  background-color: #2a5ca0; /* Muted Blue */
-}
-
-.shield-button.epic {
-  background-color: #5a2a72; /* Muted Purple */
-}
-
-.shield-button.legendary {
-  background-color: #a65c1e; /* Muted Orange */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .shield-button.selected {
-  box-shadow: 0 0 10px #f7c653;
+  box-shadow: 0 0 10px #f7c653; /* Shield glow */
 }
 
 .shield-button:hover {
@@ -157,7 +138,7 @@ h2 {
 }
 
 .attachment-category.active {
-  max-height: 220px;
+  max-height: 220px; /* Expanded */
   padding: 10px;
 }
 
@@ -165,7 +146,6 @@ h2 {
   font-size: 1.1em;
   color: #e0e0e0;
   cursor: pointer;
-  line-height: 1.4;
   padding: 10px 0;
   text-align: center;
 }
@@ -183,47 +163,9 @@ h2 {
   border-radius: 5px;
   border: 1px solid #484848;
   padding: 10px;
-  color: #e0e0e0;
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s;
 }
 
-.attachment-button:hover {
-  transform: scale(1.03);
-  background-color: #4a4a4a;
-}
-
-.attachment-button.selected {
-  box-shadow: 0 0 10px #aad1e6;
-  background-color: #505050;
-}
-
-/* Highcharts Falloff Chart Styling */
+/* Highcharts Falloff Chart */
 #falloffChart {
   margin-top: 10px;
-}
-
-.highcharts-background {
-  fill: #292929;
-}
-
-.highcharts-title {
-  fill: #e0e0e0 !important;
-}
-
-.highcharts-axis-title {
-  fill: #c0c0c0 !important;
-}
-
-.highcharts-label {
-  fill: #e0e0e0 !important;
-}
-
-.highcharts-grid-line {
-  stroke: #3c3c3c;
-}
-
-.highcharts-legend-item {
-  fill: #c0c0c0 !important;
 }

@@ -48,6 +48,12 @@
       <h3>Damage Falloff Chart:</h3>
       <div id="falloffChart" style="width: 100%; height: 300px;"></div>
     </div>
+
+    <!-- Comparison section -->
+    <div class="comparison-section" id="comparisonSection" style="display: none;">
+      <h2>Comparison Results</h2>
+      <div id="comparisonContainer"></div>
+    </div>
   </div>
 
   <!-- Main Calculator Content -->
@@ -69,7 +75,7 @@
 
     <!-- Armor Selection Section -->
     <div class="section armor-section">
-      <h2>Select Armor</h2>
+      <h2>Choose Armor</h2>
       <div class="armor-buttons">
         <button class="armor-button" onclick="selectArmor(this, 'common', 30)" style="background-color: grey;">Common (30 HP)</button>
         <button class="armor-button" onclick="selectArmor(this, 'rare', 60)" style="background-color: blue;">Rare (60 HP)</button>
@@ -81,7 +87,6 @@
     <!-- Attachment Selection Section -->
     <div class="section attachment-section">
       <h2>Select Attachments</h2>
-
       <!-- Optic Attachments -->
       <div class="attachment-category">
         <h3 class="attachment-title" onclick="toggleAccordion(this)">Optic</h3>
@@ -90,7 +95,6 @@
           <button class="attachment-button" onclick="selectAttachment(this, 'optics', 1.1)">Red Dot (+10% damage)</button>
         </div>
       </div>
-
       <!-- Barrel Attachments -->
       <div class="attachment-category">
         <h3 class="attachment-title" onclick="toggleAccordion(this)">Barrel</h3>
@@ -99,7 +103,6 @@
           <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 1.05)">Short Barrel (+5% damage)</button>
         </div>
       </div>
-      
       <!-- Grip Attachments -->
       <div class="attachment-category">
         <h3 class="attachment-title" onclick="toggleAccordion(this)">Grip</h3>
@@ -108,7 +111,6 @@
           <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.1)">Vertical Grip (+10% damage)</button>
         </div>
       </div>
-      
       <!-- Magazine Attachments -->
       <div class="attachment-category">
         <h3 class="attachment-title" onclick="toggleAccordion(this)">Magazine</h3>
@@ -117,13 +119,11 @@
           <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.05)">Quick Reload Mag (+5% damage)</button>
         </div>
       </div>
-
     </div>
 
-    <!-- Compare Section -->
+    <!-- Compare Button -->
     <div class="section compare-section">
-      <button class="compare-button" onclick="compareStats()">Compare</button>
-      <div class="comparison-result" id="comparisonResult"></div>
+      <button class="compare-button" onclick="compareSetup()">Compare</button>
     </div>
   </div>
 

@@ -28,34 +28,39 @@ body {
   border-radius: 8px;
   padding: 10px;
   text-align: center;
-  background-color: #2e2e2e; /* Dark consistent background */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s;
 }
 
-.shield-button.common {
-  color: #d3d3d3; /* Light grey for Common */
+/* Original Bright Colors */
+.shield-button.common-original {
+  background-color: grey;
+  color: black;
 }
 
-.shield-button.rare {
-  color: #6fa8dc; /* Muted Blue for Rare */
+.shield-button.rare-original {
+  background-color: blue;
+  color: white;
 }
 
-.shield-button.epic {
-  color: #b085f5; /* Soft Purple for Epic */
+.shield-button.epic-original {
+  background-color: purple;
+  color: white;
 }
 
-.shield-button.legendary {
-  color: #f1c232; /* Soft Gold for Legendary */
+.shield-button.legendary-original {
+  background-color: orange;
+  color: black;
 }
 
+/* Selected Shield */
 .shield-button.selected {
-  transform: scale(1.05); /* Slight scaling to indicate selection */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle highlight when selected */
+  box-shadow: 0 0 10px #f7c653;
 }
 
 .shield-button:hover {
   transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Attachments Styling */
@@ -93,7 +98,7 @@ body {
   border-radius: 5px;
   padding: 10px;
   cursor: pointer;
-  border: 1px solid #484848;
+  border: 1px solid #484848; /* Subtle border */
   color: #e0e0e0;
   font-weight: 500;
   transition: transform 0.15s ease, background-color 0.15s ease;

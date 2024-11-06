@@ -40,7 +40,7 @@
 
     <div class="result">
       <h3>Fire Rate:</h3>
-      <span id="fireRate">0 RPM</span>
+      <span id="fireRate">0 Shots per Second</span>
     </div>
 
     <!-- Placeholder for falloff chart -->
@@ -64,6 +64,32 @@
         <button class="weapon-button" onclick="selectWeapon(this, 'plasma_rifle', 30, 2.8, 700)" style="background-image: url('plasma_rifle.jpg');">Plasma Rifle</button>
         <button class="weapon-button" onclick="selectWeapon(this, 'shotgun', 60, 3.5, 120)" style="background-image: url('shotgun.jpg');">Shotgun</button>
         <button class="weapon-button" onclick="selectWeapon(this, 'sniper_rifle', 80, 4.0, 90)" style="background-image: url('sniper_rifle.jpg');">Sniper Rifle</button>
+      </div>
+    </div>
+
+    <!-- Weapon Comparison Section -->
+    <div class="section comparison-section">
+      <h2>Compare Two Weapons</h2>
+      <div class="weapon-comparison-buttons">
+        <select id="weaponSelect1" onchange="compareWeapons()">
+          <option value="">Select Weapon 1</option>
+          <option value="battle_rifle">Battle Rifle</option>
+          <option value="beam_gloves">Beam Gloves</option>
+          <option value="plasma_rifle">Plasma Rifle</option>
+          <option value="shotgun">Shotgun</option>
+          <option value="sniper_rifle">Sniper Rifle</option>
+        </select>
+
+        <select id="weaponSelect2" onchange="compareWeapons()">
+          <option value="">Select Weapon 2</option>
+          <option value="battle_rifle">Battle Rifle</option>
+          <option value="beam_gloves">Beam Gloves</option>
+          <option value="plasma_rifle">Plasma Rifle</option>
+          <option value="shotgun">Shotgun</option>
+          <option value="sniper_rifle">Sniper Rifle</option>
+        </select>
+
+        <div id="comparisonChart" style="width: 100%; height: 300px;"></div>
       </div>
     </div>
 

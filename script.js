@@ -13,6 +13,9 @@ const attachmentMultipliers = {
   laser: 1,
 };
 
+// Array to store compared weapons
+let compareList = [];
+
 // Function to handle accordion-style opening and closing of attachment categories
 function toggleAccordion(element) {
   const attachmentCategory = element.parentNode;
@@ -70,24 +73,27 @@ function calculateStats() {
     return;
   }
 
+  const armorValue = parseInt(document.getElementById('armorSelect').value);
+  const totalHealth = 100 + armorValue;
+
   const combinedMultiplier = Object.values(attachmentMultipliers).reduce((a, b) => a * b, 1);
   const finalDamageHeadshot = selectedWeaponDamage * combinedMultiplier * 1.5; // 1.5x multiplier for headshots
   const finalDamageBodyshot = selectedWeaponDamage * combinedMultiplier;
 
-  const shotsToKill = Math.ceil(100 / finalDamageBodyshot); // Assuming 100 HP enemy
+  const shotsToKill = Math.ceil(totalHealth / finalDamageBodyshot);
   const ttkHeadshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
   const ttkBodyshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
 
   // Calculate Shots Per Second from RPM
   const fireRateSPS = (selectedWeaponFireRate / 60).toFixed(2);
 
-  // Update the stats in the sidebar
-  document.getElementById('ttkHeadshot').textContent = `${ttkHeadshot}s`;
-  document.getElementById('ttkBodyshot').textContent = `${ttkBodyshot}s`;
-  document.getElementById('damageHeadshot').textContent = finalDamageHeadshot.toFixed(2);
-  document.getElementById('damageBodyshot').textContent = finalDamageBodyshot.toFixed(2);
-  document.getElementById('shotsToKill').textContent = shotsToKill;
-  document.getElementById('fireRate').textContent = `${fireRateSPS} Shots per Second`;
+  // Update the stats in the sidebar (for Weapon 1 by default)
+  document.getElementById('ttkHeadshot1').textContent = `${ttkHeadshot}s`;
+  document.getElementById('ttkBodyshot1').textContent = `${ttkBodyshot}s`;
+  document.getElementById('damageHeadshot1').textContent = finalDamageHeadshot.toFixed(2);
+  document.getElementById('damageBodyshot1').textContent = finalDamageBodyshot.toFixed(2);
+  document.getElementById('shotsToKill1').textContent = shotsToKill;
+  document.getElementById('fireRate1').textContent = `${fireRateSPS} Shots per Second`;
 
   // Render falloff chart with new data
   renderFalloffChart('Selected Weapon', finalDamageBodyshot);
@@ -95,12 +101,12 @@ function calculateStats() {
 
 // Function to reset stats
 function resetStats() {
-  document.getElementById('ttkHeadshot').textContent = `0.0s`;
-  document.getElementById('ttkBodyshot').textContent = `0.0s`;
-  document.getElementById('damageHeadshot').textContent = `0`;
-  document.getElementById('damageBodyshot').textContent = `0`;
-  document.getElementById('shotsToKill').textContent = `0`;
-  document.getElementById('fireRate').textContent = `0 Shots per Second`;
+  document.getElementById('ttkHeadshot1').textContent = `0.0s`;
+  document.getElementById('ttkBodyshot1').textContent = `0.0s`;
+  document.getElementById('damageHeadshot1').textContent = `0`;
+  document.getElementById('damageBodyshot1').textContent = `0`;
+  document.getElementById('shotsToKill1').textContent = `0`;
+  document.getElementById('fireRate1').textContent = `0 Shots per Second`;
 
   // Clear falloff chart
   renderFalloffChart(null, 0);
@@ -161,60 +167,41 @@ function renderFalloffChart(weaponName, baseDamage) {
   });
 }
 
-// Function to compare two selected weapons
-function compareWeapons() {
-  const weapon1 = document.getElementById('weaponSelect1').value;
-  const weapon2 = document.getElementById('weaponSelect2').value;
+// Function to add the current weapon to the compare list
+function addToCompare() {
+  if (compareList.length >= 2) {
+    alert("You can only compare two weapons at a time. Clear the comparison list to add new weapons.");
+    return;
+  }
 
-  if (weapon1 && weapon2) {
-    // Generate a comparison chart
-    Highcharts.chart('comparisonChart', {
-      chart: {
-        type: 'column',
-        backgroundColor: '#292929',
-      },
-      title: {
-        text: 'Weapon Comparison',
-        style: {
-          color: '#e0e0e0',
-        }
-      },
-      xAxis: {
-        categories: ['Headshot Damage', 'Bodyshot Damage', 'TTK Headshot', 'TTK Bodyshot', 'Shots to Kill', 'Fire Rate (SPS)'],
-        labels: {
-          style: {
-            color: '#e0e0e0',
-          }
-        }
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Value',
-          style: {
-            color: '#e0e0e0',
-          }
-        },
-        labels: {
-          style: {
-            color: '#e0e0e0',
-          }
-        }
-      },
-      series: [{
-        name: weapon1,
-        data: [/* Data for weapon1 */],
-        color: '#aad1e6',
-      }, {
-        name: weapon2,
-        data: [/* Data for weapon2 */],
-        color: '#f28e42',
-      }],
-      legend: {
-        itemStyle: {
-          color: '#e0e0e0',
-        }
-      }
-    });
+  const weaponStats = {
+    ttkHeadshot: document.getElementById('ttkHeadshot1').textContent,
+    ttkBodyshot: document.getElementById('ttkBodyshot1').textContent,
+    damageHeadshot: document.getElementById('damageHeadshot1').textContent,
+    damageBodyshot: document.getElementById('damageBodyshot1').textContent,
+    shotsToKill: document.getElementById('shotsToKill1').textContent,
+    fireRate: document.getElementById('fireRate1').textContent,
+  };
+
+  compareList.push(weaponStats);
+
+  if (compareList.length === 2) {
+    displayComparison();
+  }
+}
+
+// Function to display the comparison stats
+function displayComparison() {
+  if (compareList.length === 2) {
+    document.getElementById('weaponStats2').style.display = 'block';
+
+    // Set stats for weapon 2
+    const weaponStats2 = compareList[1];
+    document.getElementById('ttkHeadshot2').textContent = weaponStats2.ttkHeadshot;
+    document.getElementById('ttkBodyshot2').textContent = weaponStats2.ttkBodyshot;
+    document.getElementById('damageHeadshot2').textContent = weaponStats2.damageHeadshot;
+    document.getElementById('damageBodyshot2').textContent = weaponStats2.damageBodyshot;
+    document.getElementById('shotsToKill2').textContent = weaponStats2.shotsToKill;
+    document.getElementById('fireRate2').textContent = weaponStats2.fireRate;
   }
 }

@@ -146,6 +146,10 @@ function capitalizeFirstLetter(string) {
 
 // Render Chart
 function renderFalloffChart(baseDamage) {
+  if (!baseDamage || baseDamage <= 0) {
+    baseDamage = 1; // Fallback to prevent invalid data from breaking the chart
+  }
+
   Highcharts.chart('falloffChart', {
     chart: {
       type: 'line',
@@ -165,7 +169,7 @@ function renderFalloffChart(baseDamage) {
           color: '#e0e0e0',
         }
       },
-      categories: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200'],
+      categories: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200'], // Distance values
       labels: {
         style: {
           color: '#e0e0e0',
@@ -180,7 +184,7 @@ function renderFalloffChart(baseDamage) {
         }
       },
       min: 0,
-      max: 1.5,
+      max: 1.5, // Adjust the max value based on your multiplier
       labels: {
         style: {
           color: '#e0e0e0',
@@ -189,8 +193,13 @@ function renderFalloffChart(baseDamage) {
     },
     series: [{
       name: 'Base Weapon',
-      data: generateFalloffData(baseDamage), // Dynamic falloff data
+      data: generateFalloffData(baseDamage),
       color: '#aad1e6',
+      marker: {
+        enabled: true, // Shows data points for better clarity
+        radius: 4,
+      },
+      lineWidth: 2,
     }],
     legend: {
       itemStyle: {
@@ -201,12 +210,11 @@ function renderFalloffChart(baseDamage) {
 }
 
 function generateFalloffData(baseDamage) {
-  // Example damage falloff logic: Linear reduction at set intervals
-  const distances = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200];
+  // Linear damage reduction logic for falloff
   const multipliers = [1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5];
-  
-  return multipliers.map(multiplier => Math.round(baseDamage * multiplier * 100) / 100);
+  return multipliers.map(multiplier => parseFloat((baseDamage * multiplier).toFixed(2)));
 }
+
 
 
 // Update the max height of the closed card to fit content dynamically

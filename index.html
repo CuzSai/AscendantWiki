@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weapon Damage Calculator</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://code.highcharts.com/highcharts.js"></script> <!-- Include Highcharts library -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
 </head>
 <body>
 
@@ -59,19 +59,18 @@
     <div class="section weapon-section">
       <h2>Choose Your Weapon</h2>
       <div class="weapon-buttons">
-        <button class="weapon-button" onclick="selectWeapon(this, 'battle_rifle', 40, 3.0, 600)" style="background-image: url('battle_rifle.jpg');">Battle Rifle</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'beam_gloves', 25, 2.0, 800)" style="background-image: url('beam_gloves.jpg');">Beam Gloves</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'plasma_rifle', 30, 2.8, 700)" style="background-image: url('plasma_rifle.jpg');">Plasma Rifle</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'shotgun', 60, 3.5, 120)" style="background-image: url('shotgun.jpg');">Shotgun</button>
-        <button class="weapon-button" onclick="selectWeapon(this, 'sniper_rifle', 80, 4.0, 90)" style="background-image: url('sniper_rifle.jpg');">Sniper Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'battle_rifle', 40, 3.0, 600)">Battle Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'beam_gloves', 25, 2.0, 800)">Beam Gloves</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'plasma_rifle', 30, 2.8, 700)">Plasma Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'shotgun', 60, 3.5, 120)">Shotgun</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'sniper_rifle', 80, 4.0, 90)">Sniper Rifle</button>
       </div>
     </div>
 
     <!-- Attachment Selection Section -->
     <div class="section attachment-section">
       <h2>Select Attachments</h2>
-
-      <!-- Optic Attachments -->
+      <!-- Example attachments -->
       <div class="attachment-category">
         <h3 class="attachment-title" onclick="toggleAccordion(this)">Optic</h3>
         <div class="attachment-buttons">
@@ -79,53 +78,35 @@
           <button class="attachment-button" onclick="selectAttachment(this, 'optics', 1.1)">Red Dot (+10% damage)</button>
         </div>
       </div>
-
-      <!-- Barrel Attachments -->
-      <div class="attachment-category">
-        <h3 class="attachment-title" onclick="toggleAccordion(this)">Barrel</h3>
-        <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 1.3)">Heavy Barrel (+30% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 1.05)">Short Barrel (+5% damage)</button>
-        </div>
-      </div>
-      
-      <!-- Grip Attachments -->
-      <div class="attachment-category">
-        <h3 class="attachment-title" onclick="toggleAccordion(this)">Grip</h3>
-        <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.15)">Angled Grip (+15% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.1)">Vertical Grip (+10% damage)</button>
-        </div>
-      </div>
-      
-      <!-- Magazine Attachments -->
-      <div class="attachment-category">
-        <h3 class="attachment-title" onclick="toggleAccordion(this)">Magazine</h3>
-        <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.1)">Extended Mag (+10% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.05)">Quick Reload Mag (+5% damage)</button>
-        </div>
-      </div>
-
     </div>
 
     <!-- Armor Selection Section -->
     <div class="section armor-section">
       <h2>Select Armor</h2>
       <div class="armor-buttons">
-        <button class="armor-button" onclick="selectArmor(this, 'common', 30)" style="background-color: #808080;">Common (30 HP)</button>
-        <button class="armor-button" onclick="selectArmor(this, 'rare', 60)" style="background-color: #0066cc;">Rare (60 HP)</button>
-        <button class="armor-button" onclick="selectArmor(this, 'epic', 90)" style="background-color: #800080;">Epic (90 HP)</button>
-        <button class="armor-button" onclick="selectArmor(this, 'legendary', 120)" style="background-color: #ff9900;">Legendary (120 HP)</button>
+        <button class="armor-button" onclick="selectArmor(this, 'common', 30)">Common (30 HP)</button>
+        <button class="armor-button" onclick="selectArmor(this, 'rare', 60)">Rare (60 HP)</button>
+        <button class="armor-button" onclick="selectArmor(this, 'epic', 90)">Epic (90 HP)</button>
+        <button class="armor-button" onclick="selectArmor(this, 'legendary', 120)">Legendary (120 HP)</button>
       </div>
     </div>
 
     <!-- Compare Button -->
     <div class="section compare-section">
-      <button class="compare-button" onclick="compareStats()">Compare</button>
+      <button class="compare-button" onclick="openCompareModal()">Compare</button>
       <div id="compareResults"></div>
     </div>
 
+  </div>
+
+  <!-- Compare Modal -->
+  <div id="compareModal" class="modal">
+    <div class="modal-content">
+      <h2>Select Setup to Replace</h2>
+      <button class="modal-button" onclick="replaceComparison(1)">Replace Setup 1</button>
+      <button class="modal-button" onclick="replaceComparison(2)">Replace Setup 2</button>
+      <button class="modal-button close" onclick="closeCompareModal()">Cancel</button>
+    </div>
   </div>
 
   <script src="script.js"></script>

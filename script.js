@@ -178,25 +178,25 @@ function renderFalloffChart(weaponName, baseDamage) {
   });
 }
 
-// Function to compare two different weapon setups
-function compareStats() {
+// Function to open the compare modal
+function showCompareModal() {
+  const modal = document.getElementById("compareModal");
+  modal.style.display = "block";
+}
+
+// Function to close the compare modal
+function closeCompareModal() {
+  const modal = document.getElementById("compareModal");
+  modal.style.display = "none";
+}
+
+// Function to handle comparison selection
+function compareStats(setupNumber) {
   if (selectedWeaponDamage === 0) {
-    alert("Please select a weapon to compare.");
+    alert("Please select a weapon before comparing.");
     return;
   }
 
-  // Ask the user which setup slot they want to use
-  let setupNumber = prompt("Enter the setup number (1 or 2) where you want to save the current configuration:");
-
-  // Ensure the user provides a valid input (either '1' or '2')
-  if (setupNumber !== '1' && setupNumber !== '2') {
-    alert("Invalid input. Please enter either '1' or '2'.");
-    return;
-  }
-
-  setupNumber = parseInt(setupNumber); // Convert input to an integer
-
-  // Store the current weapon setup in the selected comparison slot
   const currentStats = {
     ttkHeadshot: document.getElementById('ttkHeadshot').textContent,
     ttkBodyshot: document.getElementById('ttkBodyshot').textContent,
@@ -207,11 +207,10 @@ function compareStats() {
     armor: selectedArmorHp
   };
 
-  comparisons[setupNumber - 1] = currentStats;
   updateComparisonTable(setupNumber, currentStats);
+  closeCompareModal();
 }
 
-// Function to update comparison table
 function updateComparisonTable(setupNumber, stats) {
   document.getElementById(`setup${setupNumber}TtkHeadshot`).textContent = stats.ttkHeadshot;
   document.getElementById(`setup${setupNumber}TtkBodyshot`).textContent = stats.ttkBodyshot;
@@ -224,7 +223,6 @@ function updateComparisonTable(setupNumber, stats) {
 
 // Function to reset all selections and comparisons
 function resetAll() {
-  // Reset weapon, armor, and attachment selections
   const allButtons = document.querySelectorAll('.weapon-button, .attachment-button, .armor-button');
   allButtons.forEach(button => button.classList.remove('selected'));
 
@@ -233,7 +231,6 @@ function resetAll() {
   selectedWeaponFireRate = 0;
   selectedArmorHp = 100;
 
-  // Reset stats and comparison results
   resetStats();
 
   const compareResultsIds = [

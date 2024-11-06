@@ -86,10 +86,11 @@ h2 {
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-.weapon-button.selected {
-  box-shadow: 0 0 15px #aad1e6;
-  background-color: #50587a;
-  transform: scale(1.05);
+.weapon-button.selected,
+.weapon-button.selected:hover {
+  box-shadow: 0 0 15px #aad1e6; /* Keep glow while selected and hovered */
+  background-color: #50587a; /* Change background immediately */
+  transform: scale(1.05); /* Maintain the scale when selected */
 }
 
 .weapon-button:hover {

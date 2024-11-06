@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weapon Damage Calculator</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://code.highcharts.com/highcharts.js"></script> <!-- Include Highcharts library -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
 </head>
 <body>
 
@@ -43,7 +43,6 @@
       <span id="fireRate">0 RPM</span>
     </div>
 
-    <!-- Placeholder for falloff chart -->
     <div class="result">
       <h3>Damage Falloff Chart:</h3>
       <div id="falloffChart" style="width: 100%; height: 300px;"></div>
@@ -67,43 +66,54 @@
       </div>
     </div>
 
+    <!-- Shield Selection Section -->
+    <div class="section shield-section">
+      <h2>Select Shield</h2>
+      <div class="shield-buttons">
+        <button class="shield-button" onclick="selectShield(this, 'common', 30)" style="background-color: grey;">Common Shield (30 HP)</button>
+        <button class="shield-button" onclick="selectShield(this, 'rare', 60)" style="background-color: blue;">Rare Shield (60 HP)</button>
+        <button class="shield-button" onclick="selectShield(this, 'epic', 90)" style="background-color: purple;">Epic Shield (90 HP)</button>
+        <button class="shield-button" onclick="selectShield(this, 'legendary', 120)" style="background-color: orange;">Legendary Shield (120 HP)</button>
+      </div>
+    </div>
+
     <!-- Attachment Selection Section -->
     <div class="section attachment-section">
       <h2>Select Attachments</h2>
 
       <!-- Optic Attachments -->
       <div class="attachment-category">
-        <h3 class="attachment-title" onclick="toggleAccordion(this)">Optic</h3>
+        <h3 class="attachment-title" onclick="toggleAccordion(this)">Optic <span id="selectedOptic">None</span></h3>
         <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'optics', 1.2)">Scope (+20% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'optics', 1.1)">Red Dot (+10% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'optics', 'Scope (+20% damage)', 1.2)">Scope (+20% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'optics', 'Red Dot (+10% damage)', 1.1)">Red Dot (+10% damage)</button>
         </div>
       </div>
 
       <!-- Barrel Attachments -->
       <div class="attachment-category">
-        <h3 class="attachment-title" onclick="toggleAccordion(this)">Barrel</h3>
+        <h3 class="attachment-title" onclick="toggleAccordion(this)">Barrel <span id="selectedBarrel">None</span></h3>
         <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 1.3)">Heavy Barrel (+30% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 1.05)">Short Barrel (+5% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 'Heavy Barrel (+30% damage)', 1.3)">Heavy Barrel (+30% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 'Short Barrel (+5% damage)', 1.05)">Short Barrel (+5% damage)</button>
         </div>
       </div>
       
       <!-- Grip Attachments -->
       <div class="attachment-category">
-        <h3 class="attachment-title" onclick="toggleAccordion(this)">Grip</h3>
+        <h3 class="attachment-title" onclick="toggleAccordion(this)">Grip <span id="selectedGrip">None</span></h3>
         <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.15)">Angled Grip (+15% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.1)">Vertical Grip (+10% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'grip', 'Angled Grip (+15% damage)', 1.15)">Angled Grip (+15% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'grip', 'Vertical Grip (+10% damage)', 1.1)">Vertical Grip (+10% damage)</button>
         </div>
       </div>
       
       <!-- Magazine Attachments -->
       <div class="attachment-category">
-        <h3 class="attachment-title" onclick="toggleAccordion(this)">Magazine</h3>
+        <h3 class="attachment-title" onclick="toggleAccordion(this)">Magazine <span id="selectedMagazine">None</span></h3>
         <div class="attachment-buttons">
-          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.1)">Extended Mag (+10% damage)</button>
-          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.05)">Quick Reload Mag (+5% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 'Extended Mag (+10% damage)', 1.1)">Extended Mag (+10% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 'Quick Reload Mag (+5% damage)', 1.05)">Quick Reload Mag (+5% damage)</button>
         </div>
       </div>
 

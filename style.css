@@ -1,7 +1,7 @@
 /* General Page Styling */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More professional font */
-  background-color: #1f1f1f; /* Darker, neutral background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Professional font */
+  background-color: #1f1f1f; /* Dark, neutral background */
   color: #e0e0e0; /* Softer white for better contrast */
   display: flex;
   justify-content: center;
@@ -15,20 +15,20 @@ body {
   top: 20px;
   right: 20px;
   width: 250px;
-  background-color: #292929; /* Subtle difference to stand out against body */
+  background-color: #292929; /* Slightly lighter than body for differentiation */
   padding: 20px;
-  border-radius: 5px; /* Slightly rounded for a modern look */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* More subtle shadow for professionalism */
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
   color: #e0e0e0;
   animation: fadeIn 0.5s ease;
 }
 
 .stats-sidebar h2 {
-  color: #aad1e6; /* Muted light blue */
+  color: #aad1e6; /* Muted blue for headers */
   font-size: 1.3em;
   margin-bottom: 15px;
   text-align: center;
-  font-weight: 500; /* Less bold */
+  font-weight: 500; /* Lighter weight for professionalism */
 }
 
 .stats-sidebar .result {
@@ -36,26 +36,26 @@ body {
 }
 
 .stats-sidebar h3 {
-  color: #c0c0c0; /* Softer light grey */
+  color: #c0c0c0; /* Softer grey for subheaders */
   font-size: 1em;
   margin-bottom: 5px;
 }
 
 .stats-sidebar progress {
   width: 100%;
-  height: 16px; /* A little smaller for a clean look */
+  height: 16px; /* Slimmer progress bar */
   appearance: none;
   -webkit-appearance: none;
   border-radius: 4px;
 }
 
 .stats-sidebar progress::-webkit-progress-bar {
-  background-color: #3c3c3c; /* Darker progress bar background */
+  background-color: #3c3c3c; /* Dark progress background */
   border-radius: 4px;
 }
 
 .stats-sidebar progress::-webkit-progress-value {
-  background-color: #aad1e6; /* Soft blue to match header */
+  background-color: #aad1e6; /* Blue for progress */
   border-radius: 4px;
   transition: width 0.5s ease;
 }
@@ -63,17 +63,18 @@ body {
 .stats-sidebar span {
   display: inline-block;
   color: #aad1e6;
-  font-weight: 600; /* Less intense */
+  font-weight: 600; /* Semi-bold for emphasis */
   font-size: 1.1em;
   margin-top: 5px;
   animation: fadeIn 0.5s ease;
 }
 
+/* Calculator Styling */
 .calculator {
-  background-color: #2a2a2a; /* Softer dark shade */
+  background-color: #2a2a2a; /* Darker panel background */
   padding: 30px;
-  border-radius: 5px; /* Less rounded for a more professional look */
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  border-radius: 5px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); /* Softer shadow */
   width: 80%;
   max-width: 700px;
   text-align: center;
@@ -81,26 +82,27 @@ body {
 }
 
 h1 {
-  color: #aad1e6; /* Consistent soft blue */
+  color: #aad1e6; /* Consistent blue */
   font-size: 1.6em;
   margin-bottom: 20px;
-  font-weight: 500;
+  font-weight: 500; /* Reduce boldness for readability */
 }
 
 .section-divider {
   border: none;
   height: 2px;
-  background-color: #3c3c3c; /* Softer divider */
+  background-color: #3c3c3c;
   margin: 15px 0;
 }
 
 h2, h3 {
-  color: #c0c0c0; /* Softer grey for section titles */
+  color: #c0c0c0; /* Lighter grey for section headers */
   font-size: 1.2em;
   margin-bottom: 10px;
-  font-weight: 500;
+  font-weight: 500; /* Consistent weight */
 }
 
+/* Weapon Section */
 .weapon-section {
   margin-bottom: 40px;
 }
@@ -114,12 +116,12 @@ h2, h3 {
 
 .weapon-button, .attachment-button {
   height: 60px;
-  background-color: #3a3a3a; /* Darker, muted tone */
-  border: 1px solid #484848; /* Subtle border */
-  border-radius: 5px; /* Less rounded for professionalism */
+  background-color: #3a3a3a; /* Darker button color */
+  border: 1px solid #484848; /* Subtle border for structure */
+  border-radius: 5px;
   color: #e0e0e0;
-  font-size: 1em; /* Reduced size for a more refined look */
-  font-weight: 500;
+  font-size: 1em; /* Slightly smaller font for professionalism */
+  font-weight: 500; /* Moderate weight for better legibility */
   cursor: pointer;
   padding: 10px;
   display: flex;
@@ -129,15 +131,15 @@ h2, h3 {
 }
 
 .weapon-button.selected, .attachment-button.selected {
-  box-shadow: 0 0 10px #aad1e6; /* Subtle glow to indicate selection */
-  background-color: #4a4a4a; /* Slight change to indicate selection */
-  transform: scale(1.03); /* Less pronounced scaling */
+  box-shadow: 0 0 10px #aad1e6; /* Subtle highlight on selection */
+  background-color: #4a4a4a; /* Slightly brighter to indicate selection */
+  transform: scale(1.03); /* Mild scale to draw focus */
 }
 
 .weapon-button:hover, .attachment-button:hover {
-  transform: scale(1.02); /* Slightly smaller hover effect */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Softer shadow */
-  background-color: #505050; /* Muted hover background */
+  transform: scale(1.02); /* Minimal hover effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Softer shadow on hover */
+  background-color: #505050; /* Slightly lighter hover color */
 }
 
 /* Attachment Categories and Accordion */
@@ -147,20 +149,20 @@ h2, h3 {
   transition: max-height 0.4s ease, padding 0.4s ease;
   max-height: 60px; /* Default height when collapsed */
   background-color: #2e2e2e;
-  border-radius: 5px; /* Consistent rounded corners */
+  border-radius: 5px; /* Matches button design */
 }
 
 .attachment-category.active {
-  max-height: 220px; /* Height when expanded */
-  padding: 10px; /* Slightly less padding */
+  max-height: 220px; /* Expanded height */
+  padding: 10px; /* Uniform padding for open state */
 }
 
 .attachment-title {
   font-size: 1.1em;
-  color: #e0e0e0;
+  color: #e0e0e0; /* Text color matching main design */
   cursor: pointer;
   line-height: 1.4;
-  padding: 10px 0; 
+  padding: 10px 0;
   text-align: center;
 }
 
@@ -174,8 +176,37 @@ h2, h3 {
 }
 
 .attachment-button {
-  background-color: #3a3a3a; /* Consistent background for attachment buttons */
-  border-radius: 5px; /* Rounded corners for consistency */
-  border: 1px solid #484848; /* Subtle border */
+  background-color: #3a3a3a;
+  border-radius: 5px; /* Consistent rounded corners */
+  border: 1px solid #484848; /* Subtle border for definition */
   padding: 10px;
+}
+
+/* Highcharts Falloff Chart Styling */
+#falloffChart {
+  margin-top: 10px;
+}
+
+.highcharts-background {
+  fill: #292929; /* Matches sidebar for seamless look */
+}
+
+.highcharts-title {
+  fill: #e0e0e0 !important; /* Title in soft white */
+}
+
+.highcharts-axis-title {
+  fill: #c0c0c0 !important; /* Axis titles */
+}
+
+.highcharts-label {
+  fill: #e0e0e0 !important; /* Label text */
+}
+
+.highcharts-grid-line {
+  stroke: #3c3c3c; /* Gridlines to blend in */
+}
+
+.highcharts-legend-item {
+  fill: #c0c0c0 !important;
 }

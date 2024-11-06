@@ -186,7 +186,6 @@ function compareStats() {
   }
 
   const currentStats = {
-    weaponDamage: selectedWeaponDamage,
     ttkHeadshot: document.getElementById('ttkHeadshot').textContent,
     ttkBodyshot: document.getElementById('ttkBodyshot').textContent,
     damageHeadshot: document.getElementById('damageHeadshot').textContent,
@@ -198,49 +197,51 @@ function compareStats() {
 
   comparisons.push(currentStats);
 
+  if (comparisons.length === 1) {
+    updateComparisonTable(1, currentStats);
+  }
+
   if (comparisons.length === 2) {
-    displayComparison();
+    updateComparisonTable(2, currentStats);
     comparisons = [];
   }
 }
 
-// Function to display the comparison between two weapon setups
-function displayComparison() {
-  const compareResults = document.getElementById('compareResults');
-  compareResults.innerHTML = `
-    <h3>Comparison Results</h3>
-    <div class="comparison-grid">
-      <div><strong>Stat</strong></div>
-      <div><strong>Setup 1</strong></div>
-      <div><strong>Setup 2</strong></div>
-      
-      <div>TTK (Headshot)</div>
-      <div>${comparisons[0].ttkHeadshot}</div>
-      <div>${comparisons[1].ttkHeadshot}</div>
+// Function to update comparison table
+function updateComparisonTable(setupNumber, stats) {
+  document.getElementById(`setup${setupNumber}TtkHeadshot`).textContent = stats.ttkHeadshot;
+  document.getElementById(`setup${setupNumber}TtkBodyshot`).textContent = stats.ttkBodyshot;
+  document.getElementById(`setup${setupNumber}DamageHeadshot`).textContent = stats.damageHeadshot;
+  document.getElementById(`setup${setupNumber}DamageBodyshot`).textContent = stats.damageBodyshot;
+  document.getElementById(`setup${setupNumber}ShotsToKill`).textContent = stats.shotsToKill;
+  document.getElementById(`setup${setupNumber}FireRate`).textContent = stats.fireRate;
+  document.getElementById(`setup${setupNumber}Armor`).textContent = `${stats.armor} HP`;
+}
 
-      <div>TTK (Bodyshot)</div>
-      <div>${comparisons[0].ttkBodyshot}</div>
-      <div>${comparisons[1].ttkBodyshot}</div>
+// Function to reset all selections and comparisons
+function resetAll() {
+  // Reset weapon, armor, and attachment selections
+  const allButtons = document.querySelectorAll('.weapon-button, .attachment-button, .armor-button');
+  allButtons.forEach(button => button.classList.remove('selected'));
 
-      <div>Damage (Headshot)</div>
-      <div>${comparisons[0].damageHeadshot}</div>
-      <div>${comparisons[1].damageHeadshot}</div>
+  selectedWeaponDamage = 0;
+  selectedWeaponReload = 0;
+  selectedWeaponFireRate = 0;
+  selectedArmorHp = 100;
 
-      <div>Damage (Bodyshot)</div>
-      <div>${comparisons[0].damageBodyshot}</div>
-      <div>${comparisons[1].damageBodyshot}</div>
+  // Reset stats and comparison results
+  resetStats();
 
-      <div>Shots to Kill</div>
-      <div>${comparisons[0].shotsToKill}</div>
-      <div>${comparisons[1].shotsToKill}</div>
+  const compareResultsIds = [
+    'setup1TtkHeadshot', 'setup1TtkBodyshot', 'setup1DamageHeadshot',
+    'setup1DamageBodyshot', 'setup1ShotsToKill', 'setup1FireRate', 'setup1Armor',
+    'setup2TtkHeadshot', 'setup2TtkBodyshot', 'setup2DamageHeadshot',
+    'setup2DamageBodyshot', 'setup2ShotsToKill', 'setup2FireRate', 'setup2Armor'
+  ];
 
-      <div>Fire Rate</div>
-      <div>${comparisons[0].fireRate}</div>
-      <div>${comparisons[1].fireRate}</div>
+  compareResultsIds.forEach(id => {
+    document.getElementById(id).textContent = 'N/A';
+  });
 
-      <div>Armor HP</div>
-      <div>${comparisons[0].armor} HP</div>
-      <div>${comparisons[1].armor} HP</div>
-    </div>
-  `;
+  comparisons = [];
 }

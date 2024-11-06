@@ -1,7 +1,8 @@
-// Variables to store selected weapon stats
+// Variables to store selected weapon stats and shield
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
 let selectedWeaponFireRate = 0;
+let selectedShieldHP = 0; // Shield HP
 
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
@@ -49,15 +50,33 @@ function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {
 }
 
 // Function to select or deselect an attachment
-function selectAttachment(button, category, multiplier) {
+function selectAttachment(button, category, displayName, multiplier) {
   if (button.classList.contains('selected')) {
     button.classList.remove('selected');
     attachmentMultipliers[category] = 1;
+    document.getElementById(`selected${capitalizeFirstLetter(category)}`).textContent = "None";
   } else {
     const attachmentButtons = button.parentNode.querySelectorAll('.attachment-button');
     attachmentButtons.forEach(btn => btn.classList.remove('selected'));
     button.classList.add('selected');
     attachmentMultipliers[category] = multiplier;
+    document.getElementById(`selected${capitalizeFirstLetter(category)}`).textContent = displayName;
+  }
+
+  calculateStats();
+}
+
+// Function to select a shield and update stats
+function selectShield(button, shieldType, shieldHP) {
+  const shieldButtons = document.querySelectorAll('.shield-button');
+  shieldButtons.forEach(btn => btn.classList.remove('selected'));
+
+  if (button.classList.contains('selected')) {
+    button.classList.remove('selected');
+    selectedShieldHP = 0;
+  } else {
+    button.classList.add('selected');
+    selectedShieldHP = shieldHP;
   }
 
   calculateStats();
@@ -74,8 +93,9 @@ function calculateStats() {
   const finalDamageHeadshot = selectedWeaponDamage * combinedMultiplier * 1.5; // 1.5x multiplier for headshots
   const finalDamageBodyshot = selectedWeaponDamage * combinedMultiplier;
 
-  const shotsToKill = Math.ceil(100 / finalDamageBodyshot); // Assuming 100 HP enemy
-  const ttkHeadshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
+  const totalHealth = 100 + selectedShieldHP; // Base health is 100
+  const shotsToKill = Math.ceil(totalHealth / finalDamageBodyshot);
+  const ttkHeadshot = ((shotsToKill / (selectedWeaponFireRate / 60)) * 0.7).toFixed(2); // Reduced shots for headshot
   const ttkBodyshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
 
   // Update the stats in the sidebar
@@ -86,8 +106,8 @@ function calculateStats() {
   document.getElementById('shotsToKill').textContent = shotsToKill;
   document.getElementById('fireRate').textContent = `${selectedWeaponFireRate} RPM`;
 
-  // Render falloff chart with new data
-  renderFalloffChart(weaponName, finalDamageBodyshot);
+  // Render falloff chart
+  renderFalloffChart(finalDamageBodyshot);
 }
 
 // Function to reset stats
@@ -98,13 +118,16 @@ function resetStats() {
   document.getElementById('damageBodyshot').textContent = `0`;
   document.getElementById('shotsToKill').textContent = `0`;
   document.getElementById('fireRate').textContent = `0 RPM`;
+  renderFalloffChart(0);
+}
 
-  // Clear falloff chart
-  renderFalloffChart(null, 0);
+// Function to capitalize the first letter of attachment categories
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 // Function to render a damage falloff chart using Highcharts
-function renderFalloffChart(weaponName, baseDamage) {
+function renderFalloffChart(baseDamage) {
   Highcharts.chart('falloffChart', {
     chart: {
       type: 'line',
@@ -146,8 +169,8 @@ function renderFalloffChart(weaponName, baseDamage) {
       }
     },
     series: [{
-      name: weaponName ? weaponName : 'No Weapon Selected',
-      data: weaponName ? [1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.3, 0.2].map(v => v * baseDamage / selectedWeaponDamage) : [],
+      name: 'Weapon Damage',
+      data: [1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5].map(v => v * baseDamage / 40), // Adjusted for visuals
       color: '#aad1e6',
     }],
     legend: {

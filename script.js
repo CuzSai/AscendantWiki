@@ -2,6 +2,10 @@
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
 let selectedWeaponFireRate = 0;
+let selectedArmorHP = 0;
+
+let compareStatsOne = null;
+let compareStatsTwo = null;
 
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
@@ -9,8 +13,6 @@ const attachmentMultipliers = {
   barrel: 1,
   grip: 1,
   magazine: 1,
-  muzzle: 1,
-  laser: 1,
 };
 
 // Function to handle accordion-style opening and closing of attachment categories
@@ -48,6 +50,22 @@ function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {
   calculateStats();
 }
 
+// Function to select or deselect armor
+function selectArmor(button, armorName, armorHP) {
+  const armorButtons = document.querySelectorAll('.armor-button');
+  armorButtons.forEach(btn => btn.classList.remove('selected'));
+
+  if (button.classList.contains('selected')) {
+    button.classList.remove('selected');
+    selectedArmorHP = 0;
+  } else {
+    button.classList.add('selected');
+    selectedArmorHP = armorHP;
+  }
+
+  calculateStats();
+}
+
 // Function to select or deselect an attachment
 function selectAttachment(button, category, multiplier) {
   if (button.classList.contains('selected')) {
@@ -65,7 +83,7 @@ function selectAttachment(button, category, multiplier) {
 
 // Function to calculate and display the final stats
 function calculateStats() {
-  if (selectedWeaponDamage === 0) {
+  if (selectedWeaponDamage === 0 || selectedArmorHP === 0) {
     resetStats();
     return;
   }
@@ -74,12 +92,10 @@ function calculateStats() {
   const finalDamageHeadshot = selectedWeaponDamage * combinedMultiplier * 1.5; // 1.5x multiplier for headshots
   const finalDamageBodyshot = selectedWeaponDamage * combinedMultiplier;
 
-  const shotsToKill = Math.ceil(100 / finalDamageBodyshot); // Assuming 100 HP enemy
+  const totalHP = 100 + selectedArmorHP;
+  const shotsToKill = Math.ceil(totalHP / finalDamageBodyshot);
   const ttkHeadshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
   const ttkBodyshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
-
-  // Calculate Shots Per Second from RPM
-  const fireRateSPS = (selectedWeaponFireRate / 60).toFixed(2);
 
   // Update the stats in the sidebar
   document.getElementById('ttkHeadshot').textContent = `${ttkHeadshot}s`;
@@ -87,10 +103,10 @@ function calculateStats() {
   document.getElementById('damageHeadshot').textContent = finalDamageHeadshot.toFixed(2);
   document.getElementById('damageBodyshot').textContent = finalDamageBodyshot.toFixed(2);
   document.getElementById('shotsToKill').textContent = shotsToKill;
-  document.getElementById('fireRate').textContent = `${fireRateSPS} Shots per Second`;
+  document.getElementById('fireRate').textContent = `${selectedWeaponFireRate} RPM`;
 
   // Render falloff chart with new data
-  renderFalloffChart('Selected Weapon', finalDamageBodyshot);
+  renderFalloffChart(finalDamageBodyshot);
 }
 
 // Function to reset stats
@@ -100,14 +116,14 @@ function resetStats() {
   document.getElementById('damageHeadshot').textContent = `0`;
   document.getElementById('damageBodyshot').textContent = `0`;
   document.getElementById('shotsToKill').textContent = `0`;
-  document.getElementById('fireRate').textContent = `0 Shots per Second`;
+  document.getElementById('fireRate').textContent = `0 RPM`;
 
   // Clear falloff chart
-  renderFalloffChart(null, 0);
+  renderFalloffChart(0);
 }
 
 // Function to render a damage falloff chart using Highcharts
-function renderFalloffChart(weaponName, baseDamage) {
+function renderFalloffChart(baseDamage) {
   Highcharts.chart('falloffChart', {
     chart: {
       type: 'line',
@@ -149,8 +165,8 @@ function renderFalloffChart(weaponName, baseDamage) {
       }
     },
     series: [{
-      name: weaponName ? weaponName : 'No Weapon Selected',
-      data: weaponName ? [1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.3, 0.2].map(v => v * baseDamage / selectedWeaponDamage) : [],
+      name: 'Damage Falloff',
+      data: [1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.3, 0.2].map(v => v * baseDamage / selectedWeaponDamage),
       color: '#aad1e6',
     }],
     legend: {
@@ -161,60 +177,50 @@ function renderFalloffChart(weaponName, baseDamage) {
   });
 }
 
-// Function to compare two selected weapons
-function compareWeapons() {
-  const weapon1 = document.getElementById('weaponSelect1').value;
-  const weapon2 = document.getElementById('weaponSelect2').value;
+// Function to compare stats
+function compareStats() {
+  const currentStats = {
+    ttkHeadshot: document.getElementById('ttkHeadshot').textContent,
+    ttkBodyshot: document.getElementById('ttkBodyshot').textContent,
+    damageHeadshot: document.getElementById('damageHeadshot').textContent,
+    damageBodyshot: document.getElementById('damageBodyshot').textContent,
+    shotsToKill: document.getElementById('shotsToKill').textContent,
+    fireRate: document.getElementById('fireRate').textContent,
+  };
 
-  if (weapon1 && weapon2) {
-    // Generate a comparison chart
-    Highcharts.chart('comparisonChart', {
-      chart: {
-        type: 'column',
-        backgroundColor: '#292929',
-      },
-      title: {
-        text: 'Weapon Comparison',
-        style: {
-          color: '#e0e0e0',
-        }
-      },
-      xAxis: {
-        categories: ['Headshot Damage', 'Bodyshot Damage', 'TTK Headshot', 'TTK Bodyshot', 'Shots to Kill', 'Fire Rate (SPS)'],
-        labels: {
-          style: {
-            color: '#e0e0e0',
-          }
-        }
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Value',
-          style: {
-            color: '#e0e0e0',
-          }
-        },
-        labels: {
-          style: {
-            color: '#e0e0e0',
-          }
-        }
-      },
-      series: [{
-        name: weapon1,
-        data: [/* Data for weapon1 */],
-        color: '#aad1e6',
-      }, {
-        name: weapon2,
-        data: [/* Data for weapon2 */],
-        color: '#f28e42',
-      }],
-      legend: {
-        itemStyle: {
-          color: '#e0e0e0',
-        }
-      }
-    });
+  if (!compareStatsOne) {
+    compareStatsOne = currentStats;
+    alert('First stats saved for comparison. Please select new options and click compare again.');
+  } else if (!compareStatsTwo) {
+    compareStatsTwo = currentStats;
+    displayComparison();
+  } else {
+    alert('Comparison slots are full. Please refresh to reset comparison.');
   }
+}
+
+// Function to display comparison results
+function displayComparison() {
+  const comparisonHTML = `
+    <div class="comparison-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Stat</th>
+            <th>First Selection</th>
+            <th>Second Selection</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>TTK (Headshot)</td><td>${compareStatsOne.ttkHeadshot}</td><td>${compareStatsTwo.ttkHeadshot}</td></tr>
+          <tr><td>TTK (Bodyshot)</td><td>${compareStatsOne.ttkBodyshot}</td><td>${compareStatsTwo.ttkBodyshot}</td></tr>
+          <tr><td>Damage (Headshot)</td><td>${compareStatsOne.damageHeadshot}</td><td>${compareStatsTwo.damageHeadshot}</td></tr>
+          <tr><td>Damage (Bodyshot)</td><td>${compareStatsOne.damageBodyshot}</td><td>${compareStatsTwo.damageBodyshot}</td></tr>
+          <tr><td>Shots to Kill</td><td>${compareStatsOne.shotsToKill}</td><td>${compareStatsTwo.shotsToKill}</td></tr>
+          <tr><td>Fire Rate</td><td>${compareStatsOne.fireRate}</td><td>${compareStatsTwo.fireRate}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+  document.getElementById('comparisonResult').innerHTML = comparisonHTML;
 }

@@ -2,10 +2,10 @@
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
 let selectedWeaponFireRate = 0;
-let selectedArmorHP = 0;
+let selectedArmorHp = 100; // Base health + armor value
 
-let compareStatsOne = null;
-let compareStatsTwo = null;
+// Array to store comparisons
+let comparisons = [];
 
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
@@ -13,6 +13,8 @@ const attachmentMultipliers = {
   barrel: 1,
   grip: 1,
   magazine: 1,
+  muzzle: 1,
+  laser: 1,
 };
 
 // Function to handle accordion-style opening and closing of attachment categories
@@ -50,22 +52,6 @@ function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {
   calculateStats();
 }
 
-// Function to select or deselect armor
-function selectArmor(button, armorName, armorHP) {
-  const armorButtons = document.querySelectorAll('.armor-button');
-  armorButtons.forEach(btn => btn.classList.remove('selected'));
-
-  if (button.classList.contains('selected')) {
-    button.classList.remove('selected');
-    selectedArmorHP = 0;
-  } else {
-    button.classList.add('selected');
-    selectedArmorHP = armorHP;
-  }
-
-  calculateStats();
-}
-
 // Function to select or deselect an attachment
 function selectAttachment(button, category, multiplier) {
   if (button.classList.contains('selected')) {
@@ -81,9 +67,25 @@ function selectAttachment(button, category, multiplier) {
   calculateStats();
 }
 
+// Function to select or deselect armor and update health
+function selectArmor(button, armorType, armorHp) {
+  const armorButtons = document.querySelectorAll('.armor-button');
+  armorButtons.forEach(btn => btn.classList.remove('selected'));
+
+  if (button.classList.contains('selected')) {
+    button.classList.remove('selected');
+    selectedArmorHp = 100; // Default HP without armor
+  } else {
+    button.classList.add('selected');
+    selectedArmorHp = 100 + armorHp; // Base HP + Armor HP
+  }
+
+  calculateStats();
+}
+
 // Function to calculate and display the final stats
 function calculateStats() {
-  if (selectedWeaponDamage === 0 || selectedArmorHP === 0) {
+  if (selectedWeaponDamage === 0) {
     resetStats();
     return;
   }
@@ -92,8 +94,7 @@ function calculateStats() {
   const finalDamageHeadshot = selectedWeaponDamage * combinedMultiplier * 1.5; // 1.5x multiplier for headshots
   const finalDamageBodyshot = selectedWeaponDamage * combinedMultiplier;
 
-  const totalHP = 100 + selectedArmorHP;
-  const shotsToKill = Math.ceil(totalHP / finalDamageBodyshot);
+  const shotsToKill = Math.ceil(selectedArmorHp / finalDamageBodyshot); // Shots required to deplete armor and base health
   const ttkHeadshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
   const ttkBodyshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
 
@@ -106,7 +107,7 @@ function calculateStats() {
   document.getElementById('fireRate').textContent = `${selectedWeaponFireRate} RPM`;
 
   // Render falloff chart with new data
-  renderFalloffChart(finalDamageBodyshot);
+  renderFalloffChart("Selected Weapon", finalDamageBodyshot);
 }
 
 // Function to reset stats
@@ -119,11 +120,11 @@ function resetStats() {
   document.getElementById('fireRate').textContent = `0 RPM`;
 
   // Clear falloff chart
-  renderFalloffChart(0);
+  renderFalloffChart(null, 0);
 }
 
 // Function to render a damage falloff chart using Highcharts
-function renderFalloffChart(baseDamage) {
+function renderFalloffChart(weaponName, baseDamage) {
   Highcharts.chart('falloffChart', {
     chart: {
       type: 'line',
@@ -165,8 +166,8 @@ function renderFalloffChart(baseDamage) {
       }
     },
     series: [{
-      name: 'Damage Falloff',
-      data: [1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.3, 0.2].map(v => v * baseDamage / selectedWeaponDamage),
+      name: weaponName ? weaponName : 'No Weapon Selected',
+      data: weaponName ? [1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.3, 0.2].map(v => v * baseDamage / selectedWeaponDamage) : [],
       color: '#aad1e6',
     }],
     legend: {
@@ -177,50 +178,69 @@ function renderFalloffChart(baseDamage) {
   });
 }
 
-// Function to compare stats
+// Function to compare two different weapon setups
 function compareStats() {
+  if (selectedWeaponDamage === 0) {
+    alert("Please select a weapon to compare.");
+    return;
+  }
+
   const currentStats = {
+    weaponDamage: selectedWeaponDamage,
     ttkHeadshot: document.getElementById('ttkHeadshot').textContent,
     ttkBodyshot: document.getElementById('ttkBodyshot').textContent,
     damageHeadshot: document.getElementById('damageHeadshot').textContent,
     damageBodyshot: document.getElementById('damageBodyshot').textContent,
     shotsToKill: document.getElementById('shotsToKill').textContent,
     fireRate: document.getElementById('fireRate').textContent,
+    armor: selectedArmorHp
   };
 
-  if (!compareStatsOne) {
-    compareStatsOne = currentStats;
-    alert('First stats saved for comparison. Please select new options and click compare again.');
-  } else if (!compareStatsTwo) {
-    compareStatsTwo = currentStats;
+  comparisons.push(currentStats);
+
+  if (comparisons.length === 2) {
     displayComparison();
-  } else {
-    alert('Comparison slots are full. Please refresh to reset comparison.');
+    comparisons = [];
   }
 }
 
-// Function to display comparison results
+// Function to display the comparison between two weapon setups
 function displayComparison() {
-  const comparisonHTML = `
-    <div class="comparison-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Stat</th>
-            <th>First Selection</th>
-            <th>Second Selection</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>TTK (Headshot)</td><td>${compareStatsOne.ttkHeadshot}</td><td>${compareStatsTwo.ttkHeadshot}</td></tr>
-          <tr><td>TTK (Bodyshot)</td><td>${compareStatsOne.ttkBodyshot}</td><td>${compareStatsTwo.ttkBodyshot}</td></tr>
-          <tr><td>Damage (Headshot)</td><td>${compareStatsOne.damageHeadshot}</td><td>${compareStatsTwo.damageHeadshot}</td></tr>
-          <tr><td>Damage (Bodyshot)</td><td>${compareStatsOne.damageBodyshot}</td><td>${compareStatsTwo.damageBodyshot}</td></tr>
-          <tr><td>Shots to Kill</td><td>${compareStatsOne.shotsToKill}</td><td>${compareStatsTwo.shotsToKill}</td></tr>
-          <tr><td>Fire Rate</td><td>${compareStatsOne.fireRate}</td><td>${compareStatsTwo.fireRate}</td></tr>
-        </tbody>
-      </table>
+  const compareResults = document.getElementById('compareResults');
+  compareResults.innerHTML = `
+    <h3>Comparison Results</h3>
+    <div class="comparison-grid">
+      <div><strong>Stat</strong></div>
+      <div><strong>Setup 1</strong></div>
+      <div><strong>Setup 2</strong></div>
+      
+      <div>TTK (Headshot)</div>
+      <div>${comparisons[0].ttkHeadshot}</div>
+      <div>${comparisons[1].ttkHeadshot}</div>
+
+      <div>TTK (Bodyshot)</div>
+      <div>${comparisons[0].ttkBodyshot}</div>
+      <div>${comparisons[1].ttkBodyshot}</div>
+
+      <div>Damage (Headshot)</div>
+      <div>${comparisons[0].damageHeadshot}</div>
+      <div>${comparisons[1].damageHeadshot}</div>
+
+      <div>Damage (Bodyshot)</div>
+      <div>${comparisons[0].damageBodyshot}</div>
+      <div>${comparisons[1].damageBodyshot}</div>
+
+      <div>Shots to Kill</div>
+      <div>${comparisons[0].shotsToKill}</div>
+      <div>${comparisons[1].shotsToKill}</div>
+
+      <div>Fire Rate</div>
+      <div>${comparisons[0].fireRate}</div>
+      <div>${comparisons[1].fireRate}</div>
+
+      <div>Armor HP</div>
+      <div>${comparisons[0].armor} HP</div>
+      <div>${comparisons[1].armor} HP</div>
     </div>
   `;
-  document.getElementById('comparisonResult').innerHTML = comparisonHTML;
 }

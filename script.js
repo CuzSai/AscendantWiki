@@ -32,22 +32,27 @@ function toggleAccordion(element) {
 // Function to select or deselect a weapon and set its base stats
 function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {
   const weaponButtons = document.querySelectorAll('.weapon-button');
-  weaponButtons.forEach(btn => btn.classList.remove('selected'));
+  weaponButtons.forEach(btn => {
+    btn.classList.remove('selected');
+    btn.classList.remove('clicked'); // Remove previous clicked class
+  });
 
-  if (button.classList.contains('selected')) {
-    button.classList.remove('selected');
-    selectedWeaponDamage = 0;
-    selectedWeaponReload = 0;
-    selectedWeaponFireRate = 0;
-  } else {
-    button.classList.add('selected');
-    selectedWeaponDamage = baseDamage;
-    selectedWeaponReload = reloadSpeed;
-    selectedWeaponFireRate = fireRate;
-  }
+  button.classList.add('selected');
+  button.classList.add('clicked'); // Add the clicked class for immediate feedback
+
+  // Set selected weapon stats
+  selectedWeaponDamage = baseDamage;
+  selectedWeaponReload = reloadSpeed;
+  selectedWeaponFireRate = fireRate;
+
+  // Remove the "clicked" class after a short delay
+  setTimeout(() => {
+    button.classList.remove('clicked');
+  }, 150); // Adjust delay as needed
 
   calculateStats();
 }
+
 
 // Function to select or deselect an attachment
 function selectAttachment(button, category, displayName, multiplier) {

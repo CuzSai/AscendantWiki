@@ -11,7 +11,7 @@ document.querySelectorAll('.stat-toggle').forEach(checkbox => {
 });
 
 function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {
-  // Logic for selecting weapons and displaying stats
+
 }
 
 function selectShield(button, shieldType, shieldHP) {

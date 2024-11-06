@@ -54,7 +54,6 @@ body {
   color: #e0e0e0;
 }
 
-/* Weapon Section */
 .weapon-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

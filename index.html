@@ -67,6 +67,17 @@
       </div>
     </div>
 
+    <!-- Armor Selection Section -->
+    <div class="section armor-section">
+      <h2>Choose Your Armor</h2>
+      <div class="armor-buttons">
+        <button class="armor-button" onclick="selectArmor(this, 'common', 30)" style="background-color: grey;">Common (30 HP)</button>
+        <button class="armor-button" onclick="selectArmor(this, 'rare', 60)" style="background-color: blue;">Rare (60 HP)</button>
+        <button class="armor-button" onclick="selectArmor(this, 'epic', 90)" style="background-color: purple;">Epic (90 HP)</button>
+        <button class="armor-button" onclick="selectArmor(this, 'legendary', 120)" style="background-color: orange;">Legendary (120 HP)</button>
+      </div>
+    </div>
+
     <!-- Attachment Selection Section -->
     <div class="section attachment-section">
       <h2>Select Attachments</h2>
@@ -108,24 +119,6 @@
       </div>
 
     </div>
-
-    <!-- Armor Selection Section -->
-    <div class="section armor-section">
-      <h2>Select Armor</h2>
-      <div class="armor-buttons">
-        <button class="armor-button" onclick="selectArmor(this, 'common', 30)" style="background-color: #808080;">Common (30 HP)</button>
-        <button class="armor-button" onclick="selectArmor(this, 'rare', 60)" style="background-color: #0066cc;">Rare (60 HP)</button>
-        <button class="armor-button" onclick="selectArmor(this, 'epic', 90)" style="background-color: #800080;">Epic (90 HP)</button>
-        <button class="armor-button" onclick="selectArmor(this, 'legendary', 120)" style="background-color: #ff9900;">Legendary (120 HP)</button>
-      </div>
-    </div>
-
-    <!-- Compare Button -->
-    <div class="section compare-section">
-      <button class="compare-button" onclick="compareStats()">Compare</button>
-      <div id="compareResults"></div>
-    </div>
-
   </div>
 
   <script src="script.js"></script>

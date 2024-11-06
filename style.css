@@ -1,108 +1,110 @@
-/* General styling */
+/* General Page Styling */
 body {
-  background-color: #121212;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1f1f1f;
   color: #e0e0e0;
-  font-family: Arial, sans-serif;
-}
-
-h1, h2, h3 {
-  color: #aad1e6;
-}
-
-.section-divider {
-  border: 1px solid #555;
-  margin-bottom: 20px;
-}
-
-.weapon-buttons, .attachment-buttons, .armor-buttons {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.weapon-button, .attachment-button, .armor-button {
-  padding: 15px;
-  background-color: #292929;
-  border: none;
-  color: #e0e0e0;
-  cursor: pointer;
-  border-radius: 10px;
-  transition: transform 0.2s, background-color 0.2s;
-}
-
-.weapon-button.selected, .attachment-button.selected, .armor-button.selected {
-  background-color: #aad1e6;
-  color: #292929;
-}
-
-.weapon-button:hover, .attachment-button:hover, .armor-button:hover {
-  transform: scale(1.05);
-  background-color: #3a3a3a;
+  justify-content: center;
+  margin: 0;
+  padding-right: 250px;
 }
 
 .stats-sidebar {
   position: fixed;
-  right: 20px;
   top: 20px;
-  width: 300px;
+  right: 20px;
+  width: 250px;
   background-color: #292929;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.result {
+.stats-sidebar h2 {
+  color: #aad1e6;
+  font-size: 1.3em;
   margin-bottom: 15px;
+  text-align: center;
 }
 
-/* Modal styling for compare selection */
+.calculator {
+  background-color: #2a2a2a;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+}
+
+.weapon-buttons, .armor-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.weapon-button, .attachment-button, .armor-button, .compare-button, .reset-button {
+  height: 60px;
+  background-color: #3a3a3a;
+  border: 1px solid #484848;
+  border-radius: 5px;
+  color: #e0e0e0;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.weapon-button:hover, .attachment-button:hover, .armor-button:hover, .compare-button:hover, .reset-button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Styles */
 .modal {
-  display: none;
+  display: none; /* Hidden by default */
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7); /* Black background with opacity */
 }
 
 .modal-content {
-  background-color: #3a3a3a;
+  background-color: #2a2a2a;
   margin: 15% auto;
   padding: 20px;
-  width: 300px;
+  border-radius: 5px;
   text-align: center;
-  border-radius: 10px;
-}
-
-.modal h3 {
+  width: 300px;
   color: #e0e0e0;
-  margin-bottom: 20px;
 }
 
 .modal-button {
-  width: 80%;
-  margin: 10px 0;
-  padding: 10px;
-  background-color: #5a5a5a;
-  border: none;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #3a3a3a;
   color: #e0e0e0;
-  cursor: pointer;
+  border: none;
   border-radius: 5px;
-  transition: transform 0.2s, background-color 0.2s;
+  cursor: pointer;
 }
 
 .modal-button:hover {
-  background-color: #707070;
-  transform: scale(1.05);
+  background-color: #505050;
 }
 
-.modal-close {
-  margin-top: 15px;
-  color: #aad1e6;
-  background: none;
+.close-button {
+  margin-top: 10px;
+  padding: 5px 15px;
+  background-color: #cc0000;
+  color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: #ff4444;
 }

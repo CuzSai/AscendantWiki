@@ -9,7 +9,6 @@ body {
   padding-right: 250px;
 }
 
-
 /* Sidebar Styling */
 .stats-sidebar {
   position: fixed;
@@ -63,7 +62,7 @@ h2 {
 
 .weapon-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two cards per row for space and layout */
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   margin: 20px 0;
 }
@@ -108,15 +107,34 @@ h2 {
 
 .shield-button {
   height: 60px;
-  color: #fff;
+  background-color: #3a3a3a;
+  border: 1px solid #484848;
+  border-radius: 8px;
+  color: #e0e0e0;
   font-size: 1em;
   font-weight: 500;
   cursor: pointer;
-  border-radius: 8px;
   padding: 10px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, color 0.15s;
+}
+
+/* Text color for each shield tier */
+.shield-button.common {
+  color: grey;
+}
+
+.shield-button.rare {
+  color: blue;
+}
+
+.shield-button.epic {
+  color: purple;
+}
+
+.shield-button.legendary {
+  color: orange;
 }
 
 .shield-button.selected {
@@ -204,4 +222,3 @@ h2 {
 .highcharts-legend-item {
   fill: #c0c0c0 !important;
 }
-

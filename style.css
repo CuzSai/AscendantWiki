@@ -62,46 +62,50 @@ h2 {
 
 .weapon-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two cards per row */
-  gap: 20px; /* Space between cards */
+  grid-template-columns: repeat(2, 1fr); /* Two cards per row for space and layout */
+  gap: 20px; /* Space between the weapon buttons */
   margin: 20px 0;
 }
 
 .weapon-button {
-  height: 100px; /* Make the cards larger */
-  background-color: #3a3a3a; /* Dark card background */
+  height: 100px; /* Larger button height for card-like appearance */
+  background-color: #3a3a3a; /* Darker button background */
   border: 1px solid #484848; /* Subtle border */
-  border-radius: 8px;
+  border-radius: 8px; /* Slightly rounded corners */
   color: #fff;
-  font-size: 1.2em;
-  font-weight: bold;
+  font-size: 1.2em; /* Increase font size for prominence */
+  font-weight: bold; /* Emphasize weapon names */
   cursor: pointer;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Card shadow effect */
-  background-size: cover; /* Ensure images fit */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Box shadow for card effect */
+  background-size: cover; /* Ensure weapon images fit nicely */
   background-position: center;
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 .weapon-button.selected {
-  box-shadow: 0 0 15px #aad1e6; /* Highlight selected card */
-  background-color: #50587a;
-  transform: scale(1.05); /* Slight scale */
+  box-shadow: 0 0 15px #aad1e6; /* Blue glow around selected weapon */
+  background-color: #50587a; /* Slightly brighter background */
+  transform: scale(1.05); /* Subtle scale effect when selected */
 }
 
 .weapon-button:hover {
-  transform: scale(1.03); /* Hover effect */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-  background-color: #4e4e4e;
+  transform: scale(1.03); /* Slight hover effect */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Enhanced hover shadow */
+  background-color: #4e4e4e; /* Change background color slightly on hover */
 }
 
 /* Shield Buttons */
+.shield-section {
+  margin-top: 30px;
+}
+
 .shield-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two shields per row */
+  grid-template-columns: repeat(2, 1fr); /* Two shield cards per row */
   gap: 15px;
 }
 
@@ -119,7 +123,7 @@ h2 {
 }
 
 .shield-button.selected {
-  box-shadow: 0 0 10px #f7c653; /* Shield glow */
+  box-shadow: 0 0 10px #f7c653; /* Gold glow for shield selection */
 }
 
 .shield-button:hover {
@@ -138,14 +142,15 @@ h2 {
 }
 
 .attachment-category.active {
-  max-height: 220px; /* Expanded */
-  padding: 10px;
+  max-height: 220px; /* Expanded height */
+  padding: 10px; /* Uniform padding for open state */
 }
 
 .attachment-title {
   font-size: 1.1em;
   color: #e0e0e0;
   cursor: pointer;
+  line-height: 1.4;
   padding: 10px 0;
   text-align: center;
 }
@@ -165,8 +170,31 @@ h2 {
   padding: 10px;
 }
 
-/* Highcharts Falloff Chart */
+/* Highcharts Falloff Chart Styling */
 #falloffChart {
   margin-top: 10px;
 }
 
+.highcharts-background {
+  fill: #292929;
+}
+
+.highcharts-title {
+  fill: #e0e0e0 !important;
+}
+
+.highcharts-axis-title {
+  fill: #c0c0c0 !important;
+}
+
+.highcharts-label {
+  fill: #e0e0e0 !important;
+}
+
+.highcharts-grid-line {
+  stroke: #3c3c3c;
+}
+
+.highcharts-legend-item {
+  fill: #c0c0c0 !important;
+}

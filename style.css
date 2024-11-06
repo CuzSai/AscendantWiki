@@ -62,40 +62,40 @@ h2 {
 
 .weapon-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two cards per row for space and layout */
-  gap: 20px; /* Space between the weapon buttons */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
   margin: 20px 0;
 }
 
 .weapon-button {
-  height: 100px; /* Larger button height for card-like appearance */
-  background-color: #3a3a3a; /* Darker button background */
-  border: 1px solid #484848; /* Subtle border */
-  border-radius: 8px; /* Slightly rounded corners */
+  height: 100px;
+  background-color: #3a3a3a;
+  border: 1px solid #484848;
+  border-radius: 8px;
   color: #fff;
-  font-size: 1.2em; /* Increase font size for prominence */
-  font-weight: bold; /* Emphasize weapon names */
+  font-size: 1.2em;
+  font-weight: bold;
   cursor: pointer;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Box shadow for card effect */
-  background-size: cover; /* Ensure weapon images fit nicely */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-size: cover;
   background-position: center;
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 .weapon-button.selected {
-  box-shadow: 0 0 15px #aad1e6; /* Blue glow around selected weapon */
-  background-color: #50587a; /* Slightly brighter background */
-  transform: scale(1.05); /* Subtle scale effect when selected */
+  box-shadow: 0 0 15px #aad1e6;
+  background-color: #50587a;
+  transform: scale(1.05);
 }
 
 .weapon-button:hover {
-  transform: scale(1.03); /* Slight hover effect */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Enhanced hover shadow */
-  background-color: #4e4e4e; /* Change background color slightly on hover */
+  transform: scale(1.03);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  background-color: #4e4e4e;
 }
 
 /* Shield Buttons */
@@ -105,13 +105,12 @@ h2 {
 
 .shield-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two shield cards per row */
+  grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
 
 .shield-button {
   height: 60px;
-  color: #fff;
   font-size: 1em;
   font-weight: 500;
   cursor: pointer;
@@ -119,11 +118,27 @@ h2 {
   padding: 10px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s;
+}
+
+.shield-button.common {
+  background-color: #5a5a5a; /* Muted Grey */
+}
+
+.shield-button.rare {
+  background-color: #2a5ca0; /* Muted Blue */
+}
+
+.shield-button.epic {
+  background-color: #5a2a72; /* Muted Purple */
+}
+
+.shield-button.legendary {
+  background-color: #a65c1e; /* Muted Orange */
 }
 
 .shield-button.selected {
-  box-shadow: 0 0 10px #f7c653; /* Gold glow for shield selection */
+  box-shadow: 0 0 10px #f7c653;
 }
 
 .shield-button:hover {
@@ -142,8 +157,8 @@ h2 {
 }
 
 .attachment-category.active {
-  max-height: 220px; /* Expanded height */
-  padding: 10px; /* Uniform padding for open state */
+  max-height: 220px;
+  padding: 10px;
 }
 
 .attachment-title {
@@ -168,6 +183,20 @@ h2 {
   border-radius: 5px;
   border: 1px solid #484848;
   padding: 10px;
+  color: #e0e0e0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s;
+}
+
+.attachment-button:hover {
+  transform: scale(1.03);
+  background-color: #4a4a4a;
+}
+
+.attachment-button.selected {
+  box-shadow: 0 0 10px #aad1e6;
+  background-color: #505050;
 }
 
 /* Highcharts Falloff Chart Styling */

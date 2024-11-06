@@ -229,3 +229,9 @@ h2 {
   transform: scale(1.05) !important; /* Immediate scale */
   transition: none; /* Prevent transition delay on click */
 }
+
+.selected-attachment {
+  font-size: 0.9em; /* Slightly smaller than slot name */
+  color: #aad1e6; /* Highlight color for attachment */
+  font-weight: 500;
+}

@@ -105,3 +105,4 @@ function displayComparison() {
     compareResults.innerHTML = `<p>Select both setups to compare.</p>`;
   }
 }
+

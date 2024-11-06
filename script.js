@@ -158,10 +158,3 @@ function renderFalloffChart(baseDamage) {
     series: [{ /* Dynamic update */ }]
   });
 }
-
-// Update the max height of the closed card to fit content dynamically
-if (!attachmentCategory.classList.contains('active')) {
-  attachmentCategory.style.maxHeight = `${attachmentCategory.querySelector('.attachment-title').offsetHeight + 20}px`;
-} else {
-  attachmentCategory.style.maxHeight = '220px'; // Expanded state
-}

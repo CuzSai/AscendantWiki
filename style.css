@@ -9,95 +9,6 @@ body {
   padding-right: 250px;
 }
 
-/* Sidebar Styling */
-.stats-sidebar {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 250px;
-  background-color: #292929;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  color: #e0e0e0;
-}
-
-/* Calculator Styling */
-.calculator {
-  background-color: #2a2a2a;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-}
-
-h1 {
-  color: #aad1e6;
-  font-size: 1.6em;
-  margin-bottom: 20px;
-  font-weight: 500;
-}
-
-/* Section Titles and Dividers */
-h2 {
-  color: #c0c0c0;
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-
-.section-divider {
-  border: none;
-  height: 2px;
-  background-color: #3c3c3c;
-  margin: 15px 0;
-}
-
-/* Weapon Section */
-.weapon-section {
-  margin-bottom: 40px;
-}
-
-.weapon-buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin: 20px 0;
-}
-
-.weapon-button {
-  height: 100px;
-  background-color: #3a3a3a;
-  border: 1px solid #484848;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-}
-
-.weapon-button.selected {
-  box-shadow: 0 0 15px #aad1e6;
-  background-color: #50587a;
-  transform: scale(1.05);
-}
-
-.weapon-button:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-  background-color: #4e4e4e;
-}
-
 /* Shield Buttons */
 .shield-section {
   margin-top: 30px;
@@ -117,24 +28,23 @@ h2 {
   border-radius: 8px;
   padding: 10px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .shield-button.common {
-  background-color: #5a5a5a; /* Muted Grey */
+  background-color: #4d4d4d; /* Muted Grey */
 }
 
 .shield-button.rare {
-  background-color: #2a5ca0; /* Muted Blue */
+  background-color: #1e4677; /* Muted Blue */
 }
 
 .shield-button.epic {
-  background-color: #5a2a72; /* Muted Purple */
+  background-color: #45246e; /* Muted Purple */
 }
 
 .shield-button.legendary {
-  background-color: #a65c1e; /* Muted Orange */
+  background-color: #8a4415; /* Muted Orange */
 }
 
 .shield-button.selected {
@@ -146,33 +56,8 @@ h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Attachment Categories */
-.attachment-category {
-  margin-bottom: 15px;
-  overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.4s ease;
-  max-height: 60px;
-  background-color: #2e2e2e;
-  border-radius: 5px;
-}
-
-.attachment-category.active {
-  max-height: 220px;
-  padding: 10px;
-}
-
-.attachment-title {
-  font-size: 1.1em;
-  color: #e0e0e0;
-  cursor: pointer;
-  line-height: 1.4;
-  padding: 10px 0;
-  text-align: center;
-}
-
+/* Attachments Styling */
 .attachment-buttons {
-  overflow: hidden;
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -181,49 +66,10 @@ h2 {
 .attachment-button {
   background-color: #3a3a3a;
   border-radius: 5px;
-  border: 1px solid #484848;
   padding: 10px;
-  color: #e0e0e0;
-  font-weight: 500;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s;
-}
-
-.attachment-button:hover {
-  transform: scale(1.03);
-  background-color: #4a4a4a;
 }
 
 .attachment-button.selected {
-  box-shadow: 0 0 10px #aad1e6;
-  background-color: #505050;
-}
-
-/* Highcharts Falloff Chart Styling */
-#falloffChart {
-  margin-top: 10px;
-}
-
-.highcharts-background {
-  fill: #292929;
-}
-
-.highcharts-title {
-  fill: #e0e0e0 !important;
-}
-
-.highcharts-axis-title {
-  fill: #c0c0c0 !important;
-}
-
-.highcharts-label {
-  fill: #e0e0e0 !important;
-}
-
-.highcharts-grid-line {
-  stroke: #3c3c3c;
-}
-
-.highcharts-legend-item {
-  fill: #c0c0c0 !important;
+  background-color: #aad1e6;
 }

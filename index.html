@@ -122,14 +122,14 @@
 
     <!-- Compare and Reset Section -->
     <div class="section compare-reset-section">
-      <button class="compare-button" onclick="showCompareModal()">Compare</button>
+      <button class="compare-button" onclick="compareStats()">Compare</button>
       <button class="reset-button" onclick="resetAll()">Reset</button>
       <div id="compareResults">
         <h3>Comparison Results</h3>
         <div class="comparison-grid">
           <div><strong>Stat</strong></div>
-          <div><strong>Setup 1</strong></div>
-          <div><strong>Setup 2</strong></div>
+          <div onclick="replaceComparison(1)"><strong>Setup 1</strong></div>
+          <div onclick="replaceComparison(2)"><strong>Setup 2</strong></div>
 
           <div>TTK (Headshot)</div>
           <div id="setup1TtkHeadshot">N/A</div>
@@ -162,16 +162,6 @@
       </div>
     </div>
 
-  </div>
-
-  <!-- Compare Modal -->
-  <div id="compareModal" class="modal">
-    <div class="modal-content">
-      <h3>Select a Comparison Slot</h3>
-      <button class="modal-button" onclick="compareStats(1)">Setup 1</button>
-      <button class="modal-button" onclick="compareStats(2)">Setup 2</button>
-      <button class="close-button" onclick="closeCompareModal()">Close</button>
-    </div>
   </div>
 
   <script src="script.js"></script>

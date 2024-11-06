@@ -1,79 +1,165 @@
-/* Armor Buttons Styling */
-.armor-buttons {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 10px;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weapon Damage Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.highcharts.com/highcharts.js"></script> <!-- Include Highcharts library -->
+</head>
+<body>
 
-.armor-button {
-  height: 40px;
-  width: 90px;
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: transform 0.15s, box-shadow 0.15s;
-}
+  <!-- Sidebar for Calculated Stats -->
+  <div class="stats-sidebar">
+    <h2>Calculated Stats</h2>
 
-.armor-button.grey {
-  background-color: #b0b0b0;
-}
+    <div id="statsPanel">
+      <div class="armor-selected">
+        <h3>Armor Type:</h3>
+        <span id="selectedArmor">Grey (30 Health)</span>
+      </div>
 
-.armor-button.blue {
-  background-color: #4a90e2;
-}
+      <!-- Stats for selected weapon (side by side) -->
+      <div class="weapon-stats-comparison">
+        <div class="weapon-stats" id="weaponStats1">
+          <h3>Weapon 1 Stats</h3>
+          <div class="result">
+            <h4>TTK (Headshot):</h4>
+            <span id="ttkHeadshot1">0.0s</span>
+          </div>
+          <div class="result">
+            <h4>TTK (Bodyshot):</h4>
+            <span id="ttkBodyshot1">0.0s</span>
+          </div>
+          <div class="result">
+            <h4>Damage (Headshot):</h4>
+            <span id="damageHeadshot1">0</span>
+          </div>
+          <div class="result">
+            <h4>Damage (Bodyshot):</h4>
+            <span id="damageBodyshot1">0</span>
+          </div>
+          <div class="result">
+            <h4>Shots to Kill:</h4>
+            <span id="shotsToKill1">0</span>
+          </div>
+          <div class="result">
+            <h4>Fire Rate:</h4>
+            <span id="fireRate1">0 Shots per Second</span>
+          </div>
+        </div>
 
-.armor-button.purple {
-  background-color: #9b59b6;
-}
+        <div class="weapon-stats" id="weaponStats2" style="display: none;">
+          <h3>Weapon 2 Stats</h3>
+          <div class="result">
+            <h4>TTK (Headshot):</h4>
+            <span id="ttkHeadshot2">0.0s</span>
+          </div>
+          <div class="result">
+            <h4>TTK (Bodyshot):</h4>
+            <span id="ttkBodyshot2">0.0s</span>
+          </div>
+          <div class="result">
+            <h4>Damage (Headshot):</h4>
+            <span id="damageHeadshot2">0</span>
+          </div>
+          <div class="result">
+            <h4>Damage (Bodyshot):</h4>
+            <span id="damageBodyshot2">0</span>
+          </div>
+          <div class="result">
+            <h4>Shots to Kill:</h4>
+            <span id="shotsToKill2">0</span>
+          </div>
+          <div class="result">
+            <h4>Fire Rate:</h4>
+            <span id="fireRate2">0 Shots per Second</span>
+          </div>
+        </div>
+      </div>
 
-.armor-button.gold {
-  background-color: #f39c12;
-}
+      <!-- Placeholder for falloff chart -->
+      <div class="result">
+        <h3>Damage Falloff Chart:</h3>
+        <div id="falloffChart" style="width: 100%; height: 300px;"></div>
+      </div>
+    </div>
+  </div>
 
-.armor-button:hover {
-  transform: scale(1.05);
-}
+  <!-- Main Calculator Content -->
+  <div class="calculator">
+    <h1>Weapon Damage Calculator</h1>
+    <hr class="section-divider">
 
-/* Weapon Stats Comparison */
-.weapon-stats-comparison {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
+    <!-- Weapon Selection Section -->
+    <div class="section weapon-section">
+      <h2>Choose Your Weapon</h2>
+      <div class="weapon-buttons">
+        <button class="weapon-button" onclick="selectWeapon(this, 'battle_rifle', 40, 3.0, 600)" style="background-image: url('battle_rifle.jpg');">Battle Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'beam_gloves', 25, 2.0, 800)" style="background-image: url('beam_gloves.jpg');">Beam Gloves</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'plasma_rifle', 30, 2.8, 700)" style="background-image: url('plasma_rifle.jpg');">Plasma Rifle</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'shotgun', 60, 3.5, 120)" style="background-image: url('shotgun.jpg');">Shotgun</button>
+        <button class="weapon-button" onclick="selectWeapon(this, 'sniper_rifle', 80, 4.0, 90)" style="background-image: url('sniper_rifle.jpg');">Sniper Rifle</button>
+      </div>
+    </div>
 
-.weapon-stats {
-  width: 45%;
-  background-color: #2a2a2a;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-}
+    <!-- Armor Selection Section -->
+    <div class="section armor-section">
+      <h2>Select Armor Type</h2>
+      <div class="armor-buttons">
+        <button class="armor-button grey" onclick="selectArmor(this, 'Grey', 30)">Grey (30 Health)</button>
+        <button class="armor-button blue" onclick="selectArmor(this, 'Blue', 60)">Blue (60 Health)</button>
+        <button class="armor-button purple" onclick="selectArmor(this, 'Purple', 90)">Purple (90 Health)</button>
+        <button class="armor-button gold" onclick="selectArmor(this, 'Gold', 120)">Gold (120 Health)</button>
+      </div>
+    </div>
 
-.weapon-stats h3 {
-  color: #aad1e6;
-  text-align: center;
-}
+    <!-- Attachment Selection Section -->
+    <div class="section attachment-section">
+      <h2>Select Attachments</h2>
 
-/* Compare Button - Always Visible */
-#compareButton {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 15px 20px;
-  background-color: #50587a;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  font-weight: bold;
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-}
+      <!-- Optic Attachments -->
+      <div class="attachment-category">
+        <h3 class="attachment-title" onclick="toggleAccordion(this)">Optic</h3>
+        <div class="attachment-buttons">
+          <button class="attachment-button" onclick="selectAttachment(this, 'optics', 1.2)">Scope (+20% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'optics', 1.1)">Red Dot (+10% damage)</button>
+        </div>
+      </div>
 
-#compareButton:hover {
-  transform: scale(1.05);
-  background-color: #70798a;
-}
+      <!-- Barrel Attachments -->
+      <div class="attachment-category">
+        <h3 class="attachment-title" onclick="toggleAccordion(this)">Barrel</h3>
+        <div class="attachment-buttons">
+          <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 1.3)">Heavy Barrel (+30% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 1.05)">Short Barrel (+5% damage)</button>
+        </div>
+      </div>
+
+      <!-- Grip Attachments -->
+      <div class="attachment-category">
+        <h3 class="attachment-title" onclick="toggleAccordion(this)">Grip</h3>
+        <div class="attachment-buttons">
+          <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.15)">Angled Grip (+15% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.1)">Vertical Grip (+10% damage)</button>
+        </div>
+      </div>
+
+      <!-- Magazine Attachments -->
+      <div class="attachment-category">
+        <h3 class="attachment-title" onclick="toggleAccordion(this)">Magazine</h3>
+        <div class="attachment-buttons">
+          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.1)">Extended Mag (+10% damage)</button>
+          <button class="attachment-button" onclick="selectAttachment(this, 'magazine', 1.05)">Quick Reload Mag (+5% damage)</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Compare Button - Always Visible -->
+  <button id="compareButton" onclick="addToCompare()">Add to Compare</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -28,7 +28,7 @@ body {
   border-radius: 8px;
   padding: 10px;
   text-align: center;
-  background-color: #2e2e2e; /* Consistent dark background for all */
+  background-color: #2e2e2e; /* Dark consistent background */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }

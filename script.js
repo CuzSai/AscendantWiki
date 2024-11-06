@@ -2,7 +2,7 @@
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
 let selectedWeaponFireRate = 0;
-let selectedArmorValue = 30; // Default to Common Armor (Grey)
+let selectedArmorValue = 30; // Default to Grey Armor
 
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
@@ -19,7 +19,7 @@ let compareList = [];
 
 // Function to select armor
 function selectArmor(button, armorName, armorValue) {
-  const armorButtons = document.querySelectorAll('.armor-card');
+  const armorButtons = document.querySelectorAll('.armor-button');
   armorButtons.forEach(btn => btn.classList.remove('selected'));
 
   button.classList.add('selected');
@@ -92,11 +92,9 @@ function calculateStats() {
   const finalDamageHeadshot = selectedWeaponDamage * combinedMultiplier * 1.5; // 1.5x multiplier for headshots
   const finalDamageBodyshot = selectedWeaponDamage * combinedMultiplier;
 
-  const shotsToKillBody = Math.ceil(totalHealth / finalDamageBodyshot);
-  const shotsToKillHead = Math.ceil(totalHealth / finalDamageHeadshot);
-
-  const ttkBodyshot = (shotsToKillBody / (selectedWeaponFireRate / 60)).toFixed(2);
-  const ttkHeadshot = (shotsToKillHead / (selectedWeaponFireRate / 60)).toFixed(2);
+  const shotsToKill = Math.ceil(totalHealth / finalDamageBodyshot);
+  const ttkHeadshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
+  const ttkBodyshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
 
   // Calculate Shots Per Second from RPM
   const fireRateSPS = (selectedWeaponFireRate / 60).toFixed(2);
@@ -106,7 +104,7 @@ function calculateStats() {
   document.getElementById('ttkBodyshot1').textContent = `${ttkBodyshot}s`;
   document.getElementById('damageHeadshot1').textContent = finalDamageHeadshot.toFixed(2);
   document.getElementById('damageBodyshot1').textContent = finalDamageBodyshot.toFixed(2);
-  document.getElementById('shotsToKill1').textContent = shotsToKillBody;
+  document.getElementById('shotsToKill1').textContent = shotsToKill;
   document.getElementById('fireRate1').textContent = `${fireRateSPS} Shots per Second`;
 
   // Render falloff chart with new data

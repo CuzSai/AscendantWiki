@@ -1,40 +1,49 @@
-/* Armor Buttons Styling */
-.armor-buttons {
+/* Armor Cards Styling */
+.armor-cards {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   justify-content: center;
   margin-top: 10px;
 }
 
-.armor-button {
-  height: 40px;
-  width: 90px;
+.armor-card {
+  width: 120px;
+  height: 100px;
+  padding: 15px;
   border: none;
-  color: #fff;
+  color: #ffffff;
   font-weight: bold;
+  font-size: 1em;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
   transition: transform 0.15s, box-shadow 0.15s;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
-.armor-button.grey {
-  background-color: #b0b0b0;
+.armor-card.common {
+  background-color: #d3d3d3;
+  color: #333;
 }
 
-.armor-button.blue {
+.armor-card.rare {
   background-color: #4a90e2;
 }
 
-.armor-button.purple {
+.armor-card.epic {
   background-color: #9b59b6;
 }
 
-.armor-button.gold {
+.armor-card.legendary {
   background-color: #f39c12;
 }
 
-.armor-button:hover {
+.armor-card:hover {
   transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* Weapon Stats Comparison */
@@ -57,14 +66,14 @@
   text-align: center;
 }
 
-/* Compare Button - Always Visible */
+/* Compare Button - Dark Theme */
 #compareButton {
   position: fixed;
   bottom: 20px;
   right: 20px;
   padding: 15px 20px;
-  background-color: #50587a;
-  color: #fff;
+  background-color: #3b3b3b;
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -75,5 +84,5 @@
 
 #compareButton:hover {
   transform: scale(1.05);
-  background-color: #70798a;
+  background-color: #505050;
 }

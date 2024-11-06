@@ -10,6 +10,7 @@ document.querySelectorAll('.stat-toggle').forEach(checkbox => {
   });
 });
 
+
 function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {
 
 }

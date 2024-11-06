@@ -78,16 +78,19 @@ function calculateStats() {
   const ttkHeadshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
   const ttkBodyshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
 
+  // Calculate Shots Per Second from RPM
+  const fireRateSPS = (selectedWeaponFireRate / 60).toFixed(2);
+
   // Update the stats in the sidebar
   document.getElementById('ttkHeadshot').textContent = `${ttkHeadshot}s`;
   document.getElementById('ttkBodyshot').textContent = `${ttkBodyshot}s`;
   document.getElementById('damageHeadshot').textContent = finalDamageHeadshot.toFixed(2);
   document.getElementById('damageBodyshot').textContent = finalDamageBodyshot.toFixed(2);
   document.getElementById('shotsToKill').textContent = shotsToKill;
-  document.getElementById('fireRate').textContent = `${selectedWeaponFireRate} RPM`;
+  document.getElementById('fireRate').textContent = `${fireRateSPS} Shots per Second`;
 
   // Render falloff chart with new data
-  renderFalloffChart(weaponName, finalDamageBodyshot);
+  renderFalloffChart('Selected Weapon', finalDamageBodyshot);
 }
 
 // Function to reset stats
@@ -97,7 +100,7 @@ function resetStats() {
   document.getElementById('damageHeadshot').textContent = `0`;
   document.getElementById('damageBodyshot').textContent = `0`;
   document.getElementById('shotsToKill').textContent = `0`;
-  document.getElementById('fireRate').textContent = `0 RPM`;
+  document.getElementById('fireRate').textContent = `0 Shots per Second`;
 
   // Clear falloff chart
   renderFalloffChart(null, 0);
@@ -156,4 +159,62 @@ function renderFalloffChart(weaponName, baseDamage) {
       }
     }
   });
+}
+
+// Function to compare two selected weapons
+function compareWeapons() {
+  const weapon1 = document.getElementById('weaponSelect1').value;
+  const weapon2 = document.getElementById('weaponSelect2').value;
+
+  if (weapon1 && weapon2) {
+    // Generate a comparison chart
+    Highcharts.chart('comparisonChart', {
+      chart: {
+        type: 'column',
+        backgroundColor: '#292929',
+      },
+      title: {
+        text: 'Weapon Comparison',
+        style: {
+          color: '#e0e0e0',
+        }
+      },
+      xAxis: {
+        categories: ['Headshot Damage', 'Bodyshot Damage', 'TTK Headshot', 'TTK Bodyshot', 'Shots to Kill', 'Fire Rate (SPS)'],
+        labels: {
+          style: {
+            color: '#e0e0e0',
+          }
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Value',
+          style: {
+            color: '#e0e0e0',
+          }
+        },
+        labels: {
+          style: {
+            color: '#e0e0e0',
+          }
+        }
+      },
+      series: [{
+        name: weapon1,
+        data: [/* Data for weapon1 */],
+        color: '#aad1e6',
+      }, {
+        name: weapon2,
+        data: [/* Data for weapon2 */],
+        color: '#f28e42',
+      }],
+      legend: {
+        itemStyle: {
+          color: '#e0e0e0',
+        }
+      }
+    });
+  }
 }

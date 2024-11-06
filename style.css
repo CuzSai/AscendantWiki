@@ -124,11 +124,11 @@ h2 {
 }
 
 .shield-button.rare {
-  color: blue;
+  color: #4d9efb;
 }
 
 .shield-button.epic {
-  color: purple;
+  color: #c77dff;
 }
 
 .shield-button.legendary {

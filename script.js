@@ -7,6 +7,9 @@ let selectedArmorHp = 100; // Base health + armor value
 // Array to store comparisons
 let comparisons = [];
 
+// Index of the setup to replace during comparison
+let setupToReplace = null;
+
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
   optics: 1,
@@ -178,22 +181,10 @@ function renderFalloffChart(weaponName, baseDamage) {
   });
 }
 
-// Function to open the compare modal
-function showCompareModal() {
-  const modal = document.getElementById("compareModal");
-  modal.style.display = "block";
-}
-
-// Function to close the compare modal
-function closeCompareModal() {
-  const modal = document.getElementById("compareModal");
-  modal.style.display = "none";
-}
-
-// Function to handle comparison selection
-function compareStats(setupNumber) {
+// Function to compare two different weapon setups
+function compareStats() {
   if (selectedWeaponDamage === 0) {
-    alert("Please select a weapon before comparing.");
+    alert("Please select a weapon to compare.");
     return;
   }
 
@@ -207,10 +198,24 @@ function compareStats(setupNumber) {
     armor: selectedArmorHp
   };
 
-  updateComparisonTable(setupNumber, currentStats);
-  closeCompareModal();
+  if (setupToReplace !== null) {
+    comparisons[setupToReplace - 1] = currentStats;
+    updateComparisonTable(setupToReplace, currentStats);
+    setupToReplace = null;
+  } else {
+    comparisons.push(currentStats);
+
+    if (comparisons.length === 1) {
+      updateComparisonTable(1, currentStats);
+    }
+
+    if (comparisons.length === 2) {
+      updateComparisonTable(2, currentStats);
+    }
+  }
 }
 
+// Function to update comparison table
 function updateComparisonTable(setupNumber, stats) {
   document.getElementById(`setup${setupNumber}TtkHeadshot`).textContent = stats.ttkHeadshot;
   document.getElementById(`setup${setupNumber}TtkBodyshot`).textContent = stats.ttkBodyshot;
@@ -221,8 +226,17 @@ function updateComparisonTable(setupNumber, stats) {
   document.getElementById(`setup${setupNumber}Armor`).textContent = `${stats.armor} HP`;
 }
 
+// Function to replace a comparison setup
+function replaceComparison(setupNumber) {
+  if (comparisons.length >= setupNumber) {
+    setupToReplace = setupNumber;
+    alert(`Now changing Setup ${setupNumber}. Please select a new configuration and click "Compare".`);
+  }
+}
+
 // Function to reset all selections and comparisons
 function resetAll() {
+  // Reset weapon, armor, and attachment selections
   const allButtons = document.querySelectorAll('.weapon-button, .attachment-button, .armor-button');
   allButtons.forEach(button => button.classList.remove('selected'));
 
@@ -231,6 +245,7 @@ function resetAll() {
   selectedWeaponFireRate = 0;
   selectedArmorHp = 100;
 
+  // Reset stats and comparison results
   resetStats();
 
   const compareResultsIds = [
@@ -245,4 +260,5 @@ function resetAll() {
   });
 
   comparisons = [];
+  setupToReplace = null;
 }

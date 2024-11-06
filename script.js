@@ -2,7 +2,7 @@
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
 let selectedWeaponFireRate = 0;
-let selectedArmorValue = 30; // Default to Grey Armor
+let selectedArmorValue = 30; // Default to Common Armor
 
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
@@ -19,8 +19,8 @@ let compareList = [];
 
 // Function to select armor
 function selectArmor(button, armorName, armorValue) {
-  const armorButtons = document.querySelectorAll('.armor-button');
-  armorButtons.forEach(btn => btn.classList.remove('selected'));
+  const armorCards = document.querySelectorAll('.armor-card');
+  armorCards.forEach(card => card.classList.remove('selected'));
 
   button.classList.add('selected');
   selectedArmorValue = armorValue;
@@ -122,61 +122,6 @@ function resetStats() {
 
   // Clear falloff chart
   renderFalloffChart(null, 0);
-}
-
-// Function to render a damage falloff chart using Highcharts
-function renderFalloffChart(weaponName, baseDamage) {
-  Highcharts.chart('falloffChart', {
-    chart: {
-      type: 'line',
-      backgroundColor: '#292929',
-    },
-    title: {
-      text: 'Damage Falloff Chart',
-      style: {
-        color: '#e0e0e0',
-      }
-    },
-    xAxis: {
-      title: {
-        text: 'Distance (m)',
-        style: {
-          color: '#e0e0e0',
-        }
-      },
-      categories: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200'],
-      labels: {
-        style: {
-          color: '#e0e0e0',
-        }
-      }
-    },
-    yAxis: {
-      title: {
-        text: 'Damage Multiplier',
-        style: {
-          color: '#e0e0e0',
-        }
-      },
-      min: 0,
-      max: 1.5,
-      labels: {
-        style: {
-          color: '#e0e0e0',
-        }
-      }
-    },
-    series: [{
-      name: weaponName ? weaponName : 'No Weapon Selected',
-      data: weaponName ? [1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.3, 0.2].map(v => v * baseDamage / selectedWeaponDamage) : [],
-      color: '#aad1e6',
-    }],
-    legend: {
-      itemStyle: {
-        color: '#e0e0e0'
-      }
-    }
-  });
 }
 
 // Function to add the current weapon to the compare list

@@ -14,67 +14,61 @@
     <h2>Calculated Stats</h2>
 
     <div id="statsPanel">
-      <div class="armor-selected">
-        <h3>Armor Type:</h3>
-        <span id="selectedArmor">Grey (30 Health)</span>
+      <!-- Stats for selected weapon -->
+      <div class="weapon-stats" id="weaponStats1">
+        <h3>Weapon 1 Stats</h3>
+        <div class="result">
+          <h3>TTK (Headshot):</h3>
+          <span id="ttkHeadshot1">0.0s</span>
+        </div>
+        <div class="result">
+          <h3>TTK (Bodyshot):</h3>
+          <span id="ttkBodyshot1">0.0s</span>
+        </div>
+        <div class="result">
+          <h3>Damage (Headshot):</h3>
+          <span id="damageHeadshot1">0</span>
+        </div>
+        <div class="result">
+          <h3>Damage (Bodyshot):</h3>
+          <span id="damageBodyshot1">0</span>
+        </div>
+        <div class="result">
+          <h3>Shots to Kill:</h3>
+          <span id="shotsToKill1">0</span>
+        </div>
+        <div class="result">
+          <h3>Fire Rate:</h3>
+          <span id="fireRate1">0 Shots per Second</span>
+        </div>
       </div>
 
-      <!-- Stats for selected weapon (side by side) -->
-      <div class="weapon-stats-comparison">
-        <div class="weapon-stats" id="weaponStats1">
-          <h3>Weapon 1 Stats</h3>
-          <div class="result">
-            <h4>TTK (Headshot):</h4>
-            <span id="ttkHeadshot1">0.0s</span>
-          </div>
-          <div class="result">
-            <h4>TTK (Bodyshot):</h4>
-            <span id="ttkBodyshot1">0.0s</span>
-          </div>
-          <div class="result">
-            <h4>Damage (Headshot):</h4>
-            <span id="damageHeadshot1">0</span>
-          </div>
-          <div class="result">
-            <h4>Damage (Bodyshot):</h4>
-            <span id="damageBodyshot1">0</span>
-          </div>
-          <div class="result">
-            <h4>Shots to Kill:</h4>
-            <span id="shotsToKill1">0</span>
-          </div>
-          <div class="result">
-            <h4>Fire Rate:</h4>
-            <span id="fireRate1">0 Shots per Second</span>
-          </div>
+      <!-- Stats for compared weapon -->
+      <div class="weapon-stats" id="weaponStats2" style="display: none;">
+        <h3>Weapon 2 Stats</h3>
+        <div class="result">
+          <h3>TTK (Headshot):</h3>
+          <span id="ttkHeadshot2">0.0s</span>
         </div>
-
-        <div class="weapon-stats" id="weaponStats2" style="display: none;">
-          <h3>Weapon 2 Stats</h3>
-          <div class="result">
-            <h4>TTK (Headshot):</h4>
-            <span id="ttkHeadshot2">0.0s</span>
-          </div>
-          <div class="result">
-            <h4>TTK (Bodyshot):</h4>
-            <span id="ttkBodyshot2">0.0s</span>
-          </div>
-          <div class="result">
-            <h4>Damage (Headshot):</h4>
-            <span id="damageHeadshot2">0</span>
-          </div>
-          <div class="result">
-            <h4>Damage (Bodyshot):</h4>
-            <span id="damageBodyshot2">0</span>
-          </div>
-          <div class="result">
-            <h4>Shots to Kill:</h4>
-            <span id="shotsToKill2">0</span>
-          </div>
-          <div class="result">
-            <h4>Fire Rate:</h4>
-            <span id="fireRate2">0 Shots per Second</span>
-          </div>
+        <div class="result">
+          <h3>TTK (Bodyshot):</h3>
+          <span id="ttkBodyshot2">0.0s</span>
+        </div>
+        <div class="result">
+          <h3>Damage (Headshot):</h3>
+          <span id="damageHeadshot2">0</span>
+        </div>
+        <div class="result">
+          <h3>Damage (Bodyshot):</h3>
+          <span id="damageBodyshot2">0</span>
+        </div>
+        <div class="result">
+          <h3>Shots to Kill:</h3>
+          <span id="shotsToKill2">0</span>
+        </div>
+        <div class="result">
+          <h3>Fire Rate:</h3>
+          <span id="fireRate2">0 Shots per Second</span>
         </div>
       </div>
 
@@ -106,12 +100,17 @@
     <!-- Armor Selection Section -->
     <div class="section armor-section">
       <h2>Select Armor Type</h2>
-      <div class="armor-buttons">
-        <button class="armor-button grey" onclick="selectArmor(this, 'Grey', 30)">Grey (30 Health)</button>
-        <button class="armor-button blue" onclick="selectArmor(this, 'Blue', 60)">Blue (60 Health)</button>
-        <button class="armor-button purple" onclick="selectArmor(this, 'Purple', 90)">Purple (90 Health)</button>
-        <button class="armor-button gold" onclick="selectArmor(this, 'Gold', 120)">Gold (120 Health)</button>
-      </div>
+      <select id="armorSelect" onchange="calculateStats()">
+        <option value="30">Grey (30 Health)</option>
+        <option value="60">Blue (60 Health)</option>
+        <option value="90">Purple (90 Health)</option>
+        <option value="120">Gold (120 Health)</option>
+      </select>
+    </div>
+
+    <!-- Compare Button Section -->
+    <div class="section compare-section">
+      <button onclick="addToCompare()">Add to Compare List</button>
     </div>
 
     <!-- Attachment Selection Section -->
@@ -135,7 +134,7 @@
           <button class="attachment-button" onclick="selectAttachment(this, 'barrel', 1.05)">Short Barrel (+5% damage)</button>
         </div>
       </div>
-
+      
       <!-- Grip Attachments -->
       <div class="attachment-category">
         <h3 class="attachment-title" onclick="toggleAccordion(this)">Grip</h3>
@@ -144,7 +143,7 @@
           <button class="attachment-button" onclick="selectAttachment(this, 'grip', 1.1)">Vertical Grip (+10% damage)</button>
         </div>
       </div>
-
+      
       <!-- Magazine Attachments -->
       <div class="attachment-category">
         <h3 class="attachment-title" onclick="toggleAccordion(this)">Magazine</h3>
@@ -156,9 +155,6 @@
 
     </div>
   </div>
-
-  <!-- Compare Button - Always Visible -->
-  <button id="compareButton" onclick="addToCompare()">Add to Compare</button>
 
   <script src="script.js"></script>
 </body>

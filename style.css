@@ -19,6 +19,7 @@ body {
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  color: #e0e0e0;
 }
 
 /* Calculator Styling */
@@ -54,10 +55,57 @@ h2 {
   margin: 15px 0;
 }
 
+/* Weapon Section */
+.weapon-section {
+  margin-bottom: 40px;
+}
+
+.weapon-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns for better layout */
+  gap: 20px; /* More space between buttons */
+  margin: 20px 0;
+}
+
+.weapon-button {
+  height: 80px; /* Slightly taller buttons for prominence */
+  background-color: #3a3a3a; /* Darker button background */
+  border: 1px solid #484848; /* Subtle border */
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1em; /* Standard font size for names */
+  font-weight: 600; /* Slightly bolder for emphasis */
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  background-size: cover; /* Ensure background images fit */
+  background-position: center;
+  transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+
+.weapon-button.selected {
+  box-shadow: 0 0 10px #aad1e6; /* Highlight selected button */
+  background-color: #4a4a4a;
+  transform: scale(1.05); /* Slight scale effect */
+}
+
+.weapon-button:hover {
+  transform: scale(1.02); /* Subtle hover scale */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background-color: #505050; /* Lighter hover background */
+}
+
 /* Shield Buttons */
+.shield-section {
+  margin-top: 30px;
+}
+
 .shield-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* Two shield buttons per row */
   gap: 15px;
 }
 
@@ -74,6 +122,10 @@ h2 {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+.shield-button.selected {
+  box-shadow: 0 0 10px #f7c653; /* Gold glow for shield selection */
+}
+
 .shield-button:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -86,12 +138,12 @@ h2 {
   transition: max-height 0.4s ease, padding 0.4s ease;
   max-height: 60px;
   background-color: #2e2e2e;
-  border-radius: 5px;
+  border-radius: 5px; /* Matches button design */
 }
 
 .attachment-category.active {
-  max-height: 220px;
-  padding: 10px;
+  max-height: 220px; /* Expanded height */
+  padding: 10px; /* Uniform padding for open state */
 }
 
 .attachment-title {
@@ -108,7 +160,7 @@ h2 {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 10px; /* Space between attachment buttons */
 }
 
 .attachment-button {
@@ -116,4 +168,33 @@ h2 {
   border-radius: 5px;
   border: 1px solid #484848;
   padding: 10px;
+}
+
+/* Highcharts Falloff Chart Styling */
+#falloffChart {
+  margin-top: 10px;
+}
+
+.highcharts-background {
+  fill: #292929; /* Matches sidebar for seamless look */
+}
+
+.highcharts-title {
+  fill: #e0e0e0 !important; /* Title in soft white */
+}
+
+.highcharts-axis-title {
+  fill: #c0c0c0 !important; /* Axis titles */
+}
+
+.highcharts-label {
+  fill: #e0e0e0 !important; /* Label text */
+}
+
+.highcharts-grid-line {
+  stroke: #3c3c3c; /* Gridlines to blend in */
+}
+
+.highcharts-legend-item {
+  fill: #c0c0c0 !important;
 }

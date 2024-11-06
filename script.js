@@ -224,3 +224,15 @@ if (!attachmentCategory.classList.contains('active')) {
   attachmentCategory.style.maxHeight = '220px'; // Expanded state
 }
 
+document.querySelectorAll('.stat-toggle').forEach(checkbox => {
+  checkbox.addEventListener('change', function() {
+    const targetId = this.dataset.target;
+    const targetElement = document.getElementById(targetId).parentNode; // Assuming stats are in result divs
+    if (this.checked) {
+      targetElement.style.display = 'block'; // Show stat
+    } else {
+      targetElement.style.display = 'none'; // Hide stat
+    }
+  });
+});
+

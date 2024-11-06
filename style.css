@@ -118,7 +118,6 @@ h2 {
   transition: transform 0.15s ease, box-shadow 0.15s ease, color 0.15s;
 }
 
-/* Text colors for specific shield tiers */
 .shield-button.common {
   color: grey;
 }

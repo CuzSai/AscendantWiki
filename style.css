@@ -107,20 +107,18 @@ h2 {
 
 .shield-button {
   height: 60px;
-  background-color: #3a3a3a;
-  border: 1px solid #484848;
-  border-radius: 8px;
-  color: #e0e0e0;
+  background-color: #3a3a3a; /* Uniform background color for all buttons */
   font-size: 1em;
   font-weight: 500;
   cursor: pointer;
+  border-radius: 8px;
   padding: 10px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.15s ease, box-shadow 0.15s ease, color 0.15s;
 }
 
-/* Text color for each shield tier */
+/* Text colors for specific shield tiers */
 .shield-button.common {
   color: grey;
 }
@@ -138,8 +136,9 @@ h2 {
 }
 
 .shield-button.selected {
-  box-shadow: 0 0 10px #f7c653;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Subtle glow on selection */
 }
+
 
 .shield-button:hover {
   transform: scale(1.05);

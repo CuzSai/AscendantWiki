@@ -151,13 +151,13 @@ h2 {
   margin-bottom: 15px;
   overflow: hidden;
   transition: max-height 0.4s ease, padding 0.4s ease;
-  max-height: 60px;
+  max-height: 80px; /* Increased height to fit two lines of text */
   background-color: #2e2e2e;
   border-radius: 5px;
 }
 
 .attachment-category.active {
-  max-height: 220px;
+  max-height: 220px; /* Same as before for expanded view */
   padding: 10px;
 }
 
@@ -168,6 +168,7 @@ h2 {
   line-height: 1.4;
   padding: 10px 0;
   text-align: center;
+  min-height: 50px; /* Ensure enough space for two lines */
 }
 
 .attachment-buttons {

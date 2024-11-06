@@ -2,7 +2,7 @@
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
 let selectedWeaponFireRate = 0;
-let selectedArmorValue = 30; // Default to Common Armor
+let selectedArmorValue = 30; // Default to Common Armor (Grey)
 
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
@@ -19,8 +19,8 @@ let compareList = [];
 
 // Function to select armor
 function selectArmor(button, armorName, armorValue) {
-  const armorCards = document.querySelectorAll('.armor-card');
-  armorCards.forEach(card => card.classList.remove('selected'));
+  const armorButtons = document.querySelectorAll('.armor-card');
+  armorButtons.forEach(btn => btn.classList.remove('selected'));
 
   button.classList.add('selected');
   selectedArmorValue = armorValue;
@@ -92,9 +92,11 @@ function calculateStats() {
   const finalDamageHeadshot = selectedWeaponDamage * combinedMultiplier * 1.5; // 1.5x multiplier for headshots
   const finalDamageBodyshot = selectedWeaponDamage * combinedMultiplier;
 
-  const shotsToKill = Math.ceil(totalHealth / finalDamageBodyshot);
-  const ttkHeadshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
-  const ttkBodyshot = (shotsToKill / (selectedWeaponFireRate / 60)).toFixed(2);
+  const shotsToKillBody = Math.ceil(totalHealth / finalDamageBodyshot);
+  const shotsToKillHead = Math.ceil(totalHealth / finalDamageHeadshot);
+
+  const ttkBodyshot = (shotsToKillBody / (selectedWeaponFireRate / 60)).toFixed(2);
+  const ttkHeadshot = (shotsToKillHead / (selectedWeaponFireRate / 60)).toFixed(2);
 
   // Calculate Shots Per Second from RPM
   const fireRateSPS = (selectedWeaponFireRate / 60).toFixed(2);
@@ -104,7 +106,7 @@ function calculateStats() {
   document.getElementById('ttkBodyshot1').textContent = `${ttkBodyshot}s`;
   document.getElementById('damageHeadshot1').textContent = finalDamageHeadshot.toFixed(2);
   document.getElementById('damageBodyshot1').textContent = finalDamageBodyshot.toFixed(2);
-  document.getElementById('shotsToKill1').textContent = shotsToKill;
+  document.getElementById('shotsToKill1').textContent = shotsToKillBody;
   document.getElementById('fireRate1').textContent = `${fireRateSPS} Shots per Second`;
 
   // Render falloff chart with new data
@@ -122,6 +124,61 @@ function resetStats() {
 
   // Clear falloff chart
   renderFalloffChart(null, 0);
+}
+
+// Function to render a damage falloff chart using Highcharts
+function renderFalloffChart(weaponName, baseDamage) {
+  Highcharts.chart('falloffChart', {
+    chart: {
+      type: 'line',
+      backgroundColor: '#292929',
+    },
+    title: {
+      text: 'Damage Falloff Chart',
+      style: {
+        color: '#e0e0e0',
+      }
+    },
+    xAxis: {
+      title: {
+        text: 'Distance (m)',
+        style: {
+          color: '#e0e0e0',
+        }
+      },
+      categories: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200'],
+      labels: {
+        style: {
+          color: '#e0e0e0',
+        }
+      }
+    },
+    yAxis: {
+      title: {
+        text: 'Damage Multiplier',
+        style: {
+          color: '#e0e0e0',
+        }
+      },
+      min: 0,
+      max: 1.5,
+      labels: {
+        style: {
+          color: '#e0e0e0',
+        }
+      }
+    },
+    series: [{
+      name: weaponName ? weaponName : 'No Weapon Selected',
+      data: weaponName ? [1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.3, 0.2].map(v => v * baseDamage / selectedWeaponDamage) : [],
+      color: '#aad1e6',
+    }],
+    legend: {
+      itemStyle: {
+        color: '#e0e0e0'
+      }
+    }
+  });
 }
 
 // Function to add the current weapon to the compare list

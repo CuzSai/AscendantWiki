@@ -33,5 +33,4 @@ function toggleAccordion(element) {
 }
 
 function selectAttachment(button, category, displayName, multiplier) {
-  // Logic for selecting attachments
 }

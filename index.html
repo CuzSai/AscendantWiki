@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weapon Damage Calculator</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js" defer></script> <!-- Highcharts included as a deferred script -->
+  <script src="script.js" defer></script> <!-- Main script file deferred to avoid execution before DOM is ready -->
 </head>
 <body>
 
@@ -70,7 +71,6 @@
     <!-- Attachment Selection Section -->
     <div class="section attachment-section">
       <h2>Select Attachments</h2>
-      <!-- Example attachments -->
       <div class="attachment-category">
         <h3 class="attachment-title" onclick="toggleAccordion(this)">Optic</h3>
         <div class="attachment-buttons">
@@ -109,6 +109,5 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
 </body>
 </html>

@@ -34,3 +34,4 @@ function toggleAccordion(element) {
 
 function selectAttachment(button, category, displayName, multiplier) {
 }
+

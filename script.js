@@ -7,9 +7,6 @@ let selectedArmorHp = 100; // Base health + armor value
 // Array to store comparisons
 let comparisons = [];
 
-// Index of the setup to replace during comparison
-let setupToReplace = null;
-
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
   optics: 1,
@@ -188,6 +185,18 @@ function compareStats() {
     return;
   }
 
+  // Ask the user which setup slot they want to use
+  let setupNumber = prompt("Enter the setup number (1 or 2) where you want to save the current configuration:");
+
+  // Ensure the user provides a valid input (either '1' or '2')
+  if (setupNumber !== '1' && setupNumber !== '2') {
+    alert("Invalid input. Please enter either '1' or '2'.");
+    return;
+  }
+
+  setupNumber = parseInt(setupNumber); // Convert input to an integer
+
+  // Store the current weapon setup in the selected comparison slot
   const currentStats = {
     ttkHeadshot: document.getElementById('ttkHeadshot').textContent,
     ttkBodyshot: document.getElementById('ttkBodyshot').textContent,
@@ -198,21 +207,8 @@ function compareStats() {
     armor: selectedArmorHp
   };
 
-  if (setupToReplace !== null) {
-    comparisons[setupToReplace - 1] = currentStats;
-    updateComparisonTable(setupToReplace, currentStats);
-    setupToReplace = null;
-  } else {
-    comparisons.push(currentStats);
-
-    if (comparisons.length === 1) {
-      updateComparisonTable(1, currentStats);
-    }
-
-    if (comparisons.length === 2) {
-      updateComparisonTable(2, currentStats);
-    }
-  }
+  comparisons[setupNumber - 1] = currentStats;
+  updateComparisonTable(setupNumber, currentStats);
 }
 
 // Function to update comparison table
@@ -224,14 +220,6 @@ function updateComparisonTable(setupNumber, stats) {
   document.getElementById(`setup${setupNumber}ShotsToKill`).textContent = stats.shotsToKill;
   document.getElementById(`setup${setupNumber}FireRate`).textContent = stats.fireRate;
   document.getElementById(`setup${setupNumber}Armor`).textContent = `${stats.armor} HP`;
-}
-
-// Function to replace a comparison setup
-function replaceComparison(setupNumber) {
-  if (comparisons.length >= setupNumber) {
-    setupToReplace = setupNumber;
-    alert(`Now changing Setup ${setupNumber}. Please select a new configuration and click "Compare".`);
-  }
 }
 
 // Function to reset all selections and comparisons
@@ -260,51 +248,4 @@ function resetAll() {
   });
 
   comparisons = [];
-  setupToReplace = null;
 }
-// Show the compare selection modal
-function showCompareModal() {
-  const compareModal = document.getElementById('compareModal');
-  compareModal.style.display = 'block';
-}
-
-// Close the compare selection modal
-function closeCompareModal() {
-  const compareModal = document.getElementById('compareModal');
-  compareModal.style.display = 'none';
-}
-
-// Function to compare two different weapon setups (based on user selection)
-function compareStats(setupNumber) {
-  if (selectedWeaponDamage === 0) {
-    alert("Please select a weapon to compare.");
-    return;
-  }
-
-  const currentStats = {
-    ttkHeadshot: document.getElementById('ttkHeadshot').textContent,
-    ttkBodyshot: document.getElementById('ttkBodyshot').textContent,
-    damageHeadshot: document.getElementById('damageHeadshot').textContent,
-    damageBodyshot: document.getElementById('damageBodyshot').textContent,
-    shotsToKill: document.getElementById('shotsToKill').textContent,
-    fireRate: document.getElementById('fireRate').textContent,
-    armor: selectedArmorHp
-  };
-
-  comparisons[setupNumber - 1] = currentStats;
-  updateComparisonTable(setupNumber, currentStats);
-
-  closeCompareModal();
-}
-
-// Function to update comparison table
-function updateComparisonTable(setupNumber, stats) {
-  document.getElementById(`setup${setupNumber}TtkHeadshot`).textContent = stats.ttkHeadshot;
-  document.getElementById(`setup${setupNumber}TtkBodyshot`).textContent = stats.ttkBodyshot;
-  document.getElementById(`setup${setupNumber}DamageHeadshot`).textContent = stats.damageHeadshot;
-  document.getElementById(`setup${setupNumber}DamageBodyshot`).textContent = stats.damageBodyshot;
-  document.getElementById(`setup${setupNumber}ShotsToKill`).textContent = stats.shotsToKill;
-  document.getElementById(`setup${setupNumber}FireRate`).textContent = stats.fireRate;
-  document.getElementById(`setup${setupNumber}Armor`).textContent = `${stats.armor} HP`;
-}
-

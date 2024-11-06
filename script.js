@@ -2,7 +2,6 @@
 let selectedWeaponDamage = 0;
 let selectedWeaponReload = 0;
 let selectedWeaponFireRate = 0;
-let selectedArmorValue = 30; // Default to Grey Armor
 
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
@@ -16,18 +15,6 @@ const attachmentMultipliers = {
 
 // Array to store compared weapons
 let compareList = [];
-
-// Function to select armor
-function selectArmor(button, armorName, armorValue) {
-  const armorButtons = document.querySelectorAll('.armor-button');
-  armorButtons.forEach(btn => btn.classList.remove('selected'));
-
-  button.classList.add('selected');
-  selectedArmorValue = armorValue;
-  document.getElementById('selectedArmor').textContent = `${armorName} (${armorValue} Health)`;
-
-  calculateStats();
-}
 
 // Function to handle accordion-style opening and closing of attachment categories
 function toggleAccordion(element) {
@@ -86,7 +73,8 @@ function calculateStats() {
     return;
   }
 
-  const totalHealth = 100 + selectedArmorValue;
+  const armorValue = parseInt(document.getElementById('armorSelect').value);
+  const totalHealth = 100 + armorValue;
 
   const combinedMultiplier = Object.values(attachmentMultipliers).reduce((a, b) => a * b, 1);
   const finalDamageHeadshot = selectedWeaponDamage * combinedMultiplier * 1.5; // 1.5x multiplier for headshots

@@ -180,3 +180,4 @@ function renderFalloffChart(baseDamage) {
     }
   });
 }
+

@@ -16,7 +16,7 @@
     <div id="statsPanel">
       <div class="armor-selected">
         <h3>Armor Type:</h3>
-        <span id="selectedArmor">Grey (30 Health)</span>
+        <span id="selectedArmor">Common (30 Health)</span>
       </div>
 
       <!-- Stats for selected weapon (side by side) -->
@@ -106,11 +106,19 @@
     <!-- Armor Selection Section -->
     <div class="section armor-section">
       <h2>Select Armor Type</h2>
-      <div class="armor-buttons">
-        <button class="armor-button grey" onclick="selectArmor(this, 'Grey', 30)">Grey (30 Health)</button>
-        <button class="armor-button blue" onclick="selectArmor(this, 'Blue', 60)">Blue (60 Health)</button>
-        <button class="armor-button purple" onclick="selectArmor(this, 'Purple', 90)">Purple (90 Health)</button>
-        <button class="armor-button gold" onclick="selectArmor(this, 'Gold', 120)">Gold (120 Health)</button>
+      <div class="armor-cards">
+        <button class="armor-card common" onclick="selectArmor(this, 'Common', 30)">
+          Common <br> (+30 Health)
+        </button>
+        <button class="armor-card rare" onclick="selectArmor(this, 'Rare', 60)">
+          Rare <br> (+60 Health)
+        </button>
+        <button class="armor-card epic" onclick="selectArmor(this, 'Epic', 90)">
+          Epic <br> (+90 Health)
+        </button>
+        <button class="armor-card legendary" onclick="selectArmor(this, 'Legendary', 120)">
+          Legendary <br> (+120 Health)
+        </button>
       </div>
     </div>
 

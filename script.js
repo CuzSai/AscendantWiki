@@ -153,11 +153,61 @@ function renderFalloffChart(baseDamage) {
     },
     title: {
       text: 'Damage Falloff Chart',
+      style: {
+        color: '#e0e0e0',
+        fontSize: '14px',
+      }
     },
-    xAxis: { /* chart omitted for brevity */ },
-    series: [{ /* Dynamic update */ }]
+    xAxis: {
+      title: {
+        text: 'Distance (m)',
+        style: {
+          color: '#e0e0e0',
+        }
+      },
+      categories: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200'],
+      labels: {
+        style: {
+          color: '#e0e0e0',
+        }
+      }
+    },
+    yAxis: {
+      title: {
+        text: 'Damage Multiplier',
+        style: {
+          color: '#e0e0e0',
+        }
+      },
+      min: 0,
+      max: 1.5,
+      labels: {
+        style: {
+          color: '#e0e0e0',
+        }
+      }
+    },
+    series: [{
+      name: 'Base Weapon',
+      data: generateFalloffData(baseDamage), // Dynamic falloff data
+      color: '#aad1e6',
+    }],
+    legend: {
+      itemStyle: {
+        color: '#e0e0e0'
+      }
+    }
   });
 }
+
+function generateFalloffData(baseDamage) {
+  // Example damage falloff logic: Linear reduction at set intervals
+  const distances = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200];
+  const multipliers = [1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5];
+  
+  return multipliers.map(multiplier => Math.round(baseDamage * multiplier * 100) / 100);
+}
+
 
 // Update the max height of the closed card to fit content dynamically
 if (!attachmentCategory.classList.contains('active')) {

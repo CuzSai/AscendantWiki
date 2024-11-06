@@ -7,6 +7,9 @@ let selectedArmorHp = 100; // Base health + armor value
 // Array to store comparisons
 let comparisons = [];
 
+// Index of the setup to replace during comparison
+let setupToReplace = null;
+
 // Default multipliers for each attachment category
 const attachmentMultipliers = {
   optics: 1,
@@ -195,15 +198,20 @@ function compareStats() {
     armor: selectedArmorHp
   };
 
-  comparisons.push(currentStats);
+  if (setupToReplace !== null) {
+    comparisons[setupToReplace - 1] = currentStats;
+    updateComparisonTable(setupToReplace, currentStats);
+    setupToReplace = null;
+  } else {
+    comparisons.push(currentStats);
 
-  if (comparisons.length === 1) {
-    updateComparisonTable(1, currentStats);
-  }
+    if (comparisons.length === 1) {
+      updateComparisonTable(1, currentStats);
+    }
 
-  if (comparisons.length === 2) {
-    updateComparisonTable(2, currentStats);
-    comparisons = [];
+    if (comparisons.length === 2) {
+      updateComparisonTable(2, currentStats);
+    }
   }
 }
 
@@ -216,6 +224,14 @@ function updateComparisonTable(setupNumber, stats) {
   document.getElementById(`setup${setupNumber}ShotsToKill`).textContent = stats.shotsToKill;
   document.getElementById(`setup${setupNumber}FireRate`).textContent = stats.fireRate;
   document.getElementById(`setup${setupNumber}Armor`).textContent = `${stats.armor} HP`;
+}
+
+// Function to replace a comparison setup
+function replaceComparison(setupNumber) {
+  if (comparisons.length >= setupNumber) {
+    setupToReplace = setupNumber;
+    alert(`Now changing Setup ${setupNumber}. Please select a new configuration and click "Compare".`);
+  }
 }
 
 // Function to reset all selections and comparisons
@@ -244,4 +260,5 @@ function resetAll() {
   });
 
   comparisons = [];
+  setupToReplace = null;
 }

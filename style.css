@@ -222,3 +222,10 @@ h2 {
 .highcharts-legend-item {
   fill: #c0c0c0 !important;
 }
+
+.weapon-button.clicked {
+  box-shadow: 0 0 15px #aad1e6 !important; /* Immediate glow */
+  background-color: #50587a !important; /* Immediate background change */
+  transform: scale(1.05) !important; /* Immediate scale */
+  transition: none; /* Prevent transition delay on click */
+}

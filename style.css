@@ -40,7 +40,6 @@ body {
   margin-right: 5px;
 }
 
-/* Result Section Styling */
 .result {
   margin-bottom: 10px;
 }
@@ -56,4 +55,27 @@ body {
   color: #e0e0e0;
 }
 
-/* ... rest of your CSS for buttons, sections, and charts */
+/* Weapon Section */
+.weapon-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.weapon-button {
+  height: 100px;
+  background-color: #3a3a3a;
+  color: #fff;
+}
+
+/* Shield Buttons */
+.shield-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+/* Attachment Section */
+.attachment-category {
+  margin-bottom: 15px;
+}

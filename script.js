@@ -141,4 +141,3 @@ function renderFalloffChart(baseDamage) {
     series: [{ /* Dynamic update */ }]
   });
 }
-

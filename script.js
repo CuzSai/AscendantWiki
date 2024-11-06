@@ -16,7 +16,7 @@ const attachmentMultipliers = {
 // Function to handle accordion-style opening and closing of attachment categories
 function toggleAccordion(element) {
   const attachmentCategory = element.parentNode;
-  
+
   if (attachmentCategory.classList.contains('active')) {
     attachmentCategory.classList.remove('active');
   } else {
@@ -86,8 +86,8 @@ function calculateStats() {
   document.getElementById('shotsToKill').textContent = shotsToKill;
   document.getElementById('fireRate').textContent = `${selectedWeaponFireRate} RPM`;
 
-  // Render falloff chart (for simplicity, static for now)
-  renderFalloffChart(finalDamageBodyshot);
+  // Render falloff chart with new data
+  renderFalloffChart(weaponName, finalDamageBodyshot);
 }
 
 // Function to reset stats
@@ -98,18 +98,62 @@ function resetStats() {
   document.getElementById('damageBodyshot').textContent = `0`;
   document.getElementById('shotsToKill').textContent = `0`;
   document.getElementById('fireRate').textContent = `0 RPM`;
+
+  // Clear falloff chart
+  renderFalloffChart(null, 0);
 }
 
-// Function to render a damage falloff chart
-function renderFalloffChart(baseDamage) {
-  const ctx = document.getElementById('falloffChart').getContext('2d');
-  ctx.clearRect(0, 0, 200, 150); // Clear previous chart
-
-  // Draw simple line representing damage falloff
-  ctx.beginPath();
-  ctx.moveTo(0, baseDamage);
-  ctx.lineTo(200, baseDamage * 0.5); // Assuming 50% falloff at max distance
-  ctx.strokeStyle = '#aad1e6';
-  ctx.lineWidth = 2;
-  ctx.stroke();
+// Function to render a damage falloff chart using Highcharts
+function renderFalloffChart(weaponName, baseDamage) {
+  Highcharts.chart('falloffChart', {
+    chart: {
+      type: 'line',
+      backgroundColor: '#292929',
+    },
+    title: {
+      text: 'Damage Falloff Chart',
+      style: {
+        color: '#e0e0e0',
+      }
+    },
+    xAxis: {
+      title: {
+        text: 'Distance (m)',
+        style: {
+          color: '#e0e0e0',
+        }
+      },
+      categories: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200'],
+      labels: {
+        style: {
+          color: '#e0e0e0',
+        }
+      }
+    },
+    yAxis: {
+      title: {
+        text: 'Damage Multiplier',
+        style: {
+          color: '#e0e0e0',
+        }
+      },
+      min: 0,
+      max: 1.5,
+      labels: {
+        style: {
+          color: '#e0e0e0',
+        }
+      }
+    },
+    series: [{
+      name: weaponName ? weaponName : 'No Weapon Selected',
+      data: weaponName ? [1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.3, 0.2].map(v => v * baseDamage / selectedWeaponDamage) : [],
+      color: '#aad1e6',
+    }],
+    legend: {
+      itemStyle: {
+        color: '#e0e0e0'
+      }
+    }
+  });
 }

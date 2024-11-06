@@ -40,7 +40,7 @@
 
     <div class="result">
       <h3>Fire Rate:</h3>
-      <span id="fireRate">0 Shots per Second</span>
+      <span id="fireRate">0 RPM</span>
     </div>
 
     <!-- Placeholder for falloff chart -->
@@ -67,29 +67,14 @@
       </div>
     </div>
 
-    <!-- Weapon Comparison Section -->
-    <div class="section comparison-section">
-      <h2>Compare Two Weapons</h2>
-      <div class="weapon-comparison-buttons">
-        <select id="weaponSelect1" onchange="compareWeapons()">
-          <option value="">Select Weapon 1</option>
-          <option value="battle_rifle">Battle Rifle</option>
-          <option value="beam_gloves">Beam Gloves</option>
-          <option value="plasma_rifle">Plasma Rifle</option>
-          <option value="shotgun">Shotgun</option>
-          <option value="sniper_rifle">Sniper Rifle</option>
-        </select>
-
-        <select id="weaponSelect2" onchange="compareWeapons()">
-          <option value="">Select Weapon 2</option>
-          <option value="battle_rifle">Battle Rifle</option>
-          <option value="beam_gloves">Beam Gloves</option>
-          <option value="plasma_rifle">Plasma Rifle</option>
-          <option value="shotgun">Shotgun</option>
-          <option value="sniper_rifle">Sniper Rifle</option>
-        </select>
-
-        <div id="comparisonChart" style="width: 100%; height: 300px;"></div>
+    <!-- Armor Selection Section -->
+    <div class="section armor-section">
+      <h2>Select Armor</h2>
+      <div class="armor-buttons">
+        <button class="armor-button" onclick="selectArmor(this, 'common', 30)" style="background-color: grey;">Common (30 HP)</button>
+        <button class="armor-button" onclick="selectArmor(this, 'rare', 60)" style="background-color: blue;">Rare (60 HP)</button>
+        <button class="armor-button" onclick="selectArmor(this, 'epic', 90)" style="background-color: purple;">Epic (90 HP)</button>
+        <button class="armor-button" onclick="selectArmor(this, 'legendary', 120)" style="background-color: orange;">Legendary (120 HP)</button>
       </div>
     </div>
 
@@ -133,6 +118,12 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- Compare Section -->
+    <div class="section compare-section">
+      <button class="compare-button" onclick="compareStats()">Compare</button>
+      <div class="comparison-result" id="comparisonResult"></div>
     </div>
   </div>
 

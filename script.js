@@ -44,8 +44,11 @@ function toggleAccordion(element) {
 document.querySelectorAll('.stat-toggle').forEach(checkbox => {
   checkbox.addEventListener('change', function() {
     const targetId = this.dataset.target;
-    const targetElement = document.getElementById(targetId).parentNode;
-    targetElement.style.display = this.checked ? 'block' : 'none';
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      targetElement.style.display = this.checked ? 'block' : 'none';
+    }
   });
 });
 
@@ -123,76 +126,29 @@ function resetStats() {
   renderFalloffChart(0);
 }
 
-// Add checkboxes for displaying calculated stats dynamically
-document.querySelectorAll('.stat-toggle').forEach(checkbox => {
-  checkbox.addEventListener('change', function() {
-    const targetId = this.dataset.target;
-    const targetElement = document.getElementById(targetId).parentNode || document.getElementById(targetId);
-    targetElement.style.display = this.checked ? 'block' : 'none';
-  });
-});
-
-// Render the falloff chart with Highcharts
+// Render chart
 function renderFalloffChart(baseDamage) {
-  if (!baseDamage || baseDamage <= 0) {
-    baseDamage = 1; // Prevent invalid or empty chart
-  }
-
   Highcharts.chart('falloffChart', {
-    chart: {
-      type: 'line',
-      backgroundColor: '#292929',
-    },
-    title: {
-      text: 'Damage Falloff Chart',
-      style: {
-        color: '#e0e0e0',
-      },
-    },
+    chart: { type: 'line', backgroundColor: '#292929' },
+    title: { text: 'Damage Falloff Chart', style: { color: '#e0e0e0' } },
     xAxis: {
-      title: {
-        text: 'Distance (m)',
-        style: {
-          color: '#e0e0e0',
-        },
-      },
+      title: { text: 'Distance (m)', style: { color: '#e0e0e0' } },
       categories: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200'],
-      labels: {
-        style: {
-          color: '#e0e0e0',
-        },
-      },
+      labels: { style: { color: '#e0e0e0' } }
     },
     yAxis: {
-      title: {
-        text: 'Damage Multiplier',
-        style: {
-          color: '#e0e0e0',
-        },
-      },
-      min: 0,
-      max: Math.ceil(baseDamage * 1.5), // Dynamic max for visual range
-      labels: {
-        style: {
-          color: '#e0e0e0',
-        },
-      },
+      title: { text: 'Damage Multiplier', style: { color: '#e0e0e0' } },
+      min: 0, max: baseDamage,
+      labels: { style: { color: '#e0e0e0' } }
     },
     series: [{
       name: 'Base Weapon',
       data: generateFalloffData(baseDamage),
       color: '#aad1e6',
-      marker: {
-        enabled: true,
-        radius: 3,
-      },
+      marker: { enabled: true, radius: 3 },
       lineWidth: 2,
     }],
-    legend: {
-      itemStyle: {
-        color: '#e0e0e0',
-      },
-    },
+    legend: { itemStyle: { color: '#e0e0e0' } },
   });
 }
 

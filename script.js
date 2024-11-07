@@ -196,4 +196,3 @@ function generateFalloffData(baseDamage) {
   const multipliers = [1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5];
   return multipliers.map(multiplier => parseFloat((baseDamage * multiplier).toFixed(2)));
 }
-

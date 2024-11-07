@@ -134,6 +134,10 @@ document.querySelectorAll('.stat-toggle').forEach(checkbox => {
 
 // Render the falloff chart with Highcharts
 function renderFalloffChart(baseDamage) {
+  if (!baseDamage || baseDamage <= 0) {
+    baseDamage = 1; // Prevent invalid or empty chart
+  }
+
   Highcharts.chart('falloffChart', {
     chart: {
       type: 'line',
@@ -161,13 +165,13 @@ function renderFalloffChart(baseDamage) {
     },
     yAxis: {
       title: {
-        text: 'Damage',
+        text: 'Damage Multiplier',
         style: {
           color: '#e0e0e0',
         },
       },
       min: 0,
-      max: baseDamage,
+      max: Math.ceil(baseDamage * 1.5), // Dynamic max for visual range
       labels: {
         style: {
           color: '#e0e0e0',
@@ -175,12 +179,12 @@ function renderFalloffChart(baseDamage) {
       },
     },
     series: [{
-      name: 'Damage at Distance',
+      name: 'Base Weapon',
       data: generateFalloffData(baseDamage),
       color: '#aad1e6',
       marker: {
         enabled: true,
-        radius: 4,
+        radius: 3,
       },
       lineWidth: 2,
     }],

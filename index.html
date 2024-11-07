@@ -12,18 +12,14 @@
   <!-- Sidebar for Calculated Stats -->
   <div class="stats-sidebar">
     <h2>Calculated Stats</h2>
-  <button id="toggleSidebar" onclick="toggleSidebar()">Expand</button>
-  <!-- Rest of your sidebar content -->
-
+    <button id="toggleSidebar" onclick="toggleSidebar()">Expand</button>
     
-  
-
     <!-- Stat Options with Checkboxes -->
     <div class="stat-options">
-      <label><input type="checkbox" class="stat-toggle" data-target="ttkHeadshot" checked> TTK (Headshot)</label>
-      <label><input type="checkbox" class="stat-toggle" data-target="ttkBodyshot" checked> TTK (Bodyshot)</label>
-      <label><input type="checkbox" class="stat-toggle" data-target="damageHeadshot" checked> Damage (Headshot)</label>
-      <label><input type="checkbox" class="stat-toggle" data-target="damageBodyshot" checked> Damage (Bodyshot)</label>
+      <label><input type="checkbox" class="stat-toggle" data-target="ttkHeadshot" checked> TTK (HS)</label>
+      <label><input type="checkbox" class="stat-toggle" data-target="ttkBodyshot" checked> TTK (BS)</label>
+      <label><input type="checkbox" class="stat-toggle" data-target="damageHeadshot" checked> Damage (HS)</label>
+      <label><input type="checkbox" class="stat-toggle" data-target="damageBodyshot" checked> Damage (BS)</label>
       <label><input type="checkbox" class="stat-toggle" data-target="shotsToKill" checked> Shots to Kill</label>
       <label><input type="checkbox" class="stat-toggle" data-target="fireRate" checked> Fire Rate</label>
       <label><input type="checkbox" class="stat-toggle" data-target="falloffChartContainer" checked> Damage Falloff Chart</label>
@@ -63,7 +59,6 @@
       <h3>Damage Falloff Chart:</h3>
       <div id="falloffChart" style="width: 100%; height: 300px;"></div>
     </div>
-    
   </div>
 
   <!-- Main Calculator Content -->
@@ -125,49 +120,45 @@
         </div>
       </div>
     </div>
-    
-<!-- Comparison Section -->
-<div id="comparisonSection" class="comparison-container" style="display: none;">
-  <h2>Comparison</h2>
-  
-  <div class="stat-selection">
-    <h3>Select Stats to Display:</h3>
-    <label><input type="checkbox" class="comparison-stat-toggle" data-stat="weapon" checked> Weapon</label>
-    <label><input type="checkbox" class="comparison-stat-toggle" data-stat="shield" checked> Shield</label>
-    <label><input type="checkbox" class="comparison-stat-toggle" data-stat="attachments" checked> Attachments</label>
-    <label><input type="checkbox" class="comparison-stat-toggle" data-stat="ttkHeadshot" checked> TTK (Headshot)</label>
-    <label><input type="checkbox" class="comparison-stat-toggle" data-stat="ttkBodyshot" checked> TTK (Bodyshot)</label>
-    <label><input type="checkbox" class="comparison-stat-toggle" data-stat="shotsToKill" checked> Shots to Kill</label>
-  </div>
-  
-  <div id="setupComparison">
-    <!-- Dynamic setups will be displayed here -->
-  </div>
-</div>
+    <br>
+    <!-- Compare Button -->
+    <div class="compare-section">
+      <button id="compareButton" onclick="openCompareModal()">Compare</button>
+    </div>
 
+    <!-- Comparison Section -->
+    <div id="comparisonSection" class="comparison-container" style="display: none;">
+      <h2>Comparison</h2>
+      
+      <div class="stat-options">
+        <label><input type="checkbox" class="comparison-stat-toggle" data-stat="weapon" checked> Weapon</label>
+        <label><input type="checkbox" class="comparison-stat-toggle" data-stat="ttkHeadshot" checked> TTK (HS)</label>
+        <label><input type="checkbox" class="comparison-stat-toggle" data-stat="ttkBodyshot" checked> TTK (BS)</label>
+        <label><input type="checkbox" class="comparison-stat-toggle" data-stat="shotsToKill" checked> Shots to Kill</label>
+        <label><input type="checkbox" class="comparison-stat-toggle" data-stat="fireRate" checked> Fire Rate</label>
+        <label><input type="checkbox" class="comparison-stat-toggle" data-stat="damageHeadshot" checked> Damage (HS)</label>
+        <label><input type="checkbox" class="comparison-stat-toggle" data-stat="damageBodyshot" checked> Damage (BS)</label>
+        <label><input type="checkbox" class="comparison-stat-toggle" data-stat="falloffChart" checked> Falloff Chart</label>
+      </div>
+      
+      <div id="setupComparison">
+        <!-- Dynamic setups will be displayed here -->
+      </div>
+    </div>
 
-<!-- Compare Button -->
-<div class="compare-section">
-  <button id="compareButton" onclick="openCompareModal()">Compare</button>
-</div>
-
-<!-- Comparison Modal -->
-<div id="compareModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeCompareModal()">&times;</span>
-    <h2>Select Setup Slot</h2>
-    <div class="setup-slots">
-      <button onclick="addOrReplaceSetup(1)">Setup Slot 1</button>
-      <button onclick="addOrReplaceSetup(2)">Setup Slot 2</button>
-      <button onclick="addOrReplaceSetup(3)">Setup Slot 3</button>
+    <!-- Comparison Modal -->
+    <div id="compareModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="LoadCustom" onclick="closeCompareModal()">&times;</span>
+        <h2>Select Setup Slot</h2>
+        <div class="setup-slots">
+          <button onclick="addOrReplaceSetup(1)">Setup Slot 1</button>
+          <button onclick="addOrReplaceSetup(2)">Setup Slot 2</button>
+          <button onclick="addOrReplaceSetup(3)">Setup Slot 3</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-  </div>
-
-
-
-
 
   <script src="script.js"></script>
 </body>

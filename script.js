@@ -18,6 +18,7 @@ const attachmentMultipliers = {
 function toggleAccordion(element) {
   const attachmentCategory = element.parentNode;
 
+  // Handle toggle behavior
   if (attachmentCategory.classList.contains('active')) {
     attachmentCategory.classList.remove('active');
   } else {
@@ -40,6 +41,17 @@ function toggleAccordion(element) {
   }
 }
 
+// Add mouse enter and leave events to handle auto-closing
+document.querySelectorAll('.attachment-category').forEach(category => {
+  category.addEventListener('mouseenter', () => {
+    category.classList.add('active'); // Keep the category open
+  });
+
+  category.addEventListener('mouseleave', () => {
+    category.classList.remove('active'); // Close the category when mouse leaves
+  });
+});
+
 
 function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {
   const weaponButtons = document.querySelectorAll('.weapon-button');
@@ -55,8 +67,28 @@ function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {
   selectedWeaponReload = reloadSpeed;
   selectedWeaponFireRate = fireRate;
 
+  // Reset attachments when weapon is changed
+  resetAttachments();
+
   setTimeout(() => button.classList.remove('clicked'), 150);
   calculateStats();
+}
+
+function resetAttachments() {
+  const attachmentButtons = document.querySelectorAll('.attachment-button');
+  attachmentButtons.forEach(btn => {
+    btn.classList.remove('selected');
+  });
+
+  // Reset attachment multipliers
+  for (let key in attachmentMultipliers) {
+    attachmentMultipliers[key] = 1;
+  }
+
+  // Update titles to reflect no attachments
+  document.querySelectorAll('.attachment-title').forEach(title => {
+    title.innerHTML = `${title.dataset.slotName}<br><span class="selected-attachment">None</span>`;
+  });
 }
 
 function selectAttachment(button, category, displayName, multiplier) {
@@ -69,15 +101,24 @@ function selectAttachment(button, category, displayName, multiplier) {
     button.classList.add('selected');
     attachmentMultipliers[category] = multiplier;
   }
+  
+  // Update title immediately
+  const categoryTitle = button.parentNode.parentNode.querySelector('.attachment-title');
+  categoryTitle.innerHTML = `${categoryTitle.dataset.slotName}<br><span class="selected-attachment">${button.textContent}</span>`;
+  
   calculateStats();
 }
 
 function selectShield(button, shieldType, shieldHP) {
-  document.querySelectorAll('.shield-button').forEach(btn => btn.classList.remove('selected'));
-  button.classList.add('selected');
+  document.querySelectorAll('.shield-button').forEach(btn => {
+    btn.classList.remove('selected');
+    btn.classList.remove('glow'); // Remove glow from all other buttons
+  });
+  button.classList.add('selected', 'glow'); // Add 'glow' class to the selected button
   selectedShieldHP = shieldHP;
   calculateStats();
 }
+
 
 function calculateStats() {
   if (selectedWeaponDamage === 0) {
@@ -131,9 +172,6 @@ document.querySelectorAll('.stat-toggle').forEach(checkbox => {
     }
   });
 });
-
-
-
 
 // Render the falloff chart with Highcharts
 function renderFalloffChart(baseDamage) {
@@ -216,8 +254,6 @@ function toggleSidebar() {
   }
 }
 
-
-
 let setups = []; // Array to store up to 3 setups
 
 function openCompareModal() {
@@ -231,9 +267,8 @@ function closeCompareModal() {
 function addOrReplaceSetup(slot) {
   const currentSetup = {
     weapon: getSelectedWeapon(),
-    shield: getSelectedShield(),
-    attachments: getSelectedAttachments(),
-    stats: getCurrentStats()
+    stats: getCurrentStats(),
+    attachments: getCurrentAttachments(), // Save current attachments
   };
 
   setups[slot - 1] = currentSetup;
@@ -252,39 +287,112 @@ function renderComparison() {
 
   const selectedStats = getSelectedComparisonStats();
 
-  setups.forEach((setup, index) => {
-    if (setup) {
-      const card = document.createElement('div');
-      card.className = 'setup-card';
+  // Create a table for comparison
+  const comparisonTable = document.createElement('table');
+  comparisonTable.style.width = '100%'; // Make the table full width
+  comparisonTable.style.borderCollapse = 'collapse'; // Remove spacing between cells
 
-      let content = `<h3>Setup Slot ${index + 1}</h3>`;
+  // Header Row
+  const headerRow = document.createElement('tr');
+  headerRow.innerHTML = '<th>Stat</th>'; // Add a header for the stat names
 
-      if (selectedStats.includes('weapon')) {
-        content += `<p><strong>Weapon:</strong> ${setup.weapon}</p>`;
-      }
-      if (selectedStats.includes('shield')) {
-        content += `<p><strong>Shield:</strong> ${setup.shield}</p>`;
-      }
-      if (selectedStats.includes('attachments')) {
-        content += `<p><strong>Attachments:</strong> ${setup.attachments.join(', ')}</p>`;
-      }
-      if (selectedStats.includes('ttkHeadshot')) {
-        content += `<p><strong>TTK (Headshot):</strong> ${setup.stats.ttkHeadshot}</p>`;
-      }
-      if (selectedStats.includes('ttkBodyshot')) {
-        content += `<p><strong>TTK (Bodyshot):</strong> ${setup.stats.ttkBodyshot}</p>`;
-      }
-      if (selectedStats.includes('shotsToKill')) {
-        content += `<p><strong>Shots to Kill:</strong> ${setup.stats.shotsToKill}</p>`;
+  setups.forEach((_, index) => {
+    headerRow.innerHTML += `<th><button id="LoadCustom" onclick="loadSetup(${index + 1})">Load Customization ${index + 1}</button></th>`; // Make slot clickable
+  });
+  comparisonTable.appendChild(headerRow);
+
+  // Add each selected stat in a new row
+  selectedStats.forEach(stat => {
+    const statRow = document.createElement('tr');
+    statRow.innerHTML = `<td><strong>${getStatName(stat)}:</strong></td>`; // Add the stat name
+
+    setups.forEach((setup, index) => {
+      let statValue = '';
+
+      if (setup) {
+        switch (stat) {
+          case 'weapon':
+            statValue = setup.weapon;
+            break;
+          case 'ttkHeadshot':
+            statValue = setup.stats.ttkHeadshot;
+            break;
+          case 'ttkBodyshot':
+            statValue = setup.stats.ttkBodyshot;
+            break;
+          case 'shotsToKill':
+            statValue = setup.stats.shotsToKill;
+            break;
+          case 'fireRate':
+            statValue = setup.stats.fireRate;
+            break;
+          case 'damageHeadshot':
+            statValue = setup.stats.damageHeadshot;
+            break;
+          case 'damageBodyshot':
+            statValue = setup.stats.damageBodyshot;
+            break;
+          case 'falloffChart':
+            statValue = '(Chart Not Displayed Here)';
+            break;
+        }
       }
 
-      card.innerHTML = content;
-      container.appendChild(card);
-    }
+      statRow.innerHTML += `<td>${statValue}</td>`; // Add the stat value for this setup
+    });
+
+    comparisonTable.appendChild(statRow); // Add the row to the table
   });
 
-  // Show the comparison section only if there are setups
+  container.appendChild(comparisonTable); // Add the table to the comparison section
+
   document.getElementById('comparisonSection').style.display = setups.length ? 'block' : 'none';
+}
+
+// Function to map the stat key to a human-readable name
+function getStatName(stat) {
+  switch (stat) {
+    case 'weapon': return 'Weapon';
+    case 'ttkHeadshot': return 'TTK (Headshot)';
+    case 'ttkBodyshot': return 'TTK (Bodyshot)';
+    case 'shotsToKill': return 'Shots to Kill';
+    case 'fireRate': return 'Fire Rate';
+    case 'damageHeadshot': return 'Damage (Headshot)';
+    case 'damageBodyshot': return 'Damage (Bodyshot)';
+    case 'falloffChart': return 'Falloff Chart';
+    default: return '';
+  }
+}
+
+function loadSetup(slot) {
+  const setup = setups[slot - 1]; // Get the setup for the clicked slot
+
+  if (setup) {
+    // Load the weapon
+    const weaponName = setup.weapon;
+    const weaponButton = [...document.querySelectorAll('.weapon-button')]
+      .find(button => button.textContent === weaponName);
+    if (weaponButton) {
+      weaponButton.click(); // Simulate click to select the weapon
+    }
+
+    // Load attachments
+    const attachmentButtons = document.querySelectorAll('.attachment-button');
+    attachmentButtons.forEach(btn => {
+      btn.classList.remove('selected'); // Deselect all attachments
+    });
+
+    const attachments = setup.attachments; // Get the saved attachments
+    attachments.forEach(attachmentName => {
+      const button = [...document.querySelectorAll('.attachment-button')]
+        .find(btn => btn.textContent === attachmentName);
+      if (button) {
+        button.click(); // Simulate click to select the attachment
+      }
+    });
+
+    calculateStats(); // Recalculate stats after loading the setup
+  }
 }
 
 function getSelectedComparisonStats() {
@@ -294,27 +402,53 @@ function getSelectedComparisonStats() {
     .map(checkbox => checkbox.dataset.stat);
 }
 
-// Helper functions to fetch selected data
+// Helper functions
 function getSelectedWeapon() {
   const selectedButton = document.querySelector('.weapon-button.selected');
   return selectedButton ? selectedButton.textContent : 'None';
-}
-
-function getSelectedShield() {
-  const selectedButton = document.querySelector('.shield-button.selected');
-  return selectedButton ? selectedButton.textContent : 'None';
-}
-
-function getSelectedAttachments() {
-  const selectedButtons = document.querySelectorAll('.attachment-button.selected');
-  return Array.from(selectedButtons).map(button => button.textContent);
 }
 
 function getCurrentStats() {
   return {
     ttkHeadshot: document.getElementById('ttkHeadshot').textContent,
     ttkBodyshot: document.getElementById('ttkBodyshot').textContent,
-    shotsToKill: document.getElementById('shotsToKill').textContent
+    shotsToKill: document.getElementById('shotsToKill').textContent,
+    fireRate: document.getElementById('fireRate').textContent,
+    damageHeadshot: document.getElementById('damageHeadshot').textContent,
+    damageBodyshot: document.getElementById('damageBodyshot').textContent,
   };
 }
 
+// Function to handle scroll event
+function handleScroll() {
+  const sidebar = document.querySelector('.stats-sidebar');
+  
+  // Check if the sidebar is expanded
+  if (sidebar.classList.contains('expanded')) {
+    toggleSidebar(); // Collapse the sidebar
+  }
+}
+
+// Attach the scroll event listener to the window
+window.addEventListener('scroll', handleScroll);
+
+function addOrReplaceSetup(slot) {
+  const currentSetup = {
+    weapon: getSelectedWeapon(),
+    stats: getCurrentStats(),
+    attachments: getCurrentAttachments(), // Save current attachments
+  };
+
+  setups[slot - 1] = currentSetup;
+  renderComparison();
+  closeCompareModal();
+}
+
+function getCurrentAttachments() {
+  const selectedAttachments = [];
+  const attachmentButtons = document.querySelectorAll('.attachment-button.selected');
+  attachmentButtons.forEach(button => {
+    selectedAttachments.push(button.textContent); // Assuming button text is the attachment name
+  });
+  return selectedAttachments;
+}

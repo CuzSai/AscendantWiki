@@ -9,7 +9,6 @@ body {
   padding-right: 250px;
 }
 
-
 .stat-options {
   margin-bottom: 15px;
   padding: 10px;
@@ -27,7 +26,6 @@ body {
 .stat-options input {
   margin-right: 5px;
 }
-
 
 /* Calculator Styling */
 .calculator {
@@ -103,7 +101,6 @@ h2 {
 .weapon-button:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-  background-color: #4e4e4e;
 }
 
 /* Shield Buttons */
@@ -151,7 +148,6 @@ h2 {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Subtle glow on selection */
 }
 
-
 .shield-button:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -182,7 +178,6 @@ h2 {
   min-height: 50px; /* Ensure enough space for multi-line content */
 }
 
-
 .attachment-buttons {
   margin-top: 10px;
   display: flex;
@@ -193,6 +188,7 @@ h2 {
 .attachment-button {
   background-color: #3a3a3a;
   border-radius: 5px;
+  color: #e0e0e0;
   border: 1px solid #484848;
   padding: 10px;
   cursor: pointer;
@@ -285,8 +281,8 @@ h2 {
 .highcharts-legend-item {
   fill: #e0e0e0 !important;
 }
+
 /* Sidebar Toggle Styles */
-/* Sidebar Styling */
 .stats-sidebar {
   position: fixed;
   top: 20px;
@@ -300,13 +296,6 @@ h2 {
   transition: width 0.4s ease, right 0.4s ease;
   z-index: 20;
 }
-
-.stats-sidebar.expanded {
-  width: 400px;
-  right: 50px;
-}
-
-
 
 .stats-sidebar.expanded {
   width: 400px;
@@ -332,7 +321,6 @@ h2 {
 }
 
 /* Compare Button Styling */
-/* Compare Button Styling */
 .compare-section {
   margin-top: 20px;
   text-align: center;
@@ -342,7 +330,7 @@ h2 {
   background-color: #3a3a3a;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 200px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1em;
@@ -428,28 +416,42 @@ h2 {
   padding: 10px;
   border-radius: 5px;
   width: 30%;
+  margin-bottom: 10px; /* Add some space between cards */
 }
 
-.stat-selection {
-  margin-bottom: 15px;
-  padding: 10px;
+.setup-card table {
+  width: 100%;
+}
+
+.setup-card td {
+  padding: 5px; /* Add padding to cells for better spacing */
+  color: #e0e0e0; /* Text color for readability */
+}
+
+.setup-weapon-button {
   background-color: #3a3a3a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
   border-radius: 5px;
+  transition: background-color 0.2s;
 }
 
-.stat-selection h3 {
-  margin-top: 0;
-  font-size: 1.1em;
-  color: #aad1e6;
+.setup-weapon-button:hover {
+  background-color: #505050;
 }
 
-.stat-selection label {
-  display: block;
-  font-size: 0.9em;
-  color: #e0e0e0;
-  margin-bottom: 5px;
+#LoadCustom {
+  background-color: #3a3a3a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, left 0.4s ease; /* Add smooth transition for position */
 }
 
-.stat-selection input {
-  margin-right: 5px;
+#LoadCustom:hover {
+  background-color: #505050;
 }

@@ -9,6 +9,21 @@
 </head>
 <body>
 
+<!-- Info Button -->
+<button id="infoButton" onclick="openInfoPopup()" style="position: fixed; top: 10px; left: 10px; z-index: 1000; background-color: #3a3a3a; color: white; border: none; border-radius: 50%; padding: 10px 15px; cursor: pointer; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+  ?
+</button>
+
+
+<!-- Info Popup Modal -->
+<div id="infoModal" class="modal" style="display: none;">
+  <div class="modal-content" style="background-color: #2e2e2e; margin: 15% auto; padding: 20px; border-radius: 5px; width: 40%; text-align: center;">
+      <span class="close" onclick="closeInfoPopup()" style="color: white; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+      <h2>Information</h2>
+      <p id="infoText">This site is a test, the data given on this site is purely for example purposes. Data will be added as soon as possible.</p> <!-- Replace with your text -->
+  </div>
+</div>
+
   <!-- Sidebar for Calculated Stats -->
   <div class="stats-sidebar">
     <h2>Calculated Stats</h2>

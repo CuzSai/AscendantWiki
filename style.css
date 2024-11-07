@@ -99,7 +99,7 @@ h2 {
 }
 
 .weapon-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
@@ -152,6 +152,11 @@ h2 {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+.shield-button.glow {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Example glow effect */
+}
+
 
 /* Attachment Categories */
 .attachment-category {
@@ -455,3 +460,25 @@ h2 {
 #LoadCustom:hover {
   background-color: #505050;
 }
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #2e2e2e;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+

@@ -22,6 +22,25 @@ body {
   color: #e0e0e0;
 }
 
+.stat-options {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #3a3a3a;
+  border-radius: 5px;
+}
+
+.stat-options label {
+  display: block;
+  font-size: 0.9em;
+  color: #e0e0e0;
+  margin-bottom: 5px;
+}
+
+.stat-options input {
+  margin-right: 5px;
+}
+
+
 /* Calculator Styling */
 .calculator {
   background-color: #2a2a2a;
@@ -165,10 +184,10 @@ h2 {
   font-size: 1.1em;
   color: #e0e0e0;
   cursor: pointer;
-  line-height: 1.4;
+  line-height: 1.5; /* Adjust for better readability */
   padding: 10px 0;
   text-align: center;
-  min-height: 50px; /* Ensure enough space for two lines */
+  min-height: 50px; /* Ensure enough space for multi-line content */
 }
 
 
@@ -236,4 +255,20 @@ h2 {
   font-size: 0.9em; /* Slightly smaller than slot name */
   color: #aad1e6; /* Highlight color for attachment */
   font-weight: 500;
+}
+
+.result {
+  margin-bottom: 12px; /* Adds a bit more space between result rows */
+}
+
+.result h3 {
+  font-size: 1em;
+  color: #aad1e6;
+  margin-bottom: 5px; /* Separate title from value */
+}
+
+.result span {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #e0e0e0;
 }

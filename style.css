@@ -272,3 +272,24 @@ h2 {
   font-weight: bold;
   color: #e0e0e0;
 }
+
+#falloffChartContainer {
+  margin-top: 10px;
+  display: block; /* Ensure visibility by default */
+}
+
+.highcharts-background {
+  fill: #292929 !important;
+}
+
+.highcharts-title, .highcharts-axis-title, .highcharts-label {
+  fill: #e0e0e0 !important;
+}
+
+.highcharts-grid-line {
+  stroke: #3c3c3c;
+}
+
+.highcharts-legend-item {
+  fill: #e0e0e0 !important;
+}

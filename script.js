@@ -40,68 +40,53 @@ function toggleAccordion(element) {
   }
 }
 
+// Add checkboxes for displaying calculated stats dynamically
+document.querySelectorAll('.stat-toggle').forEach(checkbox => {
+  checkbox.addEventListener('change', function() {
+    const targetId = this.dataset.target;
+    const targetElement = document.getElementById(targetId).parentNode;
+    targetElement.style.display = this.checked ? 'block' : 'none';
+  });
+});
 
-// Function to select or deselect a weapon and set its base stats
 function selectWeapon(button, weaponName, baseDamage, reloadSpeed, fireRate) {
   const weaponButtons = document.querySelectorAll('.weapon-button');
   weaponButtons.forEach(btn => {
     btn.classList.remove('selected');
-    btn.classList.remove('clicked'); // Remove previous clicked class
+    btn.classList.remove('clicked');
   });
 
   button.classList.add('selected');
-  button.classList.add('clicked'); // Add the clicked class for immediate feedback
+  button.classList.add('clicked');
 
-  // Set selected weapon stats
   selectedWeaponDamage = baseDamage;
   selectedWeaponReload = reloadSpeed;
   selectedWeaponFireRate = fireRate;
 
-  // Remove the "clicked" class after a short delay
-  setTimeout(() => {
-    button.classList.remove('clicked');
-  }, 150); // Adjust delay as needed
-
+  setTimeout(() => button.classList.remove('clicked'), 150);
   calculateStats();
 }
 
-
-// Function to select or deselect an attachment
 function selectAttachment(button, category, displayName, multiplier) {
-  const displaySpan = document.getElementById(`selected${capitalizeFirstLetter(category)}`);
-  
   if (button.classList.contains('selected')) {
     button.classList.remove('selected');
     attachmentMultipliers[category] = 1;
-    displaySpan.textContent = "None";
   } else {
     const attachmentButtons = button.parentNode.querySelectorAll('.attachment-button');
     attachmentButtons.forEach(btn => btn.classList.remove('selected'));
     button.classList.add('selected');
     attachmentMultipliers[category] = multiplier;
-    displaySpan.textContent = displayName;
   }
-
   calculateStats();
 }
 
-// Function to select a shield and update stats
 function selectShield(button, shieldType, shieldHP) {
-  const shieldButtons = document.querySelectorAll('.shield-button');
-  shieldButtons.forEach(btn => btn.classList.remove('selected'));
-
-  if (button.classList.contains('selected')) {
-    button.classList.remove('selected');
-    selectedShieldHP = 0;
-  } else {
-    button.classList.add('selected');
-    selectedShieldHP = shieldHP;
-  }
-
+  document.querySelectorAll('.shield-button').forEach(btn => btn.classList.remove('selected'));
+  button.classList.add('selected');
+  selectedShieldHP = shieldHP;
   calculateStats();
 }
 
-// Function to calculate and display the final stats
 function calculateStats() {
   if (selectedWeaponDamage === 0) {
     resetStats();
@@ -127,41 +112,37 @@ function calculateStats() {
   renderFalloffChart(finalDamageBodyshot);
 }
 
-// Function to reset stats
 function resetStats() {
-  document.getElementById('ttkHeadshot').textContent = `0.0s`;
-  document.getElementById('ttkBodyshot').textContent = `0.0s`;
-  document.getElementById('damageHeadshot').textContent = `0`;
-  document.getElementById('damageBodyshot').textContent = `0`;
-  document.getElementById('shotsToKill').textContent = `0`;
-  document.getElementById('fireRate').textContent = `0 RPM`;
+  document.getElementById('ttkHeadshot').textContent = '0.0s';
+  document.getElementById('ttkBodyshot').textContent = '0.0s';
+  document.getElementById('damageHeadshot').textContent = '0';
+  document.getElementById('damageBodyshot').textContent = '0';
+  document.getElementById('shotsToKill').textContent = '0';
+  document.getElementById('fireRate').textContent = '0 RPM';
 
   renderFalloffChart(0);
 }
 
-// Function to capitalize the first letter
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-// Render Chart
+// Render chart
 function renderFalloffChart(baseDamage) {
   Highcharts.chart('falloffChart', {
-    chart: {
-      type: 'line',
-      backgroundColor: '#292929',
+    chart: { type: 'line', backgroundColor: '#292929' },
+    title: { text: 'Damage Falloff Chart', style: { color: '#e0e0e0' } },
+    xAxis: {
+      title: { text: 'Distance (m)', style: { color: '#e0e0e0' } },
+      categories: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200'],
+      labels: { style: { color: '#e0e0e0' } }
     },
-    title: {
-      text: 'Damage Falloff Chart',
+    yAxis: {
+      title: { text: 'Damage Multiplier', style: { color: '#e0e0e0' } },
+      min: 0, max: 1.5,
+      labels: { style: { color: '#e0e0e0' } }
     },
-    xAxis: { /* chart omitted for brevity */ },
-    series: [{ /* Dynamic update */ }]
+    series: [{ name: 'Base Weapon', data: generateFalloffData(baseDamage), color: '#aad1e6' }]
   });
 }
 
-// Update the max height of the closed card to fit content dynamically
-if (!attachmentCategory.classList.contains('active')) {
-  attachmentCategory.style.maxHeight = `${attachmentCategory.querySelector('.attachment-title').offsetHeight + 20}px`;
-} else {
-  attachmentCategory.style.maxHeight = '220px'; // Expanded state
+function generateFalloffData(baseDamage) {
+  const multipliers = [1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5];
+  return multipliers.map(m => (baseDamage * m).toFixed(2));
 }

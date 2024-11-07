@@ -123,26 +123,77 @@ function resetStats() {
   renderFalloffChart(0);
 }
 
-// Render chart
+// Add checkboxes for displaying calculated stats dynamically
+document.querySelectorAll('.stat-toggle').forEach(checkbox => {
+  checkbox.addEventListener('change', function() {
+    const targetId = this.dataset.target;
+    const targetElement = document.getElementById(targetId).parentNode || document.getElementById(targetId);
+    targetElement.style.display = this.checked ? 'block' : 'none';
+  });
+});
+
+// Render the falloff chart with Highcharts
 function renderFalloffChart(baseDamage) {
   Highcharts.chart('falloffChart', {
-    chart: { type: 'line', backgroundColor: '#292929' },
-    title: { text: 'Damage Falloff Chart', style: { color: '#e0e0e0' } },
+    chart: {
+      type: 'line',
+      backgroundColor: '#292929',
+    },
+    title: {
+      text: 'Damage Falloff Chart',
+      style: {
+        color: '#e0e0e0',
+      },
+    },
     xAxis: {
-      title: { text: 'Distance (m)', style: { color: '#e0e0e0' } },
+      title: {
+        text: 'Distance (m)',
+        style: {
+          color: '#e0e0e0',
+        },
+      },
       categories: ['0', '20', '40', '60', '80', '100', '120', '140', '160', '180', '200'],
-      labels: { style: { color: '#e0e0e0' } }
+      labels: {
+        style: {
+          color: '#e0e0e0',
+        },
+      },
     },
     yAxis: {
-      title: { text: 'Damage Multiplier', style: { color: '#e0e0e0' } },
-      min: 0, max: 1.5,
-      labels: { style: { color: '#e0e0e0' } }
+      title: {
+        text: 'Damage',
+        style: {
+          color: '#e0e0e0',
+        },
+      },
+      min: 0,
+      max: baseDamage,
+      labels: {
+        style: {
+          color: '#e0e0e0',
+        },
+      },
     },
-    series: [{ name: 'Base Weapon', data: generateFalloffData(baseDamage), color: '#aad1e6' }]
+    series: [{
+      name: 'Damage at Distance',
+      data: generateFalloffData(baseDamage),
+      color: '#aad1e6',
+      marker: {
+        enabled: true,
+        radius: 4,
+      },
+      lineWidth: 2,
+    }],
+    legend: {
+      itemStyle: {
+        color: '#e0e0e0',
+      },
+    },
   });
 }
 
 function generateFalloffData(baseDamage) {
   const multipliers = [1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5];
-  return multipliers.map(m => (baseDamage * m).toFixed(2));
+  return multipliers.map(multiplier => parseFloat((baseDamage * multiplier).toFixed(2)));
 }
+

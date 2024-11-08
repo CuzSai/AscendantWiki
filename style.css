@@ -396,25 +396,45 @@ h2 {
   color: #aad1e6;
 }
 
-/* Comparison Section Styling */
 .comparison-container {
-  background-color: #292929;
+  background-color: #1f1f1f; /* Match the body background */
   padding: 20px;
   color: #e0e0e0;
   margin-top: 20px;
   border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.comparison-container h2 {
-  margin-top: 0;
-  font-size: 1.4em;
-  color: #aad1e6;
+#comparisonTable {
+  width: 100%; /* Full width of the container */
+  border-collapse: collapse; /* Remove gaps between cells */
+  margin-top: 15px;
 }
 
-#setupComparison {
-  display: flex;
-  justify-content: space-around;
+#comparisonTable th, #comparisonTable td {
+  padding: 10px; /* Padding for cells */
+  text-align: center; /* Center align text */
 }
+
+#comparisonTable th {
+  background-color: #3a3a3a; /* Header background color */
+  color: #e0e0e0; /* Header text color */
+  border-bottom: 2px solid #2c2c2c; /* Bottom border for header */
+}
+
+#comparisonTable tr:nth-child(even) {
+  background-color: #2a2a2a; /* Zebra striping for even rows */
+}
+
+#comparisonTable tr:hover {
+  background-color: #505050; /* Highlight row on hover */
+}
+
+#comparisonTable td {
+  border: 1px solid #484848; /* Cell border */
+  color: #e0e0e0; /* Text color */
+}
+
 
 .setup-card {
   background-color: #3a3a3a;
@@ -479,6 +499,4 @@ h2 {
   padding: 20px;
   border: 1px solid #888;
   width: 40%; /* Could be more or less, depending on screen size */
-}
-
-
+}   

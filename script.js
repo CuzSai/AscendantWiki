@@ -288,68 +288,69 @@ function renderComparison() {
     const container = document.getElementById('setupComparison');
     container.innerHTML = ''; // Clear previous comparison
 
-    const selectedStats = getSelectedComparisonStats();
-
-    // Create a table for comparison
-    const comparisonTable = document.createElement('table');
-    comparisonTable.style.width = '100%'; // Make the table full width
-    comparisonTable.style.borderCollapse = 'collapse'; // Remove spacing between cells
-
-    // Header Row
-    const headerRow = document.createElement('tr');
-    headerRow.innerHTML = '<th>Stat</th>'; // Add a header for the stat names
-
-    setups.forEach((_, index) => {
-        headerRow.innerHTML += `<th><button id="LoadCustom" onclick="loadSetup(${index + 1})">Load Customization ${index + 1}</button></th>`; // Make slot clickable
-    });
-    comparisonTable.appendChild(headerRow);
-
-    // Add each selected stat in a new row
-    selectedStats.forEach(stat => {
+    setups.forEach((setup, index) => {
         const statRow = document.createElement('tr');
-        statRow.innerHTML = `<td><strong>${getStatName(stat)}:</strong></td>`; // Add the stat name
 
-        setups.forEach((setup, index) => {
-            let statValue = '';
+        // Create cells for each of the necessary stats
+        const weaponCell = document.createElement('td');
+        const weaponButton = document.createElement('button');
+        weaponButton.textContent = setup.weapon; // Use weapon name from the setup
+        weaponButton.onclick = () => loadSetup(index + 1); // Set up the click event to load the weapon
+        weaponButton.style.cursor = 'pointer'; // Indicate it's clickable
+        weaponButton.style.backgroundColor = '#3a3a3a'; // Match button style
+        weaponButton.style.color = 'white';
+        weaponButton.style.border = 'none';
+        weaponButton.style.borderRadius = '5px';
+        weaponButton.style.padding = '5px 10px';
+        weaponButton.style.marginRight = '5px'; // Add some space between the button and the text
+        weaponButton.style.transition = 'background-color 0.2s';
 
-            if (setup) {
-                switch (stat) {
-                    case 'weapon':
-                        statValue = setup.weapon;
-                        break;
-                    case 'ttkHeadshot':
-                        statValue = setup.stats.ttkHeadshot;
-                        break;
-                    case 'ttkBodyshot':
-                        statValue = setup.stats.ttkBodyshot;
-                        break;
-                    case 'shotsToKill':
-                        statValue = setup.stats.shotsToKill;
-                        break;
-                    case 'fireRate':
-                        statValue = setup.stats.fireRate;
-                        break;
-                    case 'damageHeadshot':
-                        statValue = setup.stats.damageHeadshot;
-                        break;
-                    case 'damageBodyshot':
-                        statValue = setup.stats.damageBodyshot;
-                        break;
-                    case 'falloffChart':
-                        statValue = '(Chart Not Displayed Here)';
-                        break;
-                }
-            }
+        // Add hover effect
+        weaponButton.onmouseover = () => {
+            weaponButton.style.backgroundColor = '#505050';
+        };
+        weaponButton.onmouseout = () => {
+            weaponButton.style.backgroundColor = '#3a3a3a';
+        };
 
-            statRow.innerHTML += `<td>${statValue}</td>`; // Add the stat value for this setup
-        });
+        weaponCell.appendChild(weaponButton); // Add button to the cell
+        
+        statRow.appendChild(weaponCell); // Append weapon cell to row
 
-        comparisonTable.appendChild(statRow); // Add the row to the table
+        const penetrationCell = document.createElement('td');
+        penetrationCell.textContent = "1.0"; // Replace with actual data
+        statRow.appendChild(penetrationCell);
+
+        const rpmCell = document.createElement('td');
+        rpmCell.textContent = setup.stats.fireRate; // Use actual data
+        statRow.appendChild(rpmCell);
+
+        const ammoCostCell = document.createElement('td');
+        ammoCostCell.textContent = "100"; // Replace with actual data
+        statRow.appendChild(ammoCostCell);
+
+        const reloadAdjustCell = document.createElement('td');
+        reloadAdjustCell.textContent = "50"; // Replace with actual data
+        statRow.appendChild(reloadAdjustCell);
+
+        const damageCell = document.createElement('td');
+        damageCell.textContent = setup.stats.damageHeadshot; // Adjust based on your stats
+        statRow.appendChild(damageCell);
+
+        const reloadDpsCell = document.createElement('td');
+        reloadDpsCell.textContent = "150"; // Replace with actual data
+        statRow.appendChild(reloadDpsCell);
+
+        container.appendChild(statRow); // Add the row to the comparison section
     });
 
-    container.appendChild(comparisonTable); // Add the table to the comparison section
-    document.getElementById('comparisonSection').style.display = setups.length ? 'block' : 'none';
+    document.getElementById('comparisonSection').style.display = setups.length ? 'block' : 'none'; // Show comparison if there are setups
 }
+
+
+
+
+
 
 // Function to map the stat key to a human-readable name
 function getStatName(stat) {
@@ -396,6 +397,7 @@ function loadSetup(slot) {
         calculateStats(); // Recalculate stats after loading the setup
     }
 }
+
 
 function getSelectedComparisonStats() {
     const checkboxes = document.querySelectorAll('.comparison-stat-toggle');
@@ -457,3 +459,9 @@ window.onclick = function(event) {
       modal.style.display = 'none';
   }
 };
+
+function loadSetupWeapon(weaponName) {
+    // Your logic to load the weapon based on weaponName
+    console.log("Loading weapon:", weaponName);
+  }
+  

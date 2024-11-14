@@ -1,3 +1,7 @@
+import { optics } from "../entities/Optics";
+import { barrels } from "../entities/Barrels";
+import { grips } from "../entities/Grips";
+
 import { useEffect, useState, useRef } from "react";
 
 export default function AttachmentSelection({
@@ -16,24 +20,6 @@ export default function AttachmentSelection({
     displayName: "None",
     multiplier: 1,
   });
-
-  const optics = [
-    { displayName: "None", multiplier: 1 },
-    { displayName: "Scope (+20% damage)", multiplier: 1.2 },
-    { displayName: "Red Dot (+10% damage)", multiplier: 1.1 },
-  ];
-
-  const barrels = [
-    { displayName: "None", multiplier: 1 },
-    { displayName: "Heavy Barrel (+30% damage)", multiplier: 1.3 },
-    { displayName: "Short Barrel (+5% damage)", multiplier: 1.05 },
-  ];
-
-  const grips = [
-    { displayName: "None", multiplier: 1 },
-    { displayName: "Angled Grip (+15% damage)", multiplier: 1.15 },
-    { displayName: "Vertical Grip (+10% damage)", multiplier: 1.1 },
-  ];
 
   const isInternalUpdate = useRef(false);
 

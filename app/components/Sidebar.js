@@ -30,22 +30,22 @@ export default function Sidebar({ weapon, shield, attachments }) {
     attachments.forEach((attachment) => {
       multiplier += attachment.multiplier;
     });
-    const finalDamageHeadshot = weapon.baseDamage * multiplier * 1.5;
-    const finalDamageBodyshot = weapon.baseDamage * multiplier;
+    const finalDamageHeadshot = weapon?.baseDamage * multiplier * 1.5;
+    const finalDamageBodyshot = weapon?.baseDamage * multiplier;
 
-    const totalHealth = 100 + shield.shieldHp;
+    const totalHealth = 100 + shield?.shieldHp;
     const shotsToKill = Math.ceil(totalHealth / finalDamageBodyshot);
-    const ttkHeadshot = ((shotsToKill / (weapon.fireRate / 60)) * 0.7).toFixed(
+    const ttkHeadshot = ((shotsToKill / (weapon?.fireRate / 60)) * 0.7).toFixed(
       2,
     );
-    const ttkBodyshot = (shotsToKill / (weapon.fireRate / 60)).toFixed(2);
+    const ttkBodyshot = (shotsToKill / (weapon?.fireRate / 60)).toFixed(2);
 
-    setDamageHeadshot(finalDamageHeadshot);
-    setDamageBodyshot(finalDamageBodyshot);
-    setTTKHeadshot(ttkHeadshot);
-    setTTKBodyshot(ttkBodyshot);
-    setShotsToKill(shotsToKill);
-    setFireRate(weapon.fireRate);
+    setDamageHeadshot(!isNaN(finalDamageHeadshot) ? finalDamageHeadshot : 0);
+    setDamageBodyshot(!isNaN(finalDamageBodyshot) ? finalDamageBodyshot : 0);
+    setTTKHeadshot(!isNaN(ttkHeadshot) ? ttkHeadshot : 0);
+    setTTKBodyshot(!isNaN(ttkBodyshot) ? ttkBodyshot : 0);
+    setShotsToKill(!isNaN(shotsToKill) ? shotsToKill : 0);
+    setFireRate(weapon?.fireRate ? weapon.fireRate : 0);
 
     renderFalloffChart(finalDamageBodyshot);
   }

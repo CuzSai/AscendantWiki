@@ -11,17 +11,8 @@ import ShieldSelection from "./components/ShieldSelection";
 import "./styles/weapon-calculator.css";
 
 export default function WeaponCalculator() {
-  const [comparisonVisible, setComparisonVisible] = useState(false);
-
-  const [selectedWeapon, setSelectedWeapon] = useState({
-    baseDamage: 0,
-    fireRate: 0,
-    reloadSpeed: 0,
-  });
-  const [selectedShield, setSelectedShield] = useState({
-    type: "",
-    shieldHp: 0,
-  });
+  const [selectedWeapon, setSelectedWeapon] = useState();
+  const [selectedShield, setSelectedShield] = useState();
 
   const [selectedAttachments, setSelectedAttachments] = useState([
     {

@@ -27,7 +27,7 @@ export default function Sidebar({ weapon, shield, attachments }) {
 
   function calculateStats() {
     let multiplier = 1;
-    attachments.forEach((attachment) => {
+    attachments?.forEach((attachment) => {
       multiplier += attachment.multiplier;
     });
     const finalDamageHeadshot = weapon?.baseDamage * multiplier * 1.5;

@@ -14,20 +14,7 @@ export default function WeaponCalculator() {
   const [selectedWeapon, setSelectedWeapon] = useState();
   const [selectedShield, setSelectedShield] = useState();
 
-  const [selectedAttachments, setSelectedAttachments] = useState([
-    {
-      displayName: "",
-      multiplier: 1,
-    },
-    {
-      displayName: "",
-      multiplier: 1,
-    },
-    {
-      displayName: "",
-      multiplier: 1,
-    },
-  ]);
+  const [selectedAttachments, setSelectedAttachments] = useState([]);
 
   return (
     <>
@@ -57,7 +44,10 @@ export default function WeaponCalculator() {
           setSelectedShield={setSelectedShield}
         />
 
-        <AttachmentSelection setSelectedAttachments={setSelectedAttachments} />
+        <AttachmentSelection
+          selectedAttachments={selectedAttachments}
+          setSelectedAttachments={setSelectedAttachments}
+        />
 
         <Comparison
           weapon={selectedWeapon}

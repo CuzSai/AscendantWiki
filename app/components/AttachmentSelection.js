@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-export default function AttachmentSelection({ setSelectedAttachments }) {
+export default function AttachmentSelection({
+  selectedAttachments,
+  setSelectedAttachments,
+}) {
   const [selectedOptic, setSelectedOptic] = useState({
     displayName: "None",
     multiplier: 1,
@@ -15,59 +18,43 @@ export default function AttachmentSelection({ setSelectedAttachments }) {
   });
 
   const optics = [
-    {
-      displayName: "None",
-      multiplier: 1,
-    },
-    {
-      displayName: "Scope (+20% damage)",
-      multiplier: 1.2,
-    },
-    {
-      displayName: "Red Dot (+10% damage)",
-      multiplier: 1.1,
-    },
+    { displayName: "None", multiplier: 1 },
+    { displayName: "Scope (+20% damage)", multiplier: 1.2 },
+    { displayName: "Red Dot (+10% damage)", multiplier: 1.1 },
   ];
 
   const barrels = [
-    {
-      displayName: "None",
-      multiplier: 1,
-    },
-    {
-      displayName: "Heavy Barrel (+30% damage)",
-      multiplier: 1.3,
-    },
-    {
-      displayName: "Short Barrel (+5% damage)",
-      multiplier: 1.05,
-    },
+    { displayName: "None", multiplier: 1 },
+    { displayName: "Heavy Barrel (+30% damage)", multiplier: 1.3 },
+    { displayName: "Short Barrel (+5% damage)", multiplier: 1.05 },
   ];
 
   const grips = [
-    {
-      displayName: "None",
-      multiplier: 1,
-    },
-    {
-      displayName: "Angled Grip (+15% damage)",
-      multiplier: 1.15,
-    },
-    {
-      displayName: "Vertical Grip (+10& damage)",
-      multiplier: 1.1,
-    },
+    { displayName: "None", multiplier: 1 },
+    { displayName: "Angled Grip (+15% damage)", multiplier: 1.15 },
+    { displayName: "Vertical Grip (+10% damage)", multiplier: 1.1 },
   ];
 
+  const isInternalUpdate = useRef(false);
+
   useEffect(() => {
-    handleAttachmentsChanged();
-  }, [selectedOptic, selectedBarrel, selectedGrip]);
+    if (!isInternalUpdate.current) {
+      if (selectedAttachments.length === 3) {
+        setSelectedOptic(selectedAttachments[0]);
+        setSelectedBarrel(selectedAttachments[1]);
+        setSelectedGrip(selectedAttachments[2]);
+      }
+    } else {
+      isInternalUpdate.current = false;
+    }
+  }, [selectedAttachments]);
 
-  function handleAttachmentsChanged() {
-    const selectedAttachments = [selectedOptic, selectedBarrel, selectedGrip];
+  useEffect(() => {
+    const newAttachments = [selectedOptic, selectedBarrel, selectedGrip];
+    setSelectedAttachments(newAttachments);
 
-    setSelectedAttachments(selectedAttachments);
-  }
+    isInternalUpdate.current = true;
+  }, [selectedOptic, selectedBarrel, selectedGrip, setSelectedAttachments]);
 
   return (
     <>

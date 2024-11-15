@@ -1,22 +1,31 @@
-pipeline{
+
+pipeline {
     agent any
-    tools {nodejs "my-nodejs"}
-    stages{
-        stage("Build"){
-            steps{
-                nodejs("my-nodejs") {
-                    sh 'npm install'
-                    sh 'npm build'
+    stages {
+        stage("Build Docker Image") {
+            steps {
+                script {
+                    sh 'docker build -t ascendantwikifrontend .'
                 }
+                echo "Docker image built successfully"
             }
         }
-        stage("Start"){
-            steps{
-                nodejs("my-nodejs") {
-                    sh 'npm start'
+        stage("Run Docker Container") {
+            steps {
+                script {
+                    // Remove any previous container if it exists
+                    sh 'docker rm -f nextjs-container || true'
+
+                    // Run the Docker container in detached mode
+                    sh 'docker run -d -p 3000:3000 --name nextjs-container ascendantwikifrontend'
                 }
-                echo "App started successfully"
+                echo "App is running in Docker on port 3000"
             }
+        }
+    }
+    post {
+        always {
+            echo "Pipeline completed"
         }
     }
 }
